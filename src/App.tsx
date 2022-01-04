@@ -14,7 +14,7 @@ import {Help} from "./features/help/Help";
 const App = () => {
    return (
        <BrowserRouter>
-          <div className={`${s.page} ${s.dark_theme}`}>
+          <div className={s.page}>
              <Header/>
              <Menu/>
 
@@ -28,7 +28,6 @@ const App = () => {
                    <Route path="Help" element={<Help/>}/>
                 </Routes>
              </main>
-
              <Footer/>
           </div>
        </BrowserRouter>
