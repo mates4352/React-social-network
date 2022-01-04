@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1842361c-1a02-4e92-abf5-88adf17ad529" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +74,7 @@
       <updated>1641280409290</updated>
       <workItem from="1641280412206" duration="461000" />
       <workItem from="1641280894742" duration="14948000" />
-      <workItem from="1641306404210" duration="345000" />
+      <workItem from="1641306404210" duration="4596000" />
     </task>
     <servers />
   </component>
