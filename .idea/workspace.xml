@@ -11,17 +11,16 @@
       <change afterPath="$PROJECT_DIR$/src/assets/scss/_variable.scss" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/shared/interactive/Button/Button.module.scss" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/shared/interactive/Button/Button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/shared_components/Footer/Header.tsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/shared/shared_components/Footer/footer.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.tsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Footer/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1641280409290</updated>
       <workItem from="1641280412206" duration="461000" />
-      <workItem from="1641280894742" duration="3168000" />
+      <workItem from="1641280894742" duration="5671000" />
     </task>
     <servers />
   </component>
@@ -106,5 +105,16 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/my-app" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/App.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
