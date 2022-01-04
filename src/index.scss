@@ -1,3 +1,5 @@
+@import './src/style';
+
 *, ::before, ::after {
    padding: 0;
    margin: 0;
@@ -83,6 +85,7 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    min-width: 320px;
+   background-color: var(--white);
 }
 
 input::-ms-clear {

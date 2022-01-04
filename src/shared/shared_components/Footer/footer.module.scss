@@ -3,5 +3,6 @@
 .footer {
    grid-area: footer;
    min-height: var(--footer_size);
-   background-color: var(--blue);
+   box-shadow: 0 0 10px var(--trasparent);
+   background-color: var(--white);
 }

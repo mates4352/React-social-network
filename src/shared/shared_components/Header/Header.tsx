@@ -2,6 +2,7 @@ import s from './Header.module.scss'
 import avatar from './../../../assets/images/avatar.jpg'
 
 export const Header = () => {
+
    return (
       <header className={s.header}>
          <div className={s.container}>

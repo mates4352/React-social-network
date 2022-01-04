@@ -2,10 +2,11 @@
 
 .menu {
    grid-area: menu;
-   height: calc(100vh - var(--footer_size));
+   z-index: 100;
+   height: 100vh;
    min-height: 640px;
    padding: 64px 24px;
-   background-color: var(--black);
+   background-color: var(--blue);
 
    .list {
       display: grid;
@@ -20,17 +21,19 @@
       padding: 6px 24px;
 
       font: var(--h2);
-      color: var(--blue);
-      transition: background-color 300ms ease, color 300ms ease;
+      color: var(--black);
+      transition: background-color 300ms ease, color 300ms ease, box-shadow 100ms ease;
 
       &:hover {
-         background-color: var(--blue);
-         color: var(--black);
+         color: var(--blue);
+         background-color: var(--black);
+         box-shadow: 0 0 3px var(--black);
       }
 
       &_active {
-         background-color: var(--blue);
-         color: var(--black);
+         color: var(--blue);
+         background-color: var(--black);
+         box-shadow: 0 0 3px var(--black);
       }
    }
 }
