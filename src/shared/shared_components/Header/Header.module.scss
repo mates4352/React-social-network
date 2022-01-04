@@ -3,10 +3,10 @@
 .header {
    position: fixed;
    top: 0;
-   left: 0;
+   right: 0;
    z-index: 1;
 
-   width: 100%;
+   width: calc(100% - var(--menu_size));
    min-height: var(--header_size);
 
    background-color: var(--blue);

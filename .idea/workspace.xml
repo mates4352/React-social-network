@@ -21,6 +21,7 @@
       <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared_components/Menu/Menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1641280409290</updated>
       <workItem from="1641280412206" duration="461000" />
-      <workItem from="1641280894742" duration="9809000" />
+      <workItem from="1641280894742" duration="11095000" />
     </task>
     <servers />
   </component>

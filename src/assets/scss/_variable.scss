@@ -8,5 +8,10 @@ $grid_breakpoints: (
 :root {
    --header_size: 70px;
    --footer_size: 70px;
+   --menu_size: 360px;
    --minmax: minmax(min-content, max-content);
+
+   @include media(max, xxl) {
+      --menu_size: 280px;
+   }
 }

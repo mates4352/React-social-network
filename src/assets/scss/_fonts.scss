@@ -23,5 +23,19 @@
 }
 
 :root {
+   --h1: 48px/1.1 "Montserrat_Bold";
+   --h2: 24px/1.2 "Montserrat_Medium";
+   --text: 20px/1.2 "Montserrat_Regular";
 
+   @include media(max, xxl) {
+      --h1: 36px/1.1 "Montserrat_Bold";
+      --h2: 20px/1.2 "Montserrat_Medium";
+      --text: 18px/1.2 "Montserrat_Regular";
+   }
+
+   @include media(max, lg) {
+      --h1: 32px/1.1 "Montserrat_Bold";
+      --h2: 18px/1.2 "Montserrat_Medium";
+      --text: 16px/1.2 "Montserrat_Regular";
+   }
 }

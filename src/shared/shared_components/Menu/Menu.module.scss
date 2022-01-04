@@ -2,9 +2,8 @@
 
 .menu {
    grid-area: menu;
-   height: calc(100vh - var(--header_size) - var(--footer_size));
+   height: calc(100vh - var(--footer_size));
    min-height: 640px;
-   margin-top: var(--header_size);
    padding: 64px 24px;
    background-color: var(--black);
 
@@ -21,9 +20,9 @@
    .link {
       display: block;
       border-radius: 8px;
-      padding: 6px 24px;
+      padding: 4px 24px;
 
-      font: 28px/1.2 "Montserrat_Medium";
+      font: var(--h2);
       color: var(--blue);
       transition: background-color 300ms ease, color 300ms ease;
 
