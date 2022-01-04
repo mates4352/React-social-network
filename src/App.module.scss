@@ -2,19 +2,24 @@
 
 .page {
    display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-auto-rows: minmax(min-content, max-content);
+   grid-template-columns: 480px repeat(2, 1fr);
+   grid-auto-rows: var(--minmax);
    grid-template-areas:
       "header header header"
       "menu content content"
       "menu content content"
-      "menu footer footer";
-   max-width: 1200px;
+      "footer footer footer";
    margin: 0 auto;
 
-   border: 1px solid #000;
-}
+   @include media(max, xxl) {
+      grid-template-columns: 380px repeat(2, 1fr);
+   }
 
-.content {
-   grid-area: content;
+   .content {
+      grid-area: content;
+      max-width: 1200px;
+      margin: var(--header_size) auto 0 auto;
+      padding: 48px 64px;
+      box-sizing: content-box;
+   }
 }

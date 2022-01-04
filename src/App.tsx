@@ -11,7 +11,7 @@ const App = () => {
           <Menu/>
 
           <main className={s.content}>
-
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab cupiditate deleniti dolorum exercitationem illum in incidunt inventore numquam quos recusandae reprehenderit repudiandae saepe, sapiente sequi sint sunt, suscipit vero.
           </main>
 
           <Footer/>

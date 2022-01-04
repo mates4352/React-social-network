@@ -1,9 +1,12 @@
 $grid_breakpoints: (
-    xxl: 1439px,
+    xxl: 1639px,
     xl: 1279px,
     lg: 1023px,
     md: 767px,
 );
 
 :root {
+   --header_size: 70px;
+   --footer_size: 70px;
+   --minmax: minmax(min-content, max-content);
 }
