@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1842361c-1a02-4e92-abf5-88adf17ad529" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/_mixins.scss" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/shared/interactive/Button/Button.module.scss" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/shared/interactive/Button/Button.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -84,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1641280409290</updated>
       <workItem from="1641280412206" duration="461000" />
-      <workItem from="1641280894742" duration="11095000" />
+      <workItem from="1641280894742" duration="13625000" />
     </task>
     <servers />
   </component>
