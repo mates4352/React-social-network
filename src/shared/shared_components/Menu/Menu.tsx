@@ -2,7 +2,7 @@ import s from './Menu.module.scss'
 import {NavLink} from "react-router-dom";
 
 export const Menu = () => {
-   const active = (isActive: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
+   const active = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
    return (
        <nav className={s.menu}>``
@@ -32,7 +32,7 @@ export const Menu = () => {
              </li>
 
              <li className={s.item}>
-                <NavLink className={active} to={"Exit"}>Exit</NavLink>
+                <NavLink className={active} to={"/"}>Exit</NavLink>
              </li>
           </ul>
        </nav>
