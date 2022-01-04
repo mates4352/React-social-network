@@ -76,16 +76,14 @@
    }
 
    .avatar {
-      --size: 45px;
-      display: block;
-      width: var(--size);
-      height: var(--size);
-
       background-color: transparent;
-      border: 1px solid var(--black);
-      border-radius: 50%;
-      img {
+      border: none;
 
+      img {
+         --size: 55px;
+         width: var(--size);
+         height: var(--size);
+         border-radius: 50%;
       }
    }
 }

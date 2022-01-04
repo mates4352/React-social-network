@@ -1,4 +1,5 @@
 import s from './Header.module.scss'
+import avatar from './../../../assets/images/avatar.jpg'
 
 export const Header = () => {
    return (
@@ -14,7 +15,7 @@ export const Header = () => {
 
                <div className={s.account}>
                   <button className={s.avatar} type="button">
-                     <img src="" alt="Avatar"/>
+                     <img src={avatar} alt="Avatar"/>
                   </button>
                </div>
             </div>
