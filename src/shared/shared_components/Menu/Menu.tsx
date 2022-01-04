@@ -13,11 +13,11 @@ export const Menu = () => {
              </li>
 
              <li className={s.item}>
-                <a className={s.link} href="#">News</a>
+                <a className={s.link} href="#">Music</a>
              </li>
 
              <li className={s.item}>
-                <a className={s.link} href="#">Music</a>
+                <a className={s.link} href="#">News</a>
              </li>
 
              <li className={s.item}>

@@ -21,10 +21,9 @@
    .link {
       display: block;
       border-radius: 8px;
-      padding: 4px 24px;
+      padding: 6px 24px;
 
-      font-size: 28px;
-      line-height: 1.2;
+      font: 28px/1.2 "Montserrat_Medium";
       color: var(--blue);
       transition: background-color 300ms ease, color 300ms ease;
 
