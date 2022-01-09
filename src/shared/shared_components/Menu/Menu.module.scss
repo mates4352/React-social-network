@@ -2,10 +2,15 @@
 
 .menu {
    grid-area: menu;
+   position: sticky;
+   top: 0;
+   left: 0;
    z-index: 100;
+
    height: 100vh;
    min-height: 640px;
    padding: 64px 24px;
+
    background-color: var(--blue);
 
    .list {
