@@ -17,10 +17,7 @@
 
    .content {
       --content_padding: 64px;
-      @extend .container;
       grid-area: content;
-      display: block;
-      width: calc(100% - var(--container_padding) * 2);
       margin-top: var(--header_size);
       padding-top: var(--content_padding);
       padding-bottom: var(--content_padding);
