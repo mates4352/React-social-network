@@ -20,7 +20,7 @@ const App = () => {
 
              <main className={s.content}>
                 <Routes>
-                   <Route path="Account" element={<Account/>}/>
+                   <Route path="/" element={<Account/>}/>
                    <Route path="Messages" element={<Messages/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
