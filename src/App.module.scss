@@ -2,7 +2,7 @@
 
 .page {
    display: grid;
-   grid-template-columns: var(--menu_size) 1fr 1fr;
+   grid-template-columns: var(--menu_size) repeat(2, 1fr);
    grid-template-rows: repeat(2, 1fr) var(--footer_size);
    grid-template-areas:
       "menu content content"
@@ -16,18 +16,17 @@
    }
 
    .content {
-      display: block;
-      --c_padding: 64px;
+      --content_padding: 64px;
       @extend .container;
       grid-area: content;
+      display: block;
+      width: calc(100% - var(--container_padding) * 2);
       margin-top: var(--header_size);
-      padding-top: var(--c_padding);
-      width: 100%;
-      box-sizing: border-box;
-      padding-bottom: var(--c_padding);
+      padding-top: var(--content_padding);
+      padding-bottom: var(--content_padding);
 
       @include media(max, xxl) {
-         --c_padding: 48px
+         --content_padding: 48px
       }
    }
 }

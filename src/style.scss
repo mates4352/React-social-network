@@ -4,16 +4,17 @@
 @import './assets/scss/colos';
 
 .container {
+   --container_padding: 64px;
    max-width: 1440px;
    margin: 0 auto;
-   padding: 0 64px;
+   padding: 0 var(--container_padding);
    box-sizing: content-box;
 
    @include  media(max, xxl) {
-      padding: 0 48px;
+      --container_padding: 48px;
    }
 
    @include  media(max, md) {
-      padding: 0 20px;
+      --container_padding: 20px;
    }
 }
