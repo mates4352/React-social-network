@@ -1,0 +1,26 @@
+@import './src/style';
+
+.post {
+   display: inline-block;
+   padding: 10px;
+
+   color: var(--black);
+
+   background-color: var(--blue);
+   box-shadow: 0 0 3px var(--black);
+   border-radius: 12px;
+
+   .text {
+      font: var(--text);
+      margin-bottom: 6px;
+   }
+
+   .time {
+      display: block;
+      font: var(--caption);
+      text-align: right;
+   }
+}
+
+
+
