@@ -4,7 +4,8 @@ import s from './Account.module.scss'
 import imageAvatar from './../../assets/images/avatar.jpg'
 import background from './../../assets/images/bg_account.jpg'
 
-import {datePostType, Post} from "./post/post";
+import {datePostType, Post} from "./components/post/post";
+import {Personal} from "./components/personal/Personal";
 
 type accountType = {};
 
@@ -23,6 +24,12 @@ export const Account:React.FC<accountType> = (props) => {
       }
    ]);
 
+   const personal = {
+      id: 0,
+      name: "Sergey",
+      description: "description"
+   }
+
    const addPost = (value: string) => {
       setPost([...post, {id: post.length - 1, text: value, time: "2022-01-09"}])
    }
@@ -34,14 +41,7 @@ export const Account:React.FC<accountType> = (props) => {
           </div>
 
           <div className={s.container}>
-             <div className={s.info}>
-                <img className={s.avatar} src={imageAvatar} alt="Изображение аватара"/>
-
-                <div className={s.description}>
-                   <h2 className={s.name}>Name</h2>
-                   <p className={s.text}>info</p>
-                </div>
-             </div>
+             <Personal personal={personal}></Personal>
 
              <form className={s.entry_field}>
                 <textarea className={s.textarea} maxLength={120} placeholder='Write a post...'></textarea>

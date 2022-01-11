@@ -1,0 +1,28 @@
+@import './src/style';
+
+.personal {
+   display: grid;
+   grid-template-columns: repeat(2, var(--minmax));
+   align-items: center;
+   column-gap: 24px;
+}
+
+.avatar {
+   --size: 150px;
+   width: var(--size);
+   height: var(--size);
+   border-radius: 50%;
+}
+
+.description {
+   font: var(--text);
+}
+
+.name {
+   font: var(--h2);
+   text-transform: uppercase;
+}
+
+.text {
+   font: var(--text);
+}
