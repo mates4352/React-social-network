@@ -1,44 +1,27 @@
 @import './src/style';
 
 .account {
-   display: grid;
-   grid-template-rows: repeat(2, var(--minmax)) 1fr ;
-   row-gap: 48px;
-   height: 100%;
+
+   .container {
+      @extend .container;
+      display: grid;
+      grid-template-rows: repeat(2, var(--minmax)) 1fr ;
+      row-gap: 48px;
+   }
 
    .banner {
-      display: block;
-   }
+      height: 250px;
+      margin: -64px 0 48px;
 
-   .info {
-      display: grid;
-      grid-template-columns: repeat(2, var(--minmax));
-      align-items: center;
-      column-gap: 24px;
-   }
+      @include  media(max, xxl) {
+         margin: -48px 0 48px;
+      }
 
-   .avatar {
-      --size: 150px;
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-   }
-
-   .description {
-      font: var(--text);
-   }
-
-   .name {
-      font: var(--h2);
-      text-transform: uppercase;
-   }
-
-   .text {
-      font: var(--text);
-   }
-
-   .content {
-      align-self: end;
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
    }
 
    .entry_field {
@@ -56,6 +39,7 @@
 
       border: 1px solid var(--black);
       border-radius: 12px;
+      resize: none;
    }
 
    .button {
@@ -68,5 +52,10 @@
 
       border: 1px solid var(--black);
       background-color: transparent;
+   }
+
+   .list {
+      display: grid;
+      row-gap: 40px;
    }
 }

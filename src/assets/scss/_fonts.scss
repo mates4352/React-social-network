@@ -25,17 +25,23 @@
 :root {
    --h1: 48px/1.1 "Montserrat_Bold";
    --h2: 22px/1.2 "Montserrat_Medium";
+   --h3: 20px/1.1 "Montserrat_Medium";
    --text: 18px/1.2 "Montserrat_Regular";
+   --caption: 14px/1.1 "Montserrat_Regular";
 
    @include media(max, xxl) {
       --h1: 40px/1.1 "Montserrat_Bold";
       --h2: 20px/1.2 "Montserrat_Medium";
+      --h3: 18px/1.1 "Montserrat_Medium";
       --text: 16px/1.2 "Montserrat_Regular";
+      --caption: 13px/1.1 "Montserrat_Regular";
    }
 
    @include media(max, lg) {
       --h1: 32px/1.1 "Montserrat_Bold";
       --h2: 18px/1.2 "Montserrat_Medium";
+      --h3: 16px/1.1 "Montserrat_Medium";
       --text: 14px/1.2 "Montserrat_Regular";
+      --caption: 12px/1.1 "Montserrat_Regular";
    }
 }
