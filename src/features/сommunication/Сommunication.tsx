@@ -1,6 +1,7 @@
 import React from 'react';
-import s from './Messages.module.scss'
+import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
+import {dataMassageType, Massage} from "./component/massage/Massage";
 
 type messagesType = {};
 
@@ -9,7 +10,7 @@ type dataDialogsType = {
    name: string,
 }
 
-export const Messages: React.FC<messagesType> = (props) => {
+export const Сommunication: React.FC<messagesType> = (props) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
    const dataDialogs:Array<dataDialogsType> = [
@@ -21,14 +22,27 @@ export const Messages: React.FC<messagesType> = (props) => {
       {id: 5, name: "Sergey"},
    ]
 
+   const dataMassage:Array<dataMassageType> = [
+      {id: 0, text: "Hello"},
+      {id: 1, text: "Hello"},
+   ]
+
    return (
-       <div className={s.messages}>
+       <div className={s.communication}>
           <div className={s.container}>
              <h2 className={s.title}>Dialogs</h2>
              <ul className={s.Dialogs}>
                 {dataDialogs.map( dialogs =>
                     <li className={s.name}>
                        <NavLink className={classLink} to={`Messages/${dialogs.id}`}>{dialogs.name}</NavLink>
+                    </li>
+                )}
+             </ul>
+
+             <ul className={s.list_massage}>
+                {dataMassage.map( massage =>
+                    <li className={s.item_massage} key={massage.id}>
+                       <Massage massage={massage}/>
                     </li>
                 )}
              </ul>
