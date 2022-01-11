@@ -1,8 +1,7 @@
 @import './src/style';
 
 .post {
-   display: inline-block;
-   padding: 10px;
+   padding: 20px;
 
    color: var(--black);
 
@@ -11,8 +10,15 @@
    border-radius: 12px;
 
    .text {
-      font: var(--text);
+      display: inline-block;
       margin-bottom: 6px;
+      padding: 4px 8px;
+
+      font: var(--text);
+
+      background-color: var(--white);
+      border-radius: 6px;
+
    }
 
    .time {

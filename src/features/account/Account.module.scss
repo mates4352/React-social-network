@@ -52,7 +52,6 @@
    }
 
    .entry_field {
-      align-self: end;
       display: grid;
       justify-items: center;
       row-gap: 24px;
@@ -82,7 +81,8 @@
       background-color: transparent;
    }
 
-   .content {
-
+   .list {
+      display: grid;
+      row-gap: 40px;
    }
 }
