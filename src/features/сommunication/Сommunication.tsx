@@ -31,7 +31,7 @@ export const Сommunication: React.FC<messagesType> = (props) => {
        <div className={s.communication}>
           <div className={s.container}>
              <h2 className={s.title}>Dialogs</h2>
-             <ul className={s.Dialogs}>
+             <ul className={s.dialogs}>
                 {dataDialogs.map( dialogs =>
                     <li className={s.name}>
                        <NavLink className={classLink} to={`Messages/${dialogs.id}`}>{dialogs.name}</NavLink>

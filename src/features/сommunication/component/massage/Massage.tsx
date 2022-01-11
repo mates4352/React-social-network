@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Massage.module.scss'
+import image from "./../../../../assets/images/avatar.jpg"
 
 export type dataMassageType = {
    id: number,
@@ -12,10 +13,10 @@ type massageType = {
 
 
 export const Massage:React.FC<massageType> = (props) => {
-   debugger
+
    return (
        <div className={s.massage}>
-          <img className={s.avatar} src="#" alt="Image personal"/>
+          <img className={s.avatar} src={image} alt="Image personal"/>
 
           <p className={s.text}>
              {props.massage.text}

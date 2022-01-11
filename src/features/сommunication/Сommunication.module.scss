@@ -1,36 +1,80 @@
 @import './src/style';
 
-.Сommunication {
+.communication {
+   height: 100%;
 
-}
-
-.container {
-   @extend .container;
-}
-
-.title {
-   margin-bottom: 48px;
-   font: var(--h1);
-
-   @include media(max, xxl) {
-      margin-bottom: 32px;
+   .container {
+      @extend .container;
+      display: grid;
+      grid-template-columns: repeat(2, var(--minmax));
+      grid-auto-rows: var(--minmax) 1fr;
+      grid-template-areas:
+         "title title"
+         "dialogs massages"
+         "dialogs massages"
+      ;
+      column-gap: 48px;
+      height: 100%;
    }
 
-   @include media(max, lg) {
-      margin-bottom: 24px;
+   .title {
+      grid-area: title;
+      margin-bottom: 48px;
+      font: var(--h1);
+
+      @include media(max, xxl) {
+         margin-bottom: 32px;
+      }
+
+      @include media(max, lg) {
+         margin-bottom: 24px;
+      }
+   }
+
+   .dialogs {
+      grid-area: dialogs;
+      display: grid;
+      grid-auto-rows: var(--minmax);
+      row-gap: 24px;
+      width: 280px;
+      padding: 48px 32px;
+
+      border: 1px solid var(--black);
+      box-shadow: 0 0 3px var(--black);
+      border-radius: 8px;
+
+      @include media(max, xxl) {
+         row-gap: 16px;
+      }
+   }
+
+   .name {
+      display: inline-block;
+      transition: transform 200ms ease;
+
+      &:hover {
+         transform: scale(1.1);
+      }
+   }
+
+   .link {
+      font: var(--h2);
+      color: var(--black);
+
+
+   }
+
+   .list_massage {
+      grid-area: massages;
+      display: grid;
+      grid-auto-rows: var(--minmax);
+      align-items: center;
+      row-gap: 24px;
+   }
+
+   .item_massage {
+
    }
 }
 
-.Dialogs {
-   display: grid;
-   row-gap: 24px;
 
-   @include media(max, xxl) {
-      row-gap: 16px;
-   }
-}
-
-.name {
-   font: var(--h2);
-   display: flex;
-}
