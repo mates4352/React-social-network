@@ -31,7 +31,7 @@ export const Account:React.FC<accountType> = (props) => {
    }
 
    const addPost = (value: string) => {
-      setPost([...post, {id: post.length - 1, text: value, time: "2022-01-09"}])
+      setPost([...post, {id: post.length, text: value, time: "2022-01-09"}])
    }
 
    return (
@@ -50,7 +50,7 @@ export const Account:React.FC<accountType> = (props) => {
 
              <ul className={s.list}>
                 {post.map( post =>
-                    <li className={s.item}>
+                    <li className={s.item} key={post.id}>
                        <Post post={post}/>
                     </li>
                 )}
