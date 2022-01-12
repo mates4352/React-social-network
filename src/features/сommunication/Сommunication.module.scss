@@ -3,6 +3,7 @@
 .communication {
    --height_top: 60px;
    --height_entryField: 60px;
+   --height_content: calc(var(--header_size) + var(--height_top) + var(--height_entryField));
    --padding: 12px;
    height: 100%;
    display: grid;
@@ -10,8 +11,8 @@
    grid-auto-rows: var(--minmax) 1fr;
    grid-template-areas:
       "search content"
-      "contact content"
-      "contact content"
+      "contacts content"
+      "contacts content"
    ;
 
    @include media(max, xxl) {
@@ -33,7 +34,7 @@
    }
 
    .contact {
-      grid-area: contact;
+      grid-area: contacts;
       margin: -64px 0;
       border-right: 1px solid var(--black);
 
@@ -65,7 +66,7 @@
    }
 
    .dialogsItem {
-      display: inline-block;
+      width: min-content;
       transition: transform 200ms ease;
 
       &:hover {
@@ -100,12 +101,9 @@
       grid-auto-rows: var(--minmax);
       align-items: center;
       row-gap: 24px;
-      height: calc( 100vh - var(--footer_size) - var(--header_size) - var(--height_top) - var(--height_entryField));
+      height: calc( 100vh - var(--height_content));
       padding: 24px;
       overflow: auto;
-   }
-
-   .item {
    }
 
    .entryField {

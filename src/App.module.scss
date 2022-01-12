@@ -2,12 +2,12 @@
 
 .page {
    display: grid;
-   grid-template-columns: var(--menu_size) repeat(2, 1fr);
+   grid-template-columns: var(--menu_size) 1fr;
    grid-template-rows: repeat(2, 1fr) var(--footer_size);
    grid-template-areas:
-      "menu content content"
-      "menu content content"
-      "menu footer footer";
+      "menu content"
+      "menu content"
+      "menu content";
    margin: 0 auto;
    background-color: var(--white);
 

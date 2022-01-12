@@ -2,7 +2,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import {Header} from "./shared/shared_components/Header/Header";
 import {Menu} from "./shared/shared_components/Menu/Menu";
-import {Footer} from "./shared/shared_components/Footer/Footer";
 import {Account} from "./features/account/Account";
 import {Сommunication} from "./features/сommunication/Сommunication";
 import {Music} from "./features/music/Music";
@@ -29,7 +28,6 @@ const App = () => {
                    <Route path="Help" element={<Help/>}/>
                 </Routes>
              </main>
-             <Footer/>
           </div>
        </BrowserRouter>
    );
