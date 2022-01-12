@@ -24,18 +24,10 @@ export const Сommunication: React.FC<messagesType> = (props) => {
 
    const StrangerDataMassage:Array<dataMassageType> = [
       {id: 0, text: "Hello"},
-      {id: 1, text: "Hello"},
-      {id: 1, text: "Hello"},
-      {id: 1, text: "Hello"},
+      {id: 1, text: "Bay"},
+      {id: 3, text: "Hello"},
+      {id: 4, text: "Bay"},
    ]
-
-   const MyDateMassage:Array<dataMassageType> = [
-      {id: 0, text: "Bay"},
-      {id: 1, text: "Bay"},
-      {id: 1, text: "Bay"},
-      {id: 1, text: "Bay"},
-   ]
-
 
    return (
        <div className={s.communication}>
@@ -64,13 +56,6 @@ export const Сommunication: React.FC<messagesType> = (props) => {
                     <li className={s.item} key={massage.id}>
                        <Massage massage={massage}/>
                     </li>
-                )}
-
-                {MyDateMassage.map( massage =>
-                    massage &&
-                   <li className={s.item} key={massage.id}>
-                     <Massage massage={massage}/>
-                   </li>
                 )}
              </ul>
 
