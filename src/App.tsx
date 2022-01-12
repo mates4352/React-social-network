@@ -21,7 +21,7 @@ const App = () => {
              <main className={s.content}>
                 <Routes>
                    <Route path="/" element={<Account/>}/>
-                   <Route path="Communication" element={<Сommunication/>}/>
+                   <Route path="Communication/*" element={<Сommunication/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
                    <Route path="Settings" element={<Settings/>}/>
