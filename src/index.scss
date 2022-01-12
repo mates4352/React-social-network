@@ -17,6 +17,13 @@ textarea {
    margin: 0
 }
 
+input,textarea {
+
+   &:placeholder-shown {
+      text-overflow: ellipsis;
+   }
+}
+
 button,
 input {
    overflow: visible
