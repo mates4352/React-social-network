@@ -1,32 +1,85 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './Сommunication.module.scss'
-import {NavLink} from "react-router-dom";
-import {dataMassageType, Massage} from "./component/massage/Massage";
+import {NavLink, Outlet} from "react-router-dom";
+import {dataMessageType, Massage} from "./component/massage/Massage";
 
 type messagesType = {};
 
 type dataDialogsType = {
    id: number,
    name: string,
+   message: Array<dataMessageType>
 }
 
 export const Сommunication: React.FC<messagesType> = (props) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
-   const dataDialogs:Array<dataDialogsType> = [
-      {id: 0, name: "Sergey"},
-      {id: 1, name: "Sergey"},
-      {id: 2, name: "Sergey"},
-      {id: 3, name: "Sergey"},
-      {id: 4, name: "Sergey"},
-      {id: 5, name: "Sergey"},
-   ]
+   const [number, setNumber] = useState(0);
 
-   const StrangerDataMassage:Array<dataMassageType> = [
-      {id: 0, text: "Hello"},
-      {id: 1, text: "Bay"},
-      {id: 3, text: "Hello"},
-      {id: 4, text: "Bay"},
+   const counterNumber = (value:number) => {
+      setNumber(value)
+   }
+
+   const dataDialogs: Array<dataDialogsType> = [
+      {
+         id: 0,
+         name: "Sergey1",
+         message: [
+            {id: 0, text: "Hello"},
+            {id: 1, text: "Bay"},
+            {id: 3, text: "Hello"},
+            {id: 4, text: "Bay"},
+            {id: 5, text: "Hello"},
+         ]
+      },
+
+      {
+         id: 1,
+         name: "Sergey2",
+         message: [
+            {id: 0, text: "Hello"},
+            {id: 1, text: "Bay"},
+            {id: 3, text: "Hello"},
+            {id: 4, text: "Bay"},
+            {id: 5, text: "Hello"},
+            {id: 6, text: "Bay"},
+            {id: 7, text: "Hello"},
+            {id: 8, text: "Bay"},
+            {id: 9, text: "Hello"},
+            {id: 10, text: "Bay"},
+            {id: 11, text: "Hello"},
+            {id: 12, text: "Bay"},
+            {id: 13, text: "Hello"},
+            {id: 14, text: "Bay"},
+         ]
+      },
+      {
+         id: 2,
+         name: "Sergey3",
+         message: [
+            {id: 0, text: "Hello"},
+         ]
+      },
+
+      {
+         id: 3,
+         name: "Sergey4",
+         message: [
+            {id: 0, text: "Hello"},
+            {id: 1, text: "Bay"},
+         ]
+      },
+
+      {
+         id: 4,
+         name: "Sergey5",
+         message: [
+            {id: 0, text: "Hello"},
+            {id: 1, text: "Bay"},
+            {id: 3, text: "Hello"},
+         ]
+      },
+
    ]
 
    return (
@@ -37,9 +90,14 @@ export const Сommunication: React.FC<messagesType> = (props) => {
              <input className={s.search} type="text" placeholder="Search contact..."/>
 
              <ul className={s.dialogs}>
-                {dataDialogs.map( dialogs =>
+                {dataDialogs.map(dialogs =>
                     <li className={s.dialogsItem}>
-                       <NavLink className={classLink} to={`Messages/${dialogs.id}`}>{dialogs.name}</NavLink>
+                       <NavLink
+                           className={classLink}
+                           to={`${dialogs.id}`}
+                           onClick={()=> {counterNumber(dialogs.id)}}>
+                           {dialogs.name}
+                       </NavLink>
                     </li>
                 )}
              </ul>
@@ -51,11 +109,13 @@ export const Сommunication: React.FC<messagesType> = (props) => {
              </p>
 
              <ul className={s.list}>
-                {StrangerDataMassage.map( massage =>
-                    massage &&
-                    <li className={s.item} key={massage.id}>
-                       <Massage massage={massage}/>
-                    </li>
+                {dataDialogs.map(item =>
+                    item &&
+                    item.message.map(message =>
+                        <li className={s.item} key={item.id}>
+                           <Massage massage={message}/>
+                        </li>
+                    ).filter( () => item.id === number )
                 )}
              </ul>
 
