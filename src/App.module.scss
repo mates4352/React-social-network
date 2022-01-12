@@ -12,7 +12,7 @@
    background-color: var(--white);
 
    @include media(max, xxl) {
-      grid-template-columns: var(--menu_size) repeat(2, 1fr);
+      grid-template-columns: var(--menu_size) 1fr;
    }
 
    .content {
