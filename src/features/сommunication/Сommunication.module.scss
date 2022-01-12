@@ -1,54 +1,64 @@
 @import './src/style';
 
 .communication {
+   --height_top: 40px;
+   --height_entryField: 40px;
+   --padding: 12px;
    height: 100%;
-
-   .container {
-      @extend .container;
-      display: grid;
-      grid-template-columns: repeat(2, var(--minmax));
-      grid-auto-rows: var(--minmax) 1fr;
-      grid-template-areas:
-         "title title"
-         "dialogs massages"
-         "dialogs massages"
-      ;
-      column-gap: 48px;
-      height: 100%;
-   }
+   display: grid;
+   grid-template-columns: var(--minmax) 1fr;
+   grid-auto-rows: var(--minmax) 1fr;
+   grid-template-areas:
+      "search content"
+      "contact content"
+      "contact content"
+   ;
 
    .title {
-      grid-area: title;
-      margin-bottom: 48px;
-      font: var(--h1);
+      position: absolute;
+      top: 0;
+      left: -100px;
+      width: 0;
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+   }
+
+   .contact {
+      grid-area: contact;
+      margin: -64px 0;
+      border-right: 1px solid var(--black);
 
       @include media(max, xxl) {
-         margin-bottom: 32px;
+         margin: -48px 0;
       }
+   }
 
-      @include media(max, lg) {
-         margin-bottom: 24px;
-      }
+   .search {
+      grid-area: search;
+      height: var(--height_top);
+      width: 100%;
+      padding: 4px 24px 4px 12px;
+      border: none;
+      border-bottom: 1px solid var(--black);
    }
 
    .dialogs {
-      grid-area: dialogs;
       display: grid;
       grid-auto-rows: var(--minmax);
       row-gap: 24px;
       width: 280px;
-      padding: 48px 32px;
+      padding: 32px 32px 48px 32px;
 
-      border: 1px solid var(--black);
-      box-shadow: 0 0 3px var(--black);
-      border-radius: 8px;
+
+      overflow: auto;
 
       @include media(max, xxl) {
          row-gap: 16px;
       }
    }
 
-   .name {
+   .dialogsItem {
       display: inline-block;
       transition: transform 200ms ease;
 
@@ -60,20 +70,46 @@
    .link {
       font: var(--h2);
       color: var(--black);
-
-
    }
 
-   .list_massage {
-      grid-area: massages;
+   .content {
+      grid-area: content;
+      margin: -64px 0;
+
+      @include media(max, xxl) {
+         margin: -48px 0;
+      }
+   }
+
+   .contactName {
+      height: var(--height_top);
+      padding: var(--padding);
+      border-bottom: 1px solid var(--black);
+   }
+
+   .list {
       display: grid;
       grid-auto-rows: var(--minmax);
       align-items: center;
       row-gap: 24px;
+      height: calc( 100vh - var(--footer_size) - var(--header_size) - var(--height_top) - var(--height_entryField));
+      padding: 24px;
+      overflow: auto;
    }
 
-   .item_massage {
+   .item {
+   }
 
+   .entryField {
+      height: var(--height_entryField);
+   }
+
+   .entryFieldInput {
+      width: 100%;
+      height: 100%;
+      padding: var(--padding);
+      border: none;
+      border-top: 1px solid var(--black);
    }
 }
 

@@ -3,7 +3,6 @@
 .account {
 
    .container {
-      @extend .container;
       display: grid;
       grid-template-rows: repeat(2, var(--minmax)) 1fr ;
       row-gap: 48px;
