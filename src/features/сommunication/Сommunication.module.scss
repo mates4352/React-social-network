@@ -1,0 +1,116 @@
+@import './src/style';
+
+.communication {
+   --height_top: 40px;
+   --height_entryField: 40px;
+   --padding: 12px;
+   height: 100%;
+   display: grid;
+   grid-template-columns: var(--minmax) 1fr;
+   grid-auto-rows: var(--minmax) 1fr;
+   grid-template-areas:
+      "search content"
+      "contact content"
+      "contact content"
+   ;
+
+   .title {
+      position: absolute;
+      top: 0;
+      left: -100px;
+      width: 0;
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+   }
+
+   .contact {
+      grid-area: contact;
+      margin: -64px 0;
+      border-right: 1px solid var(--black);
+
+      @include media(max, xxl) {
+         margin: -48px 0;
+      }
+   }
+
+   .search {
+      grid-area: search;
+      height: var(--height_top);
+      width: 100%;
+      padding: 4px 24px 4px 12px;
+      border: none;
+      border-bottom: 1px solid var(--black);
+   }
+
+   .dialogs {
+      display: grid;
+      grid-auto-rows: var(--minmax);
+      row-gap: 24px;
+      width: 280px;
+      padding: 32px 32px 48px 32px;
+
+
+      overflow: auto;
+
+      @include media(max, xxl) {
+         row-gap: 16px;
+      }
+   }
+
+   .dialogsItem {
+      display: inline-block;
+      transition: transform 200ms ease;
+
+      &:hover {
+         transform: scale(1.1);
+      }
+   }
+
+   .link {
+      font: var(--h2);
+      color: var(--black);
+   }
+
+   .content {
+      grid-area: content;
+      margin: -64px 0;
+
+      @include media(max, xxl) {
+         margin: -48px 0;
+      }
+   }
+
+   .contactName {
+      height: var(--height_top);
+      padding: var(--padding);
+      border-bottom: 1px solid var(--black);
+   }
+
+   .list {
+      display: grid;
+      grid-auto-rows: var(--minmax);
+      align-items: center;
+      row-gap: 24px;
+      height: calc( 100vh - var(--footer_size) - var(--header_size) - var(--height_top) - var(--height_entryField));
+      padding: 24px;
+      overflow: auto;
+   }
+
+   .item {
+   }
+
+   .entryField {
+      height: var(--height_entryField);
+   }
+
+   .entryFieldInput {
+      width: 100%;
+      height: 100%;
+      padding: var(--padding);
+      border: none;
+      border-top: 1px solid var(--black);
+   }
+}
+
+
