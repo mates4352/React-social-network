@@ -105,7 +105,10 @@ export const Сommunication: React.FC<messagesType> = (props) => {
 
           <div className={s.content}>
              <p className={s.contactName}>
-                name
+                {dataDialogs.map(dialogs =>
+                    dialogs.id === number &&
+                    <strong>{dialogs.name}</strong>
+                )}
              </p>
 
              <ul className={s.list}>
