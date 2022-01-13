@@ -6,13 +6,13 @@ export const Menu = () => {
 
    return (
        <nav className={s.menu}>
-          <ul className={s.list}>
+          <menu className={s.list}>
              <li className={s.item}>
                 <NavLink className={classLink} to={"/"}>Account</NavLink>
              </li>
 
              <li className={s.item}>
-                <NavLink className={classLink} to={"Communication"}>Communication</NavLink>
+                <NavLink className={classLink} to={"Communication/0"}>Communication</NavLink>
              </li>
 
              <li className={s.item}>
@@ -34,7 +34,7 @@ export const Menu = () => {
              <li className={s.item}>
                 <NavLink className={classLink} to={"Exit"}>Exit</NavLink>
              </li>
-          </ul>
+          </menu>
        </nav>
    );
 }
