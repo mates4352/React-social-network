@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import s from './Account.module.scss'
 
-import imageAvatar from './../../assets/images/avatar.jpg'
 import background from './../../assets/images/bg_account.jpg'
 
 import {datePostType, Post} from "./components/post/post";
