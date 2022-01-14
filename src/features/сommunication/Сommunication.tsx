@@ -1,17 +1,19 @@
 import React, {useState} from 'react';
 import s from './Сommunication.module.scss'
-import {NavLink, Outlet} from "react-router-dom";
-import {dataMessageType, Massage} from "./component/massage/Massage";
+import {NavLink} from "react-router-dom";
+import {dataDialogsType, Massage} from "./component/massage/Massage";
 
-type messagesType = {};
+export type communicationType = {
+   id: number
+   name: string
+   message: Array<dataDialogsType>
+};
 
-type dataDialogsType = {
-   id: number,
-   name: string,
-   message: Array<dataMessageType>
+export type messageType = {
+   dataMessage: Array<communicationType>
 }
 
-export const Сommunication: React.FC<messagesType> = (props) => {
+export const Сommunication: React.FC<messageType> = (props) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
    const [number, setNumber] = useState(0);
@@ -19,68 +21,6 @@ export const Сommunication: React.FC<messagesType> = (props) => {
    const counterNumber = (value:number) => {
       setNumber(value)
    }
-
-   const dataDialogs: Array<dataDialogsType> = [
-      {
-         id: 0,
-         name: "Sergey1",
-         message: [
-            {id: 0, text: "Hello"},
-            {id: 1, text: "Bay"},
-            {id: 3, text: "Hello"},
-            {id: 4, text: "Bay"},
-            {id: 5, text: "Hello"},
-         ]
-      },
-
-      {
-         id: 1,
-         name: "Sergey2",
-         message: [
-            {id: 0, text: "Hello"},
-            {id: 1, text: "Bay"},
-            {id: 3, text: "Hello"},
-            {id: 4, text: "Bay"},
-            {id: 5, text: "Hello"},
-            {id: 6, text: "Bay"},
-            {id: 7, text: "Hello"},
-            {id: 8, text: "Bay"},
-            {id: 9, text: "Hello"},
-            {id: 10, text: "Bay"},
-            {id: 11, text: "Hello"},
-            {id: 12, text: "Bay"},
-            {id: 13, text: "Hello"},
-            {id: 14, text: "Bay"},
-         ]
-      },
-      {
-         id: 2,
-         name: "Sergey3",
-         message: [
-            {id: 0, text: "Hello"},
-         ]
-      },
-
-      {
-         id: 3,
-         name: "Sergey4",
-         message: [
-            {id: 0, text: "Hello"},
-            {id: 1, text: "Bay"},
-         ]
-      },
-
-      {
-         id: 4,
-         name: "Sergey5",
-         message: [
-            {id: 0, text: "Hello"},
-            {id: 1, text: "Bay"},
-            {id: 3, text: "Hello"},
-         ]
-      },
-
-   ]
 
    return (
        <div className={s.communication}>
@@ -90,7 +30,7 @@ export const Сommunication: React.FC<messagesType> = (props) => {
              <input className={s.search} type="text" placeholder="Search contact..."/>
 
              <ul className={s.dialogs}>
-                {dataDialogs.map(dialogs =>
+                {props.dataMessage.map(dialogs =>
                     <li className={s.dialogsItem}>
                        <NavLink
                            className={classLink}
@@ -105,18 +45,18 @@ export const Сommunication: React.FC<messagesType> = (props) => {
 
           <div className={s.content}>
              <p className={s.contactName}>
-                {dataDialogs.map(dialogs =>
+                {props.dataMessage.map(dialogs =>
                     dialogs.id === number &&
                     <strong>{dialogs.name}</strong>
                 )}
              </p>
 
              <ul className={s.list}>
-                {dataDialogs.map(item =>
+                {props.dataMessage.map(item =>
                     item &&
                     item.message.map(message =>
                         <li className={s.item} key={item.id}>
-                           <Massage massage={message}/>
+                           <Massage message={message}/>
                         </li>
                     ).filter( () => item.id === number )
                 )}

@@ -1,6 +1,7 @@
 @import './src/style';
 
 .menu {
+   z-index: 2;
    grid-area: menu;
    min-height: 100vh;
    padding: 64px 24px 48px 24px;

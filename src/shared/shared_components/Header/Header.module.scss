@@ -1,6 +1,7 @@
 @import './src/style';
 
 .header {
+   z-index: 1;
    grid-area: header;
    height: var(--header_size);
 

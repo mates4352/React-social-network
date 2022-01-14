@@ -3,7 +3,7 @@ import React from 'react';
 import s from "./Personal.module.scss"
 import imageAvatar from "../../../../assets/images/avatar.jpg";
 
-type dataPersonalType = {
+export type dataPersonalType = {
    id: number
    name: string
    description: string

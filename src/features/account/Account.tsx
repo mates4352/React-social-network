@@ -1,37 +1,28 @@
 import React, {useState} from 'react';
-import s from './Account.module.scss'
 
+import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
 
 import {datePostType, Post} from "./components/post/post";
-import {Personal} from "./components/personal/Personal";
+import {Personal, dataPersonalType} from "./components/personal/Personal";
 
-type accountType = {};
+type accountType = {
+   datePost: Array<datePostType>
+   personal: dataPersonalType
+};
 
 export const Account:React.FC<accountType> = (props) => {
-   const [post, setPost] = useState<Array<datePostType>>([
-      {
-         id: 0,
-         text: "lorem lorem lorem lorem lorem",
-         time: "2022-01-10",
-      },
-
-      {
-         id: 1,
-         text: "text",
-         time: "2022-01-10",
-      }
-   ]);
-
-   const personal = {
-      id: 0,
-      name: "Sergey",
-      description: "description"
-   }
+   const [post, setPost] = useState<Array<datePostType>>(props.datePost);
 
    const addPost = (value: string) => {
       setPost([...post, {id: post.length, text: value, time: "2022-01-09"}])
    }
+
+   const postMap = post.map( post =>
+       <li className={s.item} key={post.id}>
+          <Post post={post}/>
+       </li>
+   )
 
    return (
        <div className={s.account}>
@@ -40,7 +31,7 @@ export const Account:React.FC<accountType> = (props) => {
           </div>
 
           <div className={s.container}>
-             <Personal personal={personal}></Personal>
+             <Personal personal={props.personal}/>
 
              <form className={s.entry_field}>
                 <textarea className={s.textarea} maxLength={120} placeholder='Write a post...'></textarea>
@@ -48,11 +39,7 @@ export const Account:React.FC<accountType> = (props) => {
              </form>
 
              <ul className={s.list}>
-                {post.map( post =>
-                    <li className={s.item} key={post.id}>
-                       <Post post={post}/>
-                    </li>
-                )}
+                {postMap}
              </ul>
           </div>
        </div>
