@@ -3,10 +3,9 @@
 .page {
    display: grid;
    grid-template-columns: var(--menu_size) 1fr;
-   grid-template-rows: repeat(2, 1fr) var(--footer_size);
+   grid-template-rows: repeat(2, var(--minmax));
    grid-template-areas:
-      "menu content"
-      "menu content"
+      "menu header"
       "menu content";
    margin: 0 auto;
    background-color: var(--white);
@@ -18,9 +17,10 @@
    .content {
       --content_padding: 64px;
       grid-area: content;
-      margin-top: var(--header_size);
+      height: calc(100vh - var(--header_size));
       padding-top: var(--content_padding);
       padding-bottom: var(--content_padding);
+      overflow: auto;
 
       @include media(max, xxl) {
          --content_padding: 48px
