@@ -6,13 +6,17 @@ import background from './../../assets/images/bg_account.jpg'
 import {datePostType, Post} from "./components/post/post";
 import {Personal, dataPersonalType} from "./components/personal/Personal";
 
-type accountType = {
+export type accountPageType = {
    datePost: Array<datePostType>
    personal: dataPersonalType
 };
 
+export type accountType = {
+   accountPage: accountPageType
+}
+
 export const Account:React.FC<accountType> = (props) => {
-   const [post, setPost] = useState<Array<datePostType>>(props.datePost);
+   const [post, setPost] = useState<Array<datePostType>>(props.accountPage.datePost);
 
    const addPost = (value: string) => {
       setPost([...post, {id: post.length, text: value, time: "2022-01-09"}])
@@ -31,7 +35,7 @@ export const Account:React.FC<accountType> = (props) => {
           </div>
 
           <div className={s.container}>
-             <Personal personal={props.personal}/>
+             <Personal personal={props.accountPage.personal}/>
 
              <form className={s.entry_field}>
                 <textarea className={s.textarea} maxLength={120} placeholder='Write a post...'></textarea>

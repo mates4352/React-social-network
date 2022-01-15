@@ -1,19 +1,23 @@
 import React, {useState} from 'react';
 import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
-import {dataDialogsType, Massage} from "./component/massage/Massage";
+import {dataDialogsType, Message} from "./component/message/Message";
 
-export type communicationType = {
+export type dateMessageType = {
    id: number
    name: string
-   message: Array<dataDialogsType>
+   messages: Array<dataDialogsType>
 };
 
-export type messageType = {
-   dataMessage: Array<communicationType>
+export type СommunicationPageType = {
+   dataMessage: Array<dateMessageType>
 }
 
-export const Сommunication: React.FC<messageType> = (props) => {
+type communicationType = {
+   communicationPage: СommunicationPageType
+}
+
+export const Сommunication: React.FC<communicationType> = (props) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
    const [number, setNumber] = useState(0);
@@ -30,7 +34,7 @@ export const Сommunication: React.FC<messageType> = (props) => {
              <input className={s.search} type="text" placeholder="Search contact..."/>
 
              <ul className={s.dialogs}>
-                {props.dataMessage.map(dialogs =>
+                {props.communicationPage.dataMessage.map(dialogs =>
                     <li className={s.dialogsItem}>
                        <NavLink
                            className={classLink}
@@ -45,18 +49,18 @@ export const Сommunication: React.FC<messageType> = (props) => {
 
           <div className={s.content}>
              <p className={s.contactName}>
-                {props.dataMessage.map(dialogs =>
+                {props.communicationPage.dataMessage.map(dialogs =>
                     dialogs.id === number &&
                     <strong>{dialogs.name}</strong>
                 )}
              </p>
 
              <ul className={s.list}>
-                {props.dataMessage.map(item =>
+                {props.communicationPage.dataMessage.map(item =>
                     item &&
-                    item.message.map(message =>
+                    item.messages.map(messages =>
                         <li className={s.item} key={item.id}>
-                           <Massage message={message}/>
+                           <Message messages={messages}/>
                         </li>
                     ).filter( () => item.id === number )
                 )}

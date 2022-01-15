@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Massage.module.scss'
+import s from './Message.module.scss'
 import image from "./../../../../assets/images/avatar.jpg"
 
 export type dataDialogsType = {
@@ -7,19 +7,18 @@ export type dataDialogsType = {
    text: string
 }
 
-export type DialogsType = {
-   message: dataDialogsType
+export type dialogsType = {
+   messages: dataDialogsType
 };
 
-
-export const Massage:React.FC<DialogsType> = (props) => {
+export const Message:React.FC<dialogsType> = (props) => {
 
    return (
        <div className={s.message}>
           <img className={s.avatar} src={image} alt="Image personal"/>
 
           <p className={s.text}>
-             {props.message.text}
+             {props.messages.text}
           </p>
        </div>
    );

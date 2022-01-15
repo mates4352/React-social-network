@@ -2,16 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-import {dataPost} from "./index";
-import {personal} from "./index";
-import {dataMessage} from "./index";
+import {state} from "./redux/state";
 
 test('renders learn react link', () => {
   render(
-      <App
-        datePost={dataPost}
-        personal={personal}
-        dataMessage={dataMessage}/>
+      <App state={state}/>
   );
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
