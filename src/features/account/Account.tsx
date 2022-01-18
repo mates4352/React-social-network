@@ -15,18 +15,24 @@ export type accountType = {
    accountPage: accountPageType
 }
 
-export const Account:React.FC<accountType> = (props) => {
+export const Account: React.FC<accountType> = (props) => {
    const [post, setPost] = useState<Array<datePostType>>(props.accountPage.datePost);
+   const [inputValue, setInputValue] = useState('');
 
-   const addPost = (value: string) => {
-      setPost([...post, {id: post.length, text: value, time: "2022-01-09"}])
-   }
-
-   const postMap = post.map( post =>
+   const postMap = post.map(post =>
        <li className={s.item} key={post.id}>
           <Post post={post}/>
        </li>
    )
+   const sendPost = (value: string) => {
+      setPost([...post, {id: post.length, text: value, time: "2022-01-09"}])
+      setInputValue("")
+   }
+   const sendPostInputValue = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      setPost([...post, {id: post.length, text: e.currentTarget.value, time: "2022-01-09"}])
+      setInputValue("")
+   }
+
 
    return (
        <div className={s.account}>
@@ -38,8 +44,18 @@ export const Account:React.FC<accountType> = (props) => {
              <Personal personal={props.accountPage.personal}/>
 
              <form className={s.entry_field}>
-                <textarea className={s.textarea} maxLength={120} placeholder='Write a post...'></textarea>
-                <button className={s.button} type="button" onClick={() => {addPost("hello")}}>Add post</button>
+                <textarea className={s.textarea} maxLength={120} placeholder='Write a post...' value={inputValue}
+                          onChange={(e) => {
+                             setInputValue(e.currentTarget.value)
+                          }}
+                          onKeyUp={(e) => {
+                             if (e.key === "Enter" && e.currentTarget.value !== "") sendPostInputValue(e);
+                          }}>
+                </textarea>
+                <button className={s.button} type="button" onClick={() => {
+                   sendPost(inputValue)
+                }}>Add post
+                </button>
              </form>
 
              <ul className={s.list}>

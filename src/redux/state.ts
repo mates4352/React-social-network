@@ -15,8 +15,7 @@ export const state: stateType  = {
             time: "2022-01-10",
          }
       ],
-      personal:  { id: 0, name: "Sergey", description: "description"
-      },
+      personal:  { id: 0, name: "Sergey", description: "description"},
    },
    communicationPage: {
       dataMessage: [
@@ -84,4 +83,5 @@ export const state: stateType  = {
 
       ]
    }
+
 }
