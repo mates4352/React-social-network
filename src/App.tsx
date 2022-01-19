@@ -7,21 +7,21 @@ import {Music} from "./features/music/Music";
 import {Settings} from "./features/settings/Settings";
 import {News} from "./features/news/News";
 import {Help} from "./features/help/Help";
-import {СommunicationPageType, Сommunication} from "./features/сommunication/Сommunication";
+import {communicationDateType, Сommunication} from "./features/сommunication/Сommunication";
 
 import s from './App.module.scss';
 
 
 export type stateType = {
    accountPage: accountPageType
-   communicationPage: СommunicationPageType
+   communicationPage: communicationDateType
 }
 
 export type appType = {
   state: stateType
 }
 
-const App:React.FC<appType> = (props) => {
+const App:React.FC<appType> = ({state}) => {
    return (
        <BrowserRouter>
           <div className={s.page}>
@@ -30,8 +30,8 @@ const App:React.FC<appType> = (props) => {
 
              <main className={s.content}>
                 <Routes>
-                   <Route path="/" element={<Account accountPage={props.state.accountPage}/>}/>
-                   <Route path="Communication/*" element={<Сommunication communicationPage={props.state.communicationPage}/>}/>
+                   <Route path="/" element={<Account accountPage={state.accountPage}/>}/>
+                   <Route path="Communication/*" element={<Сommunication communicationPage={state.communicationPage}/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
                    <Route path="Settings" element={<Settings/>}/>

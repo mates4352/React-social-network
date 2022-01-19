@@ -8,7 +8,7 @@ export type dataDialogsType = {
 }
 
 export type dialogsType = {
-   messages: dataDialogsType
+   message: dataDialogsType
 };
 
 export const Message:React.FC<dialogsType> = (props) => {
@@ -18,7 +18,7 @@ export const Message:React.FC<dialogsType> = (props) => {
           <img className={s.avatar} src={image} alt="Image personal"/>
 
           <p className={s.text}>
-             {props.messages.text}
+             {props.message.text}
           </p>
        </div>
    );

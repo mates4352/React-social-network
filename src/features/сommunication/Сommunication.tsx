@@ -6,25 +6,20 @@ import {dataDialogsType, Message} from "./component/message/Message";
 export type dateMessageType = {
    id: number
    name: string
-   messages: Array<dataDialogsType>
 };
 
-export type СommunicationPageType = {
-   dataMessage: Array<dateMessageType>
+export type communicationDateType = {
+   dialogs: Array<dateMessageType>
+   messages : Array<dataDialogsType>
 }
 
-type communicationType = {
-   communicationPage: СommunicationPageType
+export type communicationType = {
+   communicationPage: communicationDateType
 }
 
-export const Сommunication: React.FC<communicationType> = (props) => {
+export const Сommunication: React.FC<communicationType> = ({communicationPage}) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
-
-   const [number, setNumber] = useState(0);
-
-   const counterNumber = (value:number) => {
-      setNumber(value)
-   }
+   const [pathId, setPathId] = useState(0);
 
    return (
        <div className={s.communication}>
@@ -34,13 +29,13 @@ export const Сommunication: React.FC<communicationType> = (props) => {
              <input className={s.search} type="text" placeholder="Search contact..."/>
 
              <ul className={s.dialogs}>
-                {props.communicationPage.dataMessage.map(dialogs =>
+                {communicationPage.dialogs.map( dialog =>
                     <li className={s.dialogsItem}>
                        <NavLink
                            className={classLink}
-                           to={`${dialogs.id}`}
-                           onClick={()=> {counterNumber(dialogs.id)}}>
-                           {dialogs.name}
+                           to={`${dialog.id}`}
+                           onClick={() => {setPathId(dialog.id)}}>
+                           {dialog.name}
                        </NavLink>
                     </li>
                 )}
@@ -49,20 +44,17 @@ export const Сommunication: React.FC<communicationType> = (props) => {
 
           <div className={s.content}>
              <p className={s.contactName}>
-                {props.communicationPage.dataMessage.map(dialogs =>
-                    dialogs.id === number &&
-                    <strong>{dialogs.name}</strong>
+                {communicationPage.dialogs.map(dialog =>
+                    dialog.id === pathId &&
+                    <strong>{dialog.name}</strong>
                 )}
              </p>
 
              <ul className={s.list}>
-                {props.communicationPage.dataMessage.map(item =>
-                    item &&
-                    item.messages.map(messages =>
-                        <li className={s.item} key={item.id}>
-                           <Message messages={messages}/>
-                        </li>
-                    ).filter( () => item.id === number )
+                {communicationPage.messages.map( message =>
+                    <li className={s.item} key={message.id}>
+                       <Message message={message}/>
+                    </li>
                 )}
              </ul>
 
