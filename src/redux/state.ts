@@ -1,4 +1,5 @@
 import {stateType} from './../App'
+import {renderUi} from "../render";
 
 export const state: stateType  = {
    accountPage: {
@@ -36,15 +37,11 @@ export const state: stateType  = {
          {id: 7, text: "Hello"},
          {id: 8, text: "Bay"},
          {id: 9, text: "Hello"},
-         {id: 10, text: "Bay"},
-         {id: 11, text: "Hello"},
-         {id: 12, text: "Bay"},
-         {id: 13, text: "Hello"},
-         {id: 14, text: "Bay"},
-         {id: 15, text: "Bay"},
-         {id: 16, text: "Bay"},
-         {id: 17, text: "Bay"},
       ]
    }
+}
 
+export const addPost = (text: string) => {
+   state.accountPage.datePost.push({id: state.accountPage.datePost.length, text: text, time: "2022-01-10" })
+   renderUi(state)
 }

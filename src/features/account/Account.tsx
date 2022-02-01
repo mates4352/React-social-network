@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-
 import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
-
 import {datePostType, Post} from "./components/post/post";
 import {Personal, dataPersonalType} from "./components/personal/Personal";
 
@@ -13,26 +11,22 @@ export type accountPageType = {
 
 export type accountType = {
    accountPage: accountPageType
+   addPost: (text: string) => void;
 }
 
 export const Account: React.FC<accountType> = (props) => {
-   const [post, setPost] = useState<Array<datePostType>>(props.accountPage.datePost);
-   const [inputValue, setInputValue] = useState('');
-
-   const postMap = post.map(post =>
+   const [text, setText] = useState('');
+   const postMap = props.accountPage.datePost.map(post =>
        <li className={s.item} key={post.id}>
           <Post post={post}/>
        </li>
    )
-   const sendPost = (value: string) => {
-      setPost([...post, {id: post.length, text: value, time: "2022-01-09"}])
-      setInputValue("")
+   const sendPost = () => {
+      if(text.trim() !== '') {
+         props.addPost(text)
+         setText('')
+      }
    }
-   const sendPostInputValue = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      setPost([...post, {id: post.length, text: e.currentTarget.value, time: "2022-01-09"}])
-      setInputValue("")
-   }
-
 
    return (
        <div className={s.account}>
@@ -44,17 +38,13 @@ export const Account: React.FC<accountType> = (props) => {
              <Personal personal={props.accountPage.personal}/>
 
              <form className={s.entry_field}>
-                <textarea className={s.textarea} maxLength={120} placeholder='Write a post...' value={inputValue}
-                          onChange={(e) => {
-                             setInputValue(e.currentTarget.value)
-                          }}
-                          onKeyUp={(e) => {
-                             if (e.key === "Enter" && e.currentTarget.value !== "") sendPostInputValue(e);
-                          }}>
+                <textarea className={s.textarea} maxLength={120} placeholder='Write a post...' value={text}
+                          onChange={(e) =>
+                             setText(e.currentTarget.value)
+                          }>
                 </textarea>
-                <button className={s.button} type="button" onClick={() => {
-                   sendPost(inputValue)
-                }}>Add post
+                <button className={s.button} type="button" onClick={sendPost}>
+                   Add post
                 </button>
              </form>
 

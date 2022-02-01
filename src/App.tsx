@@ -18,10 +18,11 @@ export type stateType = {
 }
 
 export type appType = {
-  state: stateType
+   state: stateType
+   addPost: (text: string) => void;
 }
 
-const App:React.FC<appType> = ({state}) => {
+const App:React.FC<appType> = ({state, addPost}) => {
    return (
        <BrowserRouter>
           <div className={s.page}>
@@ -30,7 +31,7 @@ const App:React.FC<appType> = ({state}) => {
 
              <main className={s.content}>
                 <Routes>
-                   <Route path="/" element={<Account accountPage={state.accountPage}/>}/>
+                   <Route path="/" element={<Account accountPage={state.accountPage} addPost={addPost}/>}/>
                    <Route path="Communication/*" element={<Сommunication communicationPage={state.communicationPage}/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
