@@ -1,17 +1,8 @@
 import React, {useState} from 'react';
 import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
-import {dataDialogsType, Message} from "./component/message/Message";
-
-export type dateMessageType = {
-   id: number
-   name: string
-};
-
-export type communicationDateType = {
-   dialogs: Array<dateMessageType>
-   messages : Array<dataDialogsType>
-}
+import {Message} from "./component/message/Message";
+import {communicationDateType} from "../../redux/state";
 
 export type communicationType = {
    communicationPage: communicationDateType

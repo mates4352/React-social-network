@@ -2,12 +2,7 @@
 import React from 'react';
 import s from "./Personal.module.scss"
 import imageAvatar from "../../../../assets/images/avatar.jpg";
-
-export type dataPersonalType = {
-   id: number
-   name: string
-   description: string
-};
+import {dataPersonalType} from "../../../../redux/state";
 
 export type personalType = {
    personal: dataPersonalType;

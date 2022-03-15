@@ -1,5 +1,31 @@
-import {stateType} from './../App'
 import {renderUi} from "../render";
+import {datePostType} from "../features/account/components/post/post";
+
+export type stateType = {
+   accountPage: accountPageType
+   communicationPage: communicationDateType
+}
+export type accountPageType = {
+   datePost: Array<datePostType>
+   personal: dataPersonalType
+};
+export type dataPersonalType = {
+   id: number
+   name: string
+   description: string
+};
+export type dateMessageType = {
+   id: number
+   name: string
+};
+export type communicationDateType = {
+   dialogs: Array<dateMessageType>
+   messages : Array<dataDialogsType>
+}
+export type dataDialogsType = {
+   id: number,
+   text: string
+}
 
 export const state: stateType  = {
    accountPage: {

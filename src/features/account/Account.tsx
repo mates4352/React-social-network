@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
-import {datePostType, Post} from "./components/post/post";
-import {Personal, dataPersonalType} from "./components/personal/Personal";
-
-export type accountPageType = {
-   datePost: Array<datePostType>
-   personal: dataPersonalType
-};
+import {Post} from "./components/post/post";
+import {Personal} from "./components/personal/Personal";
+import {accountPageType} from "../../redux/state";
 
 export type accountType = {
    accountPage: accountPageType
