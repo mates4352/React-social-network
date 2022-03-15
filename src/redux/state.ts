@@ -1,6 +1,4 @@
-import {renderUi} from "../render";
 import {v1} from "uuid";
-import {useState} from "react";
 
 export type stateType = {
    accountPage: accountPageType
@@ -33,6 +31,8 @@ export type dataDialogsType = {
    id: string,
    text: string
 }
+
+let renderUi = (state: stateType) => {}
 
 export const state: stateType = {
    accountPage: {
@@ -84,4 +84,8 @@ export const addPost = () => {
 export const changeValueTextarea = (text: string) => {
    state.accountPage.valueTextarea = text;
    renderUi(state);
+}
+
+export const subscribe = (observer: any) => {
+   renderUi = observer;
 }
