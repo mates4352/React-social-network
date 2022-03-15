@@ -1,5 +1,5 @@
 import {renderUi} from "../render";
-import {datePostType} from "../features/account/components/post/post";
+import {v1} from "uuid";
 
 export type stateType = {
    accountPage: accountPageType
@@ -9,65 +9,70 @@ export type accountPageType = {
    datePost: Array<datePostType>
    personal: dataPersonalType
 };
+export type datePostType = {
+   id: string
+   text: string
+   time: string
+};
 export type dataPersonalType = {
-   id: number
+   id: string
    name: string
    description: string
 };
 export type dateMessageType = {
-   id: number
+   id: string
    name: string
 };
 export type communicationDateType = {
    dialogs: Array<dateMessageType>
-   messages : Array<dataDialogsType>
+   messages: Array<dataDialogsType>
 }
 export type dataDialogsType = {
-   id: number,
+   id: string,
    text: string
 }
 
-export const state: stateType  = {
+export const state: stateType = {
    accountPage: {
       datePost: [
          {
-            id: 0,
+            id: v1(),
             text: "lorem lorem lorem lorem lorem",
             time: "2022-01-10",
          },
 
          {
-            id: 1,
+            id: v1(),
             text: "text",
             time: "2022-01-10",
          }
       ],
-      personal:  { id: 0, name: "Sergey", description: "description"},
+      personal: {id: v1(), name: "Sergey", description: "description"},
    },
    communicationPage: {
       dialogs: [
-         {id: 0,name: "Sergey0"},
-         {id: 1,name: "Sergey1"},
-         {id: 2,name: "Sergey2"},
-         {id: 3,name: "Sergey3"},
-         {id: 4,name: "Sergey4"},
+         {id: v1(), name: "Sergey0"},
+         {id: v1(), name: "Sergey1"},
+         {id: v1(), name: "Sergey2"},
+         {id: v1(), name: "Sergey3"},
+         {id: v1(), name: "Sergey4"},
       ],
 
       messages: [
-         {id: 0, text: "Hello"},
-         {id: 1, text: "Bay"},
-         {id: 3, text: "Hello"},
-         {id: 4, text: "Bay"},
-         {id: 5, text: "Hello"},
-         {id: 6, text: "Bay"},
-         {id: 7, text: "Hello"},
-         {id: 8, text: "Bay"},
-         {id: 9, text: "Hello"},
+         {id: v1(), text: "Hello"},
+         {id: v1(), text: "Bay"},
+         {id: v1(), text: "Hello"},
+         {id: v1(), text: "Bay"},
+         {id: v1(), text: "Hello"},
+         {id: v1(), text: "Bay"},
+         {id: v1(), text: "Hello"},
+         {id: v1(), text: "Bay"},
+         {id: v1(), text: "Hello"},
       ]
    }
 }
 
 export const addPost = (text: string) => {
-   state.accountPage.datePost.push({id: state.accountPage.datePost.length, text: text, time: "2022-01-10" })
+   state.accountPage.datePost.push({id: v1(), text: text, time: "2022-01-10"})
    renderUi(state)
 }

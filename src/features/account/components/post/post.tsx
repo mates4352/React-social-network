@@ -1,12 +1,6 @@
 import React from 'react';
 import s from "./post.module.scss"
-
-export type  datePostType = {
-   id: number
-   text: string
-   time: string
-};
-
+import {datePostType} from "../../../../redux/state";
 type postType = {
    post: datePostType;
 }

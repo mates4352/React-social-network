@@ -10,7 +10,6 @@ export type communicationType = {
 
 export const Сommunication: React.FC<communicationType> = ({communicationPage}) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
-   const [pathId, setPathId] = useState(0);
 
    return (
        <div className={s.communication}>
@@ -20,13 +19,12 @@ export const Сommunication: React.FC<communicationType> = ({communicationPage})
              <input className={s.search} type="text" placeholder="Search contact..."/>
 
              <ul className={s.dialogs}>
-                {communicationPage.dialogs.map( dialog =>
+                {communicationPage.dialogs.map(dialog =>
                     <li className={s.dialogsItem}>
                        <NavLink
                            className={classLink}
-                           to={`${dialog.id}`}
-                           onClick={() => {setPathId(dialog.id)}}>
-                           {dialog.name}
+                           to={`${dialog.id}`}>
+                          {dialog.name}
                        </NavLink>
                     </li>
                 )}
@@ -35,14 +33,11 @@ export const Сommunication: React.FC<communicationType> = ({communicationPage})
 
           <div className={s.content}>
              <p className={s.contactName}>
-                {communicationPage.dialogs.map(dialog =>
-                    dialog.id === pathId &&
-                    <strong>{dialog.name}</strong>
-                )}
+                <strong>hello</strong>
              </p>
 
              <ul className={s.list}>
-                {communicationPage.messages.map( message =>
+                {communicationPage.messages.map(message =>
                     <li className={s.item} key={message.id}>
                        <Message message={message}/>
                     </li>
