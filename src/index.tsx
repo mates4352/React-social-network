@@ -4,17 +4,17 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './App';
 import './index.scss';
-import {state, changeValueTextarea, addPost, subscribe, stateType} from "./redux/state";
+import {store, storeType} from "./redux/state";
 
-const renderUi = (state: stateType) => {
+const renderUi = (store: storeType) => {
    ReactDOM.render(
        <React.StrictMode>
-          <App state={state} changeValueTextarea={changeValueTextarea} addPost={addPost}/>
+          <App state={store.state}/>
        </React.StrictMode>,
        document.getElementById('root')
    );
    reportWebVitals();
 }
 
-renderUi(state)
-subscribe(renderUi)
+renderUi(store)
+store.subscribe(renderUi)

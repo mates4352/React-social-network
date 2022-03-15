@@ -3,20 +3,18 @@ import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
 import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
-import {accountPageType, subscribe} from "../../redux/state";
+import {accountPageType} from "../../redux/state";
 
 export type accountType = {
    accountPage: accountPageType
-   addPost: () => void;
-   changeValueTextarea: (text: string) => void
 }
 
 export const Account: React.FC<accountType> = (props) => {
    const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-   const sendPost = () => props.addPost()
+   const sendPost = () => props.accountPage.addPost()
    const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.changeValueTextarea(e.currentTarget.value)
+      props.accountPage.changeValueTextarea(e.currentTarget.value)
    }
 
    const postMap = props.accountPage.datePost.map(post =>
