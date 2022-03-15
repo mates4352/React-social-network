@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
 import {Post} from "./components/post/post";
@@ -7,22 +7,23 @@ import {accountPageType} from "../../redux/state";
 
 export type accountType = {
    accountPage: accountPageType
-   addPost: (text: string) => void;
+   addPost: () => void;
+   changeValueTextarea: (text: string) => void
 }
 
 export const Account: React.FC<accountType> = (props) => {
-   const [text, setText] = useState('');
+   const newPostElement = React.createRef<HTMLTextAreaElement>();
+
+   const sendPost = () => props.addPost()
+   const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+      props.changeValueTextarea(e.currentTarget.value)
+   }
+
    const postMap = props.accountPage.datePost.map(post =>
        <li className={s.item} key={post.id}>
           <Post post={post}/>
        </li>
    )
-   const sendPost = () => {
-      if(text.trim() !== '') {
-         props.addPost(text)
-         setText('')
-      }
-   }
 
    return (
        <div className={s.account}>
@@ -34,11 +35,12 @@ export const Account: React.FC<accountType> = (props) => {
              <Personal personal={props.accountPage.personal}/>
 
              <form className={s.entry_field}>
-                <textarea className={s.textarea} maxLength={120} placeholder='Write a post...' value={text}
-                          onChange={(e) =>
-                             setText(e.currentTarget.value)
-                          }>
-                </textarea>
+                <textarea className={s.textarea}
+                          maxLength={120}
+                          placeholder='Write a post...'
+                          value={props.accountPage.valueTextarea}
+                          ref={newPostElement}
+                          onChange={onChangeTextarea}/>
                 <button className={s.button} type="button" onClick={sendPost}>
                    Add post
                 </button>

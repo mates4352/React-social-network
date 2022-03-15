@@ -1,5 +1,6 @@
 import {renderUi} from "../render";
 import {v1} from "uuid";
+import {useState} from "react";
 
 export type stateType = {
    accountPage: accountPageType
@@ -7,6 +8,7 @@ export type stateType = {
 }
 export type accountPageType = {
    datePost: Array<datePostType>
+   valueTextarea: string
    personal: dataPersonalType
 };
 export type datePostType = {
@@ -47,6 +49,7 @@ export const state: stateType = {
             time: "2022-01-10",
          }
       ],
+      valueTextarea: '',
       personal: {id: v1(), name: "Sergey", description: "description"},
    },
    communicationPage: {
@@ -72,7 +75,13 @@ export const state: stateType = {
    }
 }
 
-export const addPost = (text: string) => {
-   state.accountPage.datePost.push({id: v1(), text: text, time: "2022-01-10"})
-   renderUi(state)
+export const addPost = () => {
+   state.accountPage.datePost.push({id: v1(), text: state.accountPage.valueTextarea, time: "2022-01-10"});
+   state.accountPage.valueTextarea = '';
+   renderUi(state);
+}
+
+export const changeValueTextarea = (text: string) => {
+   state.accountPage.valueTextarea = text;
+   renderUi(state);
 }
