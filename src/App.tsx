@@ -14,9 +14,11 @@ import {stateType} from "./redux/state";
 
 export type appType = {
    state: stateType
+   addPost: () => void
+   changeValueTextarea: (text: string) => void
 }
 
-const App:React.FC<appType> = ({state}) => {
+const App:React.FC<appType> = ({state, addPost, changeValueTextarea}) => {
    return (
        <BrowserRouter>
           <div className={s.page}>
@@ -25,7 +27,7 @@ const App:React.FC<appType> = ({state}) => {
 
              <main className={s.content}>
                 <Routes>
-                   <Route path="/" element={<Account accountPage={state.accountPage}/>}/>
+                   <Route path="/" element={<Account accountPage={state.accountPage} addPost={addPost} changeValueTextarea={changeValueTextarea}/>}/>
                    <Route path="Communication/*" element={<Сommunication communicationPage={state.communicationPage}/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>

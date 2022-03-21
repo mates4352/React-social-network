@@ -1,9 +1,12 @@
 import {v1} from "uuid";
 
 export type storeType = {
-   state: stateType
-   renderUi: (store: storeType) => void
-   subscribe: (observer: any) => void
+   _state: stateType
+   getState: () => stateType
+   addPost: () => void
+   changeValueTextarea: (text: string) => void
+   _subscribe: (state: stateType) => void
+   subscribe: (observer: () => void) => void
 }
 export type stateType = {
    accountPage: accountPageType
@@ -13,8 +16,6 @@ export type accountPageType = {
    datePost: Array<datePostType>
    valueTextarea: string
    personal: dataPersonalType
-   addPost: () => void
-   changeValueTextarea: (text: string) => void
 };
 export type datePostType = {
    id: string
@@ -40,7 +41,7 @@ export type dataDialogsType = {
 }
 
 export const store: storeType = {
-   state: {
+   _state: {
       accountPage: {
          datePost: [
             {
@@ -57,18 +58,6 @@ export const store: storeType = {
          ],
          valueTextarea: '',
          personal: {id: v1(), name: "Sergey", description: "description"},
-         addPost() {
-            let post = store.state.accountPage.datePost;
-            const newPost = {id: v1(), text: store.state.accountPage.valueTextarea, time: "2022-01-10"};
-
-            post.push(newPost);
-            store.state.accountPage.valueTextarea = '';
-            store.renderUi(store);
-         },
-         changeValueTextarea: (text: string) => {
-            store.state.accountPage.valueTextarea = text;
-            store.renderUi(store);
-         },
       },
       communicationPage: {
          dialogs: [
@@ -92,8 +81,23 @@ export const store: storeType = {
          ]
       }
    },
-   renderUi: (store: storeType) => {},
-   subscribe: (observer: any) => {
-      store.renderUi = observer;
+   getState() {
+      return this._state
+   },
+   changeValueTextarea(text: string) {
+      this._state.accountPage.valueTextarea = text;
+      this._subscribe(this._state);
+   },
+   addPost() {
+      let post = this._state.accountPage.datePost;
+      const newPost = {id: v1(), text: this._state.accountPage.valueTextarea, time: "2022-01-10"};
+
+      post.push(newPost);
+      this._state.accountPage.valueTextarea = '';
+      this._subscribe(this._state);
+   },
+   _subscribe() {},
+   subscribe(observer) {
+      this._subscribe = observer;
    }
 }

@@ -7,14 +7,16 @@ import {accountPageType} from "../../redux/state";
 
 export type accountType = {
    accountPage: accountPageType
+   addPost: () => void
+   changeValueTextarea: (text: string) => void
 }
 
 export const Account: React.FC<accountType> = (props) => {
    const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-   const sendPost = () => props.accountPage.addPost()
+   const sendPost = () => props.addPost()
    const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.accountPage.changeValueTextarea(e.currentTarget.value)
+      props.changeValueTextarea(e.currentTarget.value)
    }
 
    const postMap = props.accountPage.datePost.map(post =>
