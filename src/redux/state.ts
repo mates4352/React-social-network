@@ -2,10 +2,9 @@ import {v1} from "uuid";
 
 export type storeType = {
    _state: stateType
-   getState: () => stateType
-   addPost: () => void
-   changeValueTextarea: (text: string) => void
    _subscribe: (state: stateType) => void
+   dispatch: (action: changeValueTextareaType | addPostType) => void
+   getState: () => stateType
    subscribe: (observer: () => void) => void
 }
 export type stateType = {
@@ -38,6 +37,13 @@ export type communicationDateType = {
 export type dataDialogsType = {
    id: string,
    text: string
+}
+export type changeValueTextareaType = {
+   type: 'CHANGE-VALUE-TEXTAREA',
+   text: string
+}
+export type addPostType = {
+   type: 'ADD-POST'
 }
 
 export const store: storeType = {
@@ -84,19 +90,21 @@ export const store: storeType = {
    getState() {
       return this._state
    },
-   changeValueTextarea(text: string) {
-      this._state.accountPage.valueTextarea = text;
-      this._subscribe(this._state);
-   },
-   addPost() {
-      let post = this._state.accountPage.datePost;
-      const newPost = {id: v1(), text: this._state.accountPage.valueTextarea, time: "2022-01-10"};
-
-      post.push(newPost);
-      this._state.accountPage.valueTextarea = '';
-      this._subscribe(this._state);
-   },
    _subscribe() {},
+   dispatch(action) {
+      if(action.type === 'CHANGE-VALUE-TEXTAREA') {
+         this._state.accountPage.valueTextarea = action.text;
+         this._subscribe(this._state);
+      }
+      else if(action.type === 'ADD-POST') {
+         let post = this._state.accountPage.datePost;
+         const newPost = {id: v1(), text: this._state.accountPage.valueTextarea, time: "2022-01-10"};
+
+         post.push(newPost);
+         this._state.accountPage.valueTextarea = '';
+         this._subscribe(this._state);
+      }
+   },
    subscribe(observer) {
       this._subscribe = observer;
    }

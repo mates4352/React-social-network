@@ -10,15 +10,14 @@ import {Help} from "./features/help/Help";
 import {Сommunication} from "./features/сommunication/Сommunication";
 
 import s from './App.module.scss';
-import {stateType} from "./redux/state";
+import {addPostType, changeValueTextareaType, stateType} from "./redux/state";
 
 export type appType = {
    state: stateType
-   addPost: () => void
-   changeValueTextarea: (text: string) => void
+   dispatch: (action: changeValueTextareaType | addPostType) => void
 }
 
-const App:React.FC<appType> = ({state, addPost, changeValueTextarea}) => {
+const App:React.FC<appType> = ({state, dispatch}) => {
    return (
        <BrowserRouter>
           <div className={s.page}>
@@ -27,7 +26,7 @@ const App:React.FC<appType> = ({state, addPost, changeValueTextarea}) => {
 
              <main className={s.content}>
                 <Routes>
-                   <Route path="/" element={<Account accountPage={state.accountPage} addPost={addPost} changeValueTextarea={changeValueTextarea}/>}/>
+                   <Route path="/" element={<Account accountPage={state.accountPage} dispatch={dispatch}/>}/>
                    <Route path="Communication/*" element={<Сommunication communicationPage={state.communicationPage}/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
