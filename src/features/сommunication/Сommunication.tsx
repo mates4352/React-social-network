@@ -1,15 +1,33 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
 import {Message} from "./component/message/Message";
-import {communicationDateType} from "../../redux/state";
+import {
+   addTextMessage,
+   addTextMessageType,
+   changeTextMessage,
+   changeTextMessageType,
+   communicationDateType
+} from "../../redux/state";
 
 export type communicationType = {
    communicationPage: communicationDateType
+   dispatch: (action: addTextMessageType | changeTextMessageType) => void
 }
 
-export const Сommunication: React.FC<communicationType> = ({communicationPage}) => {
+export const Сommunication: React.FC<communicationType> = ({communicationPage, dispatch}) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
+   const message = communicationPage.textMessage;
+
+   const changeValueMessage = (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(changeTextMessage(e.currentTarget.value))
+   }
+   const addValueMessage = (e: KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+         console.log('e')
+         dispatch(addTextMessage())
+      }
+   }
 
    return (
        <div className={s.communication}>
@@ -44,9 +62,12 @@ export const Сommunication: React.FC<communicationType> = ({communicationPage})
                 )}
              </ul>
 
-             <form className={s.entryField}>
-                <input className={s.entryFieldInput} type="text" placeholder="To write a message..."/>
-             </form>
+             <input className={s.entryFieldInput}
+                    type="text"
+                    placeholder="To write a message..."
+                    value={message}
+                    onChange={changeValueMessage}
+                    onKeyUp={addValueMessage}/>
           </div>
        </div>
    );

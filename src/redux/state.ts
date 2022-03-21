@@ -2,11 +2,13 @@ import {v1} from "uuid";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_VALUE_TEXTAREA = 'CHANGE-VALUE-TEXTAREA';
+const ADD_VALUE_MESSAGE = 'ADD-VALUE-MESSAGE';
+const CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE';
 
 export type storeType = {
    _state: stateType
    _subscribe: (state: stateType) => void
-   dispatch: (action: changeValueTextareaType | addPostType) => void
+   dispatch: (action: actionType) => void
    getState: () => stateType
    subscribe: (observer: () => void) => void
 }
@@ -36,17 +38,26 @@ export type dateMessageType = {
 export type communicationDateType = {
    dialogs: Array<dateMessageType>
    messages: Array<dataDialogsType>
+   textMessage: string
 }
 export type dataDialogsType = {
    id: string,
    text: string
 }
+export type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeTextMessageType
 export type changeValueTextareaType = {
    type: 'CHANGE-VALUE-TEXTAREA',
    text: string
 }
 export type addPostType = {
    type: 'ADD-POST'
+}
+export type addTextMessageType = {
+   type: 'ADD-VALUE-MESSAGE',
+}
+export type changeTextMessageType = {
+   type: 'CHANGE-VALUE-MESSAGE',
+   text: string
 }
 
 export const store: storeType = {
@@ -87,7 +98,8 @@ export const store: storeType = {
             {id: v1(), text: "Hello"},
             {id: v1(), text: "Bay"},
             {id: v1(), text: "Hello"},
-         ]
+         ],
+         textMessage: ''
       }
    },
    getState() {
@@ -95,11 +107,11 @@ export const store: storeType = {
    },
    _subscribe() {},
    dispatch(action) {
-      if(action.type === 'CHANGE-VALUE-TEXTAREA') {
+      if(action.type === CHANGE_VALUE_TEXTAREA) {
          this._state.accountPage.valueTextarea = action.text;
          this._subscribe(this._state);
       }
-      else if(action.type === 'ADD-POST') {
+      else if(action.type === ADD_POST) {
          let post = this._state.accountPage.datePost;
          const newPost = {id: v1(), text: this._state.accountPage.valueTextarea, time: "2022-01-10"};
 
@@ -107,6 +119,18 @@ export const store: storeType = {
          this._state.accountPage.valueTextarea = '';
          this._subscribe(this._state);
       }
+      else if (action.type === CHANGE_VALUE_MESSAGE) {
+         this._state.communicationPage.textMessage = action.text;
+         this._subscribe(this._state);
+      }
+      else if (action.type === ADD_VALUE_MESSAGE) {
+         const message = this._state.communicationPage.textMessage;
+         this._state.communicationPage.messages.push({id: v1(), text: message})
+         this._state.communicationPage.textMessage = ''
+         this._subscribe(this._state)
+      }
+
+
    },
    subscribe(observer) {
       this._subscribe = observer;
@@ -116,4 +140,9 @@ export const store: storeType = {
 export const addPostActionCreate = ():addPostType => ({type: ADD_POST})
 export const changeValueTextareaActionCreate = (text: string):changeValueTextareaType => (
     {type: CHANGE_VALUE_TEXTAREA, text: text}
+)
+
+export const addTextMessage = ():addTextMessageType => ({type: ADD_VALUE_MESSAGE})
+export const changeTextMessage = (text: string):changeTextMessageType => (
+    {type: CHANGE_VALUE_MESSAGE, text: text}
 )

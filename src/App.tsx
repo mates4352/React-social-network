@@ -10,11 +10,11 @@ import {Help} from "./features/help/Help";
 import {Сommunication} from "./features/сommunication/Сommunication";
 
 import s from './App.module.scss';
-import {addPostType, changeValueTextareaType, stateType} from "./redux/state";
+import {actionType, stateType} from "./redux/state";
 
 export type appType = {
    state: stateType
-   dispatch: (action: changeValueTextareaType | addPostType) => void
+   dispatch: (action: actionType) => void
 }
 
 const App:React.FC<appType> = ({state, dispatch}) => {
@@ -27,7 +27,7 @@ const App:React.FC<appType> = ({state, dispatch}) => {
              <main className={s.content}>
                 <Routes>
                    <Route path="/" element={<Account accountPage={state.accountPage} dispatch={dispatch}/>}/>
-                   <Route path="Communication/*" element={<Сommunication communicationPage={state.communicationPage}/>}/>
+                   <Route path="Communication/*" element={<Сommunication communicationPage={state.communicationPage} dispatch={dispatch}/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
                    <Route path="Settings" element={<Settings/>}/>
