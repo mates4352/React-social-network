@@ -1,5 +1,8 @@
 import {v1} from "uuid";
 
+const ADD_POST = 'ADD-POST';
+const CHANGE_VALUE_TEXTAREA = 'CHANGE-VALUE-TEXTAREA';
+
 export type storeType = {
    _state: stateType
    _subscribe: (state: stateType) => void
@@ -109,3 +112,8 @@ export const store: storeType = {
       this._subscribe = observer;
    }
 }
+
+export const addPostActionCreate = ():addPostType => ({type: ADD_POST})
+export const changeValueTextareaActionCreate = (text: string):changeValueTextareaType => (
+    {type: CHANGE_VALUE_TEXTAREA, text: text}
+)

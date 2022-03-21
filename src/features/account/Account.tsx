@@ -3,7 +3,13 @@ import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
 import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
-import {accountPageType, addPostType, changeValueTextareaType} from "../../redux/state";
+import {
+   accountPageType,
+   addPostActionCreate,
+   addPostType,
+   changeValueTextareaActionCreate,
+   changeValueTextareaType
+} from "../../redux/state";
 
 export type accountType = {
    accountPage: accountPageType
@@ -13,9 +19,9 @@ export type accountType = {
 export const Account: React.FC<accountType> = (props) => {
    const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-   const sendPost = () => props.dispatch({type: 'ADD-POST'})
+   const sendPost = () => props.dispatch(addPostActionCreate())
    const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.dispatch({type: 'CHANGE-VALUE-TEXTAREA', text: e.currentTarget.value})
+      props.dispatch(changeValueTextareaActionCreate(e.currentTarget.value))
    }
 
    const postMap = props.accountPage.datePost.map(post =>
