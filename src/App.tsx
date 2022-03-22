@@ -10,7 +10,7 @@ import {Help} from "./features/help/Help";
 import {Сommunication} from "./features/сommunication/Сommunication";
 
 import s from './App.module.scss';
-import {actionType, stateType} from "./redux/state";
+import {actionType, stateType} from "./redux/store";
 
 export type appType = {
    state: stateType

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Message.module.scss'
 import image from "./../../../../assets/images/avatar.jpg"
-import {dataDialogsType} from "../../../../redux/state";
+import {dataDialogsType} from "../../../../redux/store";
 
 export type dialogsType = {
    message: dataDialogsType

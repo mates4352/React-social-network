@@ -9,7 +9,7 @@ import {
    addPostType,
    changeValueTextareaActionCreate,
    changeValueTextareaType
-} from "../../redux/state";
+} from "../../redux/store";
 
 export type accountType = {
    accountPage: accountPageType

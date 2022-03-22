@@ -7,7 +7,7 @@ const CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE';
 
 export type storeType = {
    _state: stateType
-   _subscribe: (state: stateType) => void
+   _subscribe: () => void
    dispatch: (action: actionType) => void
    getState: () => stateType
    subscribe: (observer: () => void) => void
@@ -45,20 +45,10 @@ export type dataDialogsType = {
    text: string
 }
 export type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeTextMessageType
-export type changeValueTextareaType = {
-   type: 'CHANGE-VALUE-TEXTAREA',
-   text: string
-}
-export type addPostType = {
-   type: 'ADD-POST'
-}
-export type addTextMessageType = {
-   type: 'ADD-VALUE-MESSAGE',
-}
-export type changeTextMessageType = {
-   type: 'CHANGE-VALUE-MESSAGE',
-   text: string
-}
+export type changeValueTextareaType = ReturnType<typeof changeValueTextareaActionCreate>
+export type addPostType = ReturnType<typeof addPostActionCreate>
+export type addTextMessageType = ReturnType<typeof addTextMessage>
+export type changeTextMessageType = ReturnType<typeof changeTextMessage>
 
 export const store: storeType = {
    _state: {
@@ -109,7 +99,7 @@ export const store: storeType = {
    dispatch(action) {
       if(action.type === CHANGE_VALUE_TEXTAREA) {
          this._state.accountPage.valueTextarea = action.text;
-         this._subscribe(this._state);
+         this._subscribe();
       }
       else if(action.type === ADD_POST) {
          let post = this._state.accountPage.datePost;
@@ -117,32 +107,30 @@ export const store: storeType = {
 
          post.push(newPost);
          this._state.accountPage.valueTextarea = '';
-         this._subscribe(this._state);
+         this._subscribe();
       }
       else if (action.type === CHANGE_VALUE_MESSAGE) {
          this._state.communicationPage.textMessage = action.text;
-         this._subscribe(this._state);
+         this._subscribe();
       }
       else if (action.type === ADD_VALUE_MESSAGE) {
          const message = this._state.communicationPage.textMessage;
          this._state.communicationPage.messages.push({id: v1(), text: message})
          this._state.communicationPage.textMessage = ''
-         this._subscribe(this._state)
+         this._subscribe()
       }
-
-
    },
    subscribe(observer) {
       this._subscribe = observer;
    }
 }
 
-export const addPostActionCreate = ():addPostType => ({type: ADD_POST})
-export const changeValueTextareaActionCreate = (text: string):changeValueTextareaType => (
-    {type: CHANGE_VALUE_TEXTAREA, text: text}
+export const addPostActionCreate = () => ({type: ADD_POST} as const)
+export const changeValueTextareaActionCreate = (text: string) => (
+    {type: CHANGE_VALUE_TEXTAREA, text: text} as const
 )
 
-export const addTextMessage = ():addTextMessageType => ({type: ADD_VALUE_MESSAGE})
-export const changeTextMessage = (text: string):changeTextMessageType => (
-    {type: CHANGE_VALUE_MESSAGE, text: text}
+export const addTextMessage = () => ({type: ADD_VALUE_MESSAGE} as const)
+export const changeTextMessage = (text: string) => (
+    {type: CHANGE_VALUE_MESSAGE, text: text} as const
 )
