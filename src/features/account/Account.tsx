@@ -4,12 +4,12 @@ import background from './../../assets/images/bg_account.jpg'
 import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
 import {
-   accountPageType,
-   addPostActionCreate,
+   changeValueTextareaType,
    addPostType,
+   addPostActionCreate,
    changeValueTextareaActionCreate,
-   changeValueTextareaType
-} from "../../redux/store";
+} from "../../redux/reducer/accountPage-reducer";
+import { accountPageType } from '../../redux/store';
 
 export type accountType = {
    accountPage: accountPageType

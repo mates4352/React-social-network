@@ -7,8 +7,8 @@ import {
    addTextMessageType,
    changeTextMessage,
    changeTextMessageType,
-   communicationDateType
-} from "../../redux/store";
+} from "../../redux/reducer/communicationPage-reducer";
+import { communicationDateType } from '../../redux/store';
 
 export type communicationType = {
    communicationPage: communicationDateType

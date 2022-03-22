@@ -1,9 +1,10 @@
 import {v1} from "uuid";
-
-const ADD_POST = 'ADD-POST';
-const CHANGE_VALUE_TEXTAREA = 'CHANGE-VALUE-TEXTAREA';
-const ADD_VALUE_MESSAGE = 'ADD-VALUE-MESSAGE';
-const CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE';
+import {
+   accountPageReducer,
+   addPostType,
+   changeValueTextareaType
+} from "./reducer/accountPage-reducer";
+import {addTextMessageType, changeTextMessageType, communicationPageReducer} from "./reducer/communicationPage-reducer";
 
 export type storeType = {
    _state: stateType
@@ -45,10 +46,6 @@ export type dataDialogsType = {
    text: string
 }
 export type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeTextMessageType
-export type changeValueTextareaType = ReturnType<typeof changeValueTextareaActionCreate>
-export type addPostType = ReturnType<typeof addPostActionCreate>
-export type addTextMessageType = ReturnType<typeof addTextMessage>
-export type changeTextMessageType = ReturnType<typeof changeTextMessage>
 
 export const store: storeType = {
    _state: {
@@ -97,40 +94,11 @@ export const store: storeType = {
    },
    _subscribe() {},
    dispatch(action) {
-      if(action.type === CHANGE_VALUE_TEXTAREA) {
-         this._state.accountPage.valueTextarea = action.text;
-         this._subscribe();
-      }
-      else if(action.type === ADD_POST) {
-         let post = this._state.accountPage.datePost;
-         const newPost = {id: v1(), text: this._state.accountPage.valueTextarea, time: "2022-01-10"};
-
-         post.push(newPost);
-         this._state.accountPage.valueTextarea = '';
-         this._subscribe();
-      }
-      else if (action.type === CHANGE_VALUE_MESSAGE) {
-         this._state.communicationPage.textMessage = action.text;
-         this._subscribe();
-      }
-      else if (action.type === ADD_VALUE_MESSAGE) {
-         const message = this._state.communicationPage.textMessage;
-         this._state.communicationPage.messages.push({id: v1(), text: message})
-         this._state.communicationPage.textMessage = ''
-         this._subscribe()
-      }
+      this._state.accountPage = accountPageReducer(this._state.accountPage, action)
+      this._state.communicationPage = communicationPageReducer(this._state.communicationPage, action)
+      this._subscribe()
    },
    subscribe(observer) {
       this._subscribe = observer;
    }
 }
-
-export const addPostActionCreate = () => ({type: ADD_POST} as const)
-export const changeValueTextareaActionCreate = (text: string) => (
-    {type: CHANGE_VALUE_TEXTAREA, text: text} as const
-)
-
-export const addTextMessage = () => ({type: ADD_VALUE_MESSAGE} as const)
-export const changeTextMessage = (text: string) => (
-    {type: CHANGE_VALUE_MESSAGE, text: text} as const
-)
