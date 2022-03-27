@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './App';
 import './index.scss';
-import {store} from "./redux/store";
+import {store} from "./redux/redux-store";
 
 const renderUi = () => {
    ReactDOM.render(

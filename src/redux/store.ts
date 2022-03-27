@@ -32,10 +32,7 @@ export type dataPersonalType = {
    name: string
    description: string
 };
-export type dateMessageType = {
-   id: string
-   name: string
-};
+
 export type communicationDateType = {
    dialogs: Array<dateMessageType>
    messages: Array<dataDialogsType>
@@ -45,6 +42,10 @@ export type dataDialogsType = {
    id: string,
    text: string
 }
+export type dateMessageType = {
+   id: string
+   name: string
+};
 export type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeTextMessageType
 
 export const store: storeType = {

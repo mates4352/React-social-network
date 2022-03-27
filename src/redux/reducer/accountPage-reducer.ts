@@ -1,20 +1,53 @@
 import {v1} from "uuid";
-import {accountPageType, actionType} from "../store";
+import {actionType} from "../store";
+
+type accountPageType = {
+   datePost: Array<datePostType>
+   valueTextarea: string
+   personal: dataPersonalType
+};
+type datePostType = {
+   id: string
+   text: string
+   time: string
+};
+type dataPersonalType = {
+   id: string
+   name: string
+   description: string
+};
 export type changeValueTextareaType = ReturnType<typeof changeValueTextareaActionCreate>
 export type addPostType = ReturnType<typeof addPostActionCreate>
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_VALUE_TEXTAREA = 'CHANGE-VALUE-TEXTAREA';
 
-export const accountPageReducer = (state: accountPageType, action: actionType): accountPageType => {
+const inisionalState: accountPageType = {
+   datePost: [
+      {
+         id: v1(),
+         text: "lorem lorem lorem lorem lorem",
+         time: "2022-01-10",
+      },
+
+      {
+         id: v1(),
+         text: "text",
+         time: "2022-01-10",
+      }
+   ],
+   valueTextarea: '',
+   personal: {id: v1(), name: "Sergey", description: "description"},
+}
+
+export const accountPageReducer = (state: accountPageType = inisionalState, action: actionType): accountPageType => {
    switch (action.type) {
       case CHANGE_VALUE_TEXTAREA:
-          state.valueTextarea = action.text;
-      return state
+         state.valueTextarea = action.text;
+         return state
       case ADD_POST:
-         let post = state.datePost;
          const newPost = {id: v1(), text: state.valueTextarea, time: "2022-01-10"};
-         post.push(newPost);
+         state.datePost.push(newPost);
          state.valueTextarea = '';
          return state
       default:
