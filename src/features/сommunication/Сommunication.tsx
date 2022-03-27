@@ -2,32 +2,20 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
 import {Message} from "./component/message/Message";
-import {
-   addTextMessageActionCreate,
-   addTextMessageType,
-   changeTextMessageActionCreate,
-   changeTextMessageType,
-} from "../../redux/reducer/communicationPage-reducer";
-import { communicationDateType } from '../../redux/store';
+import {dataDialogsType, dateMessageType} from "../../redux/store";
 
 export type communicationType = {
-   communicationPage: communicationDateType
-   dispatch: (action: addTextMessageType | changeTextMessageType) => void
+   messageValue: string
+   messages: Array<dataDialogsType>
+   dialogs: Array<dateMessageType>
+   changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
+   addValueMessage: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 
-export const Сommunication: React.FC<communicationType> = ({communicationPage, dispatch}) => {
+export const Сommunication: React.FC<communicationType> = (
+    {messageValue, messages, dialogs, changeValueMessage, addValueMessage}
+) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
-   const message = communicationPage.textMessage;
-
-   const changeValueMessage = (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(changeTextMessageActionCreate(e.currentTarget.value))
-   }
-
-   const addValueMessage = (e: KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter' && e.currentTarget.value.trim() !== '') {
-         dispatch(addTextMessageActionCreate())
-      }
-   }
 
    return (
        <div className={s.communication}>
@@ -37,7 +25,7 @@ export const Сommunication: React.FC<communicationType> = ({communicationPage, 
              <input className={s.search} type="text" placeholder="Search contact..."/>
 
              <ul className={s.dialogs}>
-                {communicationPage.dialogs.map(dialog =>
+                {dialogs.map(dialog =>
                     <li className={s.dialogsItem}>
                        <NavLink
                            className={classLink}
@@ -55,7 +43,7 @@ export const Сommunication: React.FC<communicationType> = ({communicationPage, 
              </p>
 
              <ul className={s.list}>
-                {communicationPage.messages.map(message =>
+                {messages.map(message =>
                     <li className={s.item} key={message.id}>
                        <Message message={message}/>
                     </li>
@@ -65,7 +53,7 @@ export const Сommunication: React.FC<communicationType> = ({communicationPage, 
              <input className={s.entryFieldInput}
                     type="text"
                     placeholder="To write a message..."
-                    value={message}
+                    value={messageValue}
                     onChange={changeValueMessage}
                     onKeyUp={addValueMessage}/>
           </div>

@@ -6,11 +6,11 @@ import {Music} from "./features/music/Music";
 import {Settings} from "./features/settings/Settings";
 import {News} from "./features/news/News";
 import {Help} from "./features/help/Help";
-import {Сommunication} from "./features/сommunication/Сommunication";
+import {AccountContainer} from "./features/account/AccountContainer";
+import {СommunicationContainer} from "./features/сommunication/СommunicationContainer";
 
 import s from './App.module.scss';
 import {actionType, stateType} from "./redux/store";
-import {AccountContainer} from "./features/account/AccountContainer";
 
 export type appType = {
    store: any
@@ -28,7 +28,7 @@ const App:React.FC<appType> = ({store,state, dispatch}) => {
              <main className={s.content}>
                 <Routes>
                    <Route path="/" element={<AccountContainer store={store} state={state}/>}/>
-                   <Route path="Communication/*" element={<Сommunication communicationPage={state.communicationPage} dispatch={dispatch}/>}/>
+                   <Route path="Communication/*" element={<СommunicationContainer store={store} state={state}/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
                    <Route path="Settings" element={<Settings/>}/>
