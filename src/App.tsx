@@ -10,12 +10,9 @@ import {AccountContainer} from "./features/account/AccountContainer";
 import {СommunicationContainer} from "./features/сommunication/СommunicationContainer";
 
 import s from './App.module.scss';
-import {actionType, stateType} from "./redux/store";
 
 export type appType = {
    store: any
-   state: stateType
-   dispatch: (action: actionType) => void
 }
 
 const App:React.FC<appType> = ({store}) => {

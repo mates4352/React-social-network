@@ -3,7 +3,6 @@ import {
    addPostActionCreate,
    changeValueTextareaActionCreate,
 } from "../../redux/reducer/accountPage-reducer";
-import {stateType} from '../../redux/store';
 import {Account} from "./Account";
 
 export type accountType = {
