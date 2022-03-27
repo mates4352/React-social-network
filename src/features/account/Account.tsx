@@ -1,35 +1,24 @@
 import React, {ChangeEvent} from 'react';
+
 import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
+
 import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
-import {
-   changeValueTextareaType,
-   addPostType,
-   addPostActionCreate,
-   changeValueTextareaActionCreate,
-} from "../../redux/reducer/accountPage-reducer";
-import { accountPageType } from '../../redux/store';
+
+import {dataPersonalType, datePostType} from '../../redux/store';
 
 export type accountType = {
-   accountPage: accountPageType
-   dispatch: (action: changeValueTextareaType | addPostType) => void
+   valueTextarea: string
+   personal: dataPersonalType;
+   posts: Array<datePostType>
+   addPost: ()=> void
+   onChangeTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-export const Account: React.FC<accountType> = (props) => {
-   const newPostElement = React.createRef<HTMLTextAreaElement>();
-   const valueTextarea = props.accountPage.valueTextarea;
-
-   const sendPost = () => props.dispatch(addPostActionCreate())
-   const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.dispatch(changeValueTextareaActionCreate(e.currentTarget.value))
-   }
-
-   const postMap = props.accountPage.datePost.map(post =>
-       <li className={s.item} key={post.id}>
-          <Post post={post}/>
-       </li>
-   )
+export const Account: React.FC<accountType> = (
+    {valueTextarea, personal, posts, addPost, onChangeTextarea}
+) => {
 
    return (
        <div className={s.account}>
@@ -38,22 +27,27 @@ export const Account: React.FC<accountType> = (props) => {
           </div>
 
           <div className={s.container}>
-             <Personal personal={props.accountPage.personal}/>
+             <Personal personal={personal}/>
 
              <form className={s.entry_field}>
                 <textarea className={s.textarea}
                           maxLength={120}
                           placeholder='Write a post...'
                           value={valueTextarea}
-                          ref={newPostElement}
                           onChange={onChangeTextarea}/>
-                <button className={s.button} type="button" onClick={sendPost}>
+                <button className={s.button} type="button" onClick={addPost}>
                    Add post
                 </button>
              </form>
 
              <ul className={s.list}>
-                {postMap}
+                {
+                   posts.map(post =>
+                       <li className={s.item} key={post.id}>
+                          <Post post={post}/>
+                       </li>
+                   )
+                }
              </ul>
           </div>
        </div>
