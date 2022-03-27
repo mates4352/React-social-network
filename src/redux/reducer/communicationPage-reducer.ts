@@ -1,8 +1,8 @@
 import {v1} from "uuid";
 import {actionType, communicationDateType} from "../store";
 
-export type addTextMessageType = ReturnType<typeof addTextMessage>
-export type changeTextMessageType = ReturnType<typeof changeTextMessage>
+export type addTextMessageType = ReturnType<typeof addTextMessageActionCreate>
+export type changeTextMessageType = ReturnType<typeof changeTextMessageActionCreate>
 
 const ADD_VALUE_MESSAGE = 'ADD-VALUE-MESSAGE';
 const CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE';
@@ -22,7 +22,7 @@ export const communicationPageReducer = (state: communicationDateType, action: a
    }
 }
 
-export const addTextMessage = () => ({type: ADD_VALUE_MESSAGE} as const)
-export const changeTextMessage = (text: string) => (
+export const addTextMessageActionCreate = () => ({type: ADD_VALUE_MESSAGE} as const)
+export const changeTextMessageActionCreate = (text: string) => (
     {type: CHANGE_VALUE_MESSAGE, text: text} as const
 )

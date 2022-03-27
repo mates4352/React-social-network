@@ -25,6 +25,7 @@ export const accountPageReducer = (state: accountPageType, action: actionType): 
 export const addPostActionCreate = () => (
     {type: ADD_POST} as const
 )
+
 export const changeValueTextareaActionCreate = (text: string) => (
     {type: CHANGE_VALUE_TEXTAREA, text: text} as const
 )

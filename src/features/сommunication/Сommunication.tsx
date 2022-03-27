@@ -3,9 +3,9 @@ import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
 import {Message} from "./component/message/Message";
 import {
-   addTextMessage,
+   addTextMessageActionCreate,
    addTextMessageType,
-   changeTextMessage,
+   changeTextMessageActionCreate,
    changeTextMessageType,
 } from "../../redux/reducer/communicationPage-reducer";
 import { communicationDateType } from '../../redux/store';
@@ -20,12 +20,12 @@ export const Сommunication: React.FC<communicationType> = ({communicationPage, 
    const message = communicationPage.textMessage;
 
    const changeValueMessage = (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(changeTextMessage(e.currentTarget.value))
+      dispatch(changeTextMessageActionCreate(e.currentTarget.value))
    }
+
    const addValueMessage = (e: KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-         console.log('e')
-         dispatch(addTextMessage())
+      if (e.key === 'Enter' && e.currentTarget.value.trim() !== '') {
+         dispatch(addTextMessageActionCreate())
       }
    }
 

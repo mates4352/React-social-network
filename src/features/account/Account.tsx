@@ -18,6 +18,7 @@ export type accountType = {
 
 export const Account: React.FC<accountType> = (props) => {
    const newPostElement = React.createRef<HTMLTextAreaElement>();
+   const valueTextarea = props.accountPage.valueTextarea;
 
    const sendPost = () => props.dispatch(addPostActionCreate())
    const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -43,7 +44,7 @@ export const Account: React.FC<accountType> = (props) => {
                 <textarea className={s.textarea}
                           maxLength={120}
                           placeholder='Write a post...'
-                          value={props.accountPage.valueTextarea}
+                          value={valueTextarea}
                           ref={newPostElement}
                           onChange={onChangeTextarea}/>
                 <button className={s.button} type="button" onClick={sendPost}>
