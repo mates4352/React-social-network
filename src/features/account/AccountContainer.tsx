@@ -8,18 +8,17 @@ import {Account} from "./Account";
 
 export type accountType = {
    store: any
-   state: stateType
 }
 
 export const AccountContainer: React.FC<accountType> = (
-    {store, state}
+    {store}
 ) => {
-   const valueTextarea = state.accountPage.valueTextarea;
-   const personal = state.accountPage.personal;
-   const datePost = state.accountPage.datePost;
+   const valueTextarea = store.getState().accountPage.valueTextarea;
+   const personal = store.getState().accountPage.personal;
+   const Posts = store.getState().accountPage.datePost;
 
-   const addPost = () => store.dispatch(addPostActionCreate())
-   const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+   const sendPost = () => store.dispatch(addPostActionCreate())
+   const changeValueTextarea = (e: ChangeEvent<HTMLTextAreaElement>): void => {
       const action = changeValueTextareaActionCreate(e.currentTarget.value)
       store.dispatch(action)
    }
@@ -27,9 +26,9 @@ export const AccountContainer: React.FC<accountType> = (
    return (
        <Account valueTextarea={valueTextarea}
                 personal={personal}
-                addPost={addPost}
-                posts={datePost}
-                onChangeTextarea={onChangeTextarea}
+                sendPost={sendPost}
+                posts={Posts}
+                changeValueTextarea={changeValueTextarea}
        />
    )
 };

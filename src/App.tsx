@@ -18,7 +18,7 @@ export type appType = {
    dispatch: (action: actionType) => void
 }
 
-const App:React.FC<appType> = ({store,state, dispatch}) => {
+const App:React.FC<appType> = ({store}) => {
    return (
        <BrowserRouter>
           <div className={s.page}>
@@ -27,8 +27,8 @@ const App:React.FC<appType> = ({store,state, dispatch}) => {
 
              <main className={s.content}>
                 <Routes>
-                   <Route path="/" element={<AccountContainer store={store} state={state}/>}/>
-                   <Route path="Communication/*" element={<СommunicationContainer store={store} state={state}/>}/>
+                   <Route path="/" element={<AccountContainer store={store}/>}/>
+                   <Route path="Communication/*" element={<СommunicationContainer store={store}/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
                    <Route path="Settings" element={<Settings/>}/>

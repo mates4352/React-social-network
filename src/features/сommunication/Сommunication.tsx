@@ -9,11 +9,11 @@ export type communicationType = {
    messages: Array<dataDialogsType>
    dialogs: Array<dateMessageType>
    changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
-   addValueMessage: (e: KeyboardEvent<HTMLInputElement>) => void
+   sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 
 export const Сommunication: React.FC<communicationType> = (
-    {messageValue, messages, dialogs, changeValueMessage, addValueMessage}
+    {messageValue, messages, dialogs, changeValueMessage, sendMessage}
 ) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
@@ -55,7 +55,7 @@ export const Сommunication: React.FC<communicationType> = (
                     placeholder="To write a message..."
                     value={messageValue}
                     onChange={changeValueMessage}
-                    onKeyUp={addValueMessage}/>
+                    onKeyUp={sendMessage}/>
           </div>
        </div>
    );

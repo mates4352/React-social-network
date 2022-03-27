@@ -3,26 +3,24 @@ import {
    addTextMessageActionCreate,
    changeTextMessageActionCreate,
 } from "../../redux/reducer/communicationPage-reducer";
-import {stateType} from '../../redux/store';
 
 import {Сommunication} from './Сommunication'
 
-export type communicationType = {
+export type communicationContainerType = {
    store: any
-   state: stateType
 }
 
-export const СommunicationContainer: React.FC<communicationType> = ({store, state}) => {
-   const messageValue = state.communicationPage.textMessage;
-   const messages = state.communicationPage.messages;
-   const dialogs = state.communicationPage.dialogs;
+export const СommunicationContainer: React.FC<communicationContainerType> = ({store}) => {
+   const messageValue = store.getState().communicationPage.textMessage;
+   const messages = store.getState().communicationPage.messages;
+   const dialogs = store.getState().communicationPage.dialogs;
 
    const changeValueMessage = (e: ChangeEvent<HTMLInputElement>): void => {
       const action = changeTextMessageActionCreate(e.currentTarget.value);
       store.dispatch(action)
    }
 
-   const addValueMessage = (e: KeyboardEvent<HTMLInputElement>): void => {
+   const sendMessage = (e: KeyboardEvent<HTMLInputElement>): void => {
       if (e.key === 'Enter' && e.currentTarget.value.trim() !== '') {
          const action = addTextMessageActionCreate();
          store.dispatch(action)
@@ -33,6 +31,6 @@ export const СommunicationContainer: React.FC<communicationType> = ({store, sta
                          messages={messages}
                          dialogs={dialogs}
                          changeValueMessage={changeValueMessage}
-                         addValueMessage={addValueMessage}
+                         sendMessage={sendMessage}
    />
 };

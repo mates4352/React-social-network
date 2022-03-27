@@ -12,12 +12,12 @@ export type accountType = {
    valueTextarea: string
    personal: dataPersonalType;
    posts: Array<datePostType>
-   addPost: ()=> void
-   onChangeTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => void
+   sendPost: ()=> void
+   changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const Account: React.FC<accountType> = (
-    {valueTextarea, personal, posts, addPost, onChangeTextarea}
+    {valueTextarea, personal, posts, sendPost, changeValueTextarea}
 ) => {
 
    return (
@@ -34,8 +34,8 @@ export const Account: React.FC<accountType> = (
                           maxLength={120}
                           placeholder='Write a post...'
                           value={valueTextarea}
-                          onChange={onChangeTextarea}/>
-                <button className={s.button} type="button" onClick={addPost}>
+                          onChange={changeValueTextarea}/>
+                <button className={s.button} type="button" onClick={sendPost}>
                    Add post
                 </button>
              </form>
