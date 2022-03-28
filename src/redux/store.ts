@@ -32,7 +32,6 @@ export type dataPersonalType = {
    name: string
    description: string
 };
-
 export type communicationDateType = {
    dialogs: Array<dateMessageType>
    messages: Array<dataDialogsType>

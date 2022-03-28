@@ -35,6 +35,7 @@ export const Account: React.FC<accountType> = (
                           placeholder='Write a post...'
                           value={valueTextarea}
                           onChange={changeValueTextarea}/>
+
                 <button className={s.button} type="button" onClick={sendPost}>
                    Add post
                 </button>

@@ -4,30 +4,36 @@ import {
    changeValueTextareaActionCreate,
 } from "../../redux/reducer/accountPage-reducer";
 import {Account} from "./Account";
+import {StoreContext} from "../../context";
 
 export type accountType = {
-   store: any
 }
 
-export const AccountContainer: React.FC<accountType> = (
-    {store}
-) => {
-   const valueTextarea = store.getState().accountPage.valueTextarea;
-   const personal = store.getState().accountPage.personal;
-   const Posts = store.getState().accountPage.datePost;
-
-   const sendPost = () => store.dispatch(addPostActionCreate())
-   const changeValueTextarea = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-      const action = changeValueTextareaActionCreate(e.currentTarget.value)
-      store.dispatch(action)
-   }
-
+export const AccountContainer: React.FC<accountType> = () => {
    return (
-       <Account valueTextarea={valueTextarea}
-                personal={personal}
-                sendPost={sendPost}
-                posts={Posts}
-                changeValueTextarea={changeValueTextarea}
-       />
+       <StoreContext.Consumer>
+          {
+             (store) => {
+                const valueTextarea = store.getState().accountPage.valueTextarea;
+                const personal = store.getState().accountPage.personal;
+                const Posts = store.getState().accountPage.datePost;
+
+                const sendPost = () => store.dispatch(addPostActionCreate())
+                const changeValueTextarea = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+                   const action = changeValueTextareaActionCreate(e.currentTarget.value)
+                   store.dispatch(action)
+                }
+
+                return <Account valueTextarea={valueTextarea}
+                                personal={personal}
+                                sendPost={sendPost}
+                                posts={Posts}
+                                changeValueTextarea={changeValueTextarea}
+                />
+             }
+          }
+
+       </StoreContext.Consumer>
+
    )
 };

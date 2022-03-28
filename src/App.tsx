@@ -12,10 +12,9 @@ import {СommunicationContainer} from "./features/сommunication/СommunicationC
 import s from './App.module.scss';
 
 export type appType = {
-   store: any
 }
 
-const App:React.FC<appType> = ({store}) => {
+const App:React.FC<appType> = () => {
    return (
        <BrowserRouter>
           <div className={s.page}>
@@ -24,8 +23,8 @@ const App:React.FC<appType> = ({store}) => {
 
              <main className={s.content}>
                 <Routes>
-                   <Route path="/" element={<AccountContainer store={store}/>}/>
-                   <Route path="Communication/*" element={<СommunicationContainer store={store}/>}/>
+                   <Route path="/" element={<AccountContainer/>}/>
+                   <Route path="Communication/*" element={<СommunicationContainer/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
                    <Route path="Settings" element={<Settings/>}/>
