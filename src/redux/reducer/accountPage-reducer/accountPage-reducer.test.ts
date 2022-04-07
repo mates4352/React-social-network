@@ -57,7 +57,7 @@ test('test case ADD_POST', () => {
             time: "2022-01-10",
          }
       ],
-      valueTextarea: 'lorem',
+      valueTextarea: '',
       personal: {id: '1', name: "Sergey", description: "description"},
    }
 
@@ -77,7 +77,7 @@ test('test case ADD_POST', () => {
             time: "2022-01-10",
          }
       ],
-      valueTextarea: 'lorem',
+      valueTextarea: '',
       personal: {id: '1', name: "Sergey", description: "description"},
    })
    state.valueTextarea.trim() !== '' && expect(newState.datePost.length).toBe(3)

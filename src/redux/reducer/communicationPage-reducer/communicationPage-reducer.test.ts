@@ -81,6 +81,7 @@ test('communicationPage-reducer test case CHANGE_VALUE_MESSAGE', () => {
    }
 
    const newState = communicationPageReducer(state, addTextMessageActionCreate('Enter'))
+   const newState2 = communicationPageReducer(state, addTextMessageActionCreate(''))
 
    expect(state).toEqual({
       dialogs: [
@@ -104,6 +105,9 @@ test('communicationPage-reducer test case CHANGE_VALUE_MESSAGE', () => {
       ],
       textMessage: 'lorem'
    })
-   expect(newState.messages.length).toBe(10)
+   state.textMessage.trim() !== '' && expect(newState.messages.length).toBe(10)
+   state.textMessage.trim() !== '' && expect(newState2.messages.length).toBe(9)
+   expect(newState.messages[9].text).toBe('lorem')
+   expect(newState.dialogs.length).toBe(5)
 })
 
