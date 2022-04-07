@@ -3,8 +3,8 @@ import {
    accountPageReducer,
    addPostType,
    changeValueTextareaType
-} from "./reducer/accountPage-reducer";
-import {addTextMessageType, changeTextMessageType, communicationPageReducer} from "./reducer/communicationPage-reducer";
+} from "./reducer/accountPage-reducer/accountPage-reducer";
+import {addTextMessageType, changeValueMessageType, communicationPageReducer} from "./reducer/communicationPage-reducer/communicationPage-reducer";
 
 export type storeType = {
    _state: stateType
@@ -45,7 +45,7 @@ export type dateMessageType = {
    id: string
    name: string
 };
-export type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeTextMessageType
+export type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType
 
 export const store: storeType = {
    _state: {

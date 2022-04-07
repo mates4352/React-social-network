@@ -1,5 +1,6 @@
 import {v1} from "uuid";
-import {actionType} from "../store";
+import {actionType} from "../../store";
+import {ChangeEvent} from "react";
 
 type accountPageType = {
    datePost: Array<datePostType>
@@ -16,6 +17,7 @@ type dataPersonalType = {
    name: string
    description: string
 };
+
 export type changeValueTextareaType = ReturnType<typeof changeValueTextareaActionCreate>
 export type addPostType = ReturnType<typeof addPostActionCreate>
 
@@ -43,12 +45,10 @@ const inisionalState: accountPageType = {
 export const accountPageReducer = (state: accountPageType = inisionalState, action: actionType): accountPageType => {
    switch (action.type) {
       case CHANGE_VALUE_TEXTAREA:
-         state.valueTextarea = action.text;
-         return state
+         return {...state, valueTextarea: action.text}
       case ADD_POST:
          const newPost = {id: v1(), text: state.valueTextarea, time: "2022-01-10"};
-         state.datePost.push(newPost);
-         state.valueTextarea = '';
+         if(state.valueTextarea.trim() !== '') return {...state, datePost: [...state.datePost, newPost], valueTextarea: ''}
          return state
       default:
          return state
@@ -60,5 +60,5 @@ export const addPostActionCreate = () => (
 )
 
 export const changeValueTextareaActionCreate = (text: string) => (
-    {type: CHANGE_VALUE_TEXTAREA, text: text} as const
+    {type: CHANGE_VALUE_TEXTAREA, text} as const
 )

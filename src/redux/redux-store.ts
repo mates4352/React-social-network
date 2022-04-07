@@ -1,6 +1,6 @@
 import {combineReducers, createStore} from "redux";
-import {accountPageReducer} from "./reducer/accountPage-reducer";
-import {communicationPageReducer} from "./reducer/communicationPage-reducer";
+import {accountPageReducer} from "./reducer/accountPage-reducer/accountPage-reducer";
+import {communicationPageReducer} from "./reducer/communicationPage-reducer/communicationPage-reducer";
 
 const reducers = combineReducers({
    accountPage: accountPageReducer,

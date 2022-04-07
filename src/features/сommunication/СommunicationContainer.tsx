@@ -2,8 +2,8 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {StoreContext} from "../../context";
 import {
    addTextMessageActionCreate,
-   changeTextMessageActionCreate,
-} from "../../redux/reducer/communicationPage-reducer";
+   changeValueMessageActionCreate,
+} from "../../redux/reducer/communicationPage-reducer/communicationPage-reducer";
 
 import {Сommunication} from './Сommunication'
 
@@ -19,15 +19,13 @@ export const СommunicationContainer: React.FC<communicationContainerType> = () 
                 const dialogs = store.getState().communicationPage.dialogs;
 
                 const changeValueMessage = (e: ChangeEvent<HTMLInputElement>): void => {
-                   const action = changeTextMessageActionCreate(e.currentTarget.value);
+                   const action = changeValueMessageActionCreate(e.currentTarget.value);
                    store.dispatch(action)
                 }
 
                 const sendMessage = (e: KeyboardEvent<HTMLInputElement>): void => {
-                   if (e.key === 'Enter' && e.currentTarget.value.trim() !== '') {
-                      const action = addTextMessageActionCreate();
+                      const action = addTextMessageActionCreate(e.key);
                       store.dispatch(action)
-                   }
                 }
 
                 return <Сommunication messageValue={messageValue}

@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {
    addPostActionCreate,
    changeValueTextareaActionCreate,
-} from "../../redux/reducer/accountPage-reducer";
+} from "../../redux/reducer/accountPage-reducer/accountPage-reducer";
 import {Account} from "./Account";
 import {StoreContext} from "../../context";
 

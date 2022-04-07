@@ -1,6 +1,7 @@
 import {v1} from "uuid";
-import {actionType} from "../store";
-type communicationPageType = {
+import {actionType} from "../../store";
+import {KeyboardEvent} from "react";
+export type communicationPageType = {
    dialogs: Array<MessageType>
    messages: Array<DialogsType>
    textMessage: string
@@ -13,8 +14,9 @@ type MessageType = {
    id: string
    name: string
 };
+
 export type addTextMessageType = ReturnType<typeof addTextMessageActionCreate>
-export type changeTextMessageType = ReturnType<typeof changeTextMessageActionCreate>
+export type changeValueMessageType = ReturnType<typeof changeValueMessageActionCreate>
 
 const ADD_VALUE_MESSAGE = 'ADD-VALUE-MESSAGE';
 const CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE';
@@ -45,20 +47,19 @@ const inisionalState: communicationPageType = {
 export const communicationPageReducer = (state: communicationPageType = inisionalState, action: actionType): communicationPageType => {
    switch (action.type) {
       case CHANGE_VALUE_MESSAGE :
-         state.textMessage = action.text;
-         return state
+         return {...state, textMessage: action.text}
       case ADD_VALUE_MESSAGE:
-         state.messages.push({id: v1(), text: state.textMessage})
-         state.textMessage = ''
+         const newMessage = {id: v1(), text: state.textMessage}
+         if(state.textMessage.trim() !== '' && action.key === 'Enter') return {...state, messages: [...state.messages, newMessage], textMessage: ''}
          return state
       default:
          return state
    }
 }
 
-export const addTextMessageActionCreate = () => (
-    {type: ADD_VALUE_MESSAGE} as const
+export const addTextMessageActionCreate = (key: string) => (
+    {type: ADD_VALUE_MESSAGE, key} as const
 )
-export const changeTextMessageActionCreate = (text: string) => (
+export const changeValueMessageActionCreate = (text: string) => (
     {type: CHANGE_VALUE_MESSAGE, text: text} as const
 )
