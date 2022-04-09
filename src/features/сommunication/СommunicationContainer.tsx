@@ -1,42 +1,37 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import {StoreContext} from "../../context";
 import {
    addTextMessageActionCreate,
-   changeValueMessageActionCreate,
+   changeValueMessageActionCreate, communicationPageType,
 } from "../../redux/reducer/communicationPage-reducer/communicationPage-reducer";
-
 import {Сommunication} from './Сommunication'
+import {stateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
+import {connect} from "react-redux";
 
-export type communicationContainerType = {}
+type mapDispatchToPropsType = {
+   changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
+   sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
+}
 
-export const СommunicationContainer: React.FC<communicationContainerType> = () => {
-   return (
-       <StoreContext.Consumer>
-          {
-             (store) => {
-                const messageValue = store.getState().communicationPage.textMessage;
-                const messages = store.getState().communicationPage.messages;
-                const dialogs = store.getState().communicationPage.dialogs;
+const mapStateToProps = (state: stateType): communicationPageType  => {
+   return {
+      textMessage: state.communicationPage.textMessage,
+      messages: state.communicationPage.messages,
+      dialogs: state.communicationPage.dialogs,
+   }
+}
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+   return {
+      changeValueMessage: (e) => {
+         const action = changeValueMessageActionCreate(e.currentTarget.value);
+         dispatch(action)
+      },
 
-                const changeValueMessage = (e: ChangeEvent<HTMLInputElement>): void => {
-                   const action = changeValueMessageActionCreate(e.currentTarget.value);
-                   store.dispatch(action)
-                }
+      sendMessage: (e) => {
+         const action = addTextMessageActionCreate(e.key);
+         dispatch(action)
+      },
+   }
+}
 
-                const sendMessage = (e: KeyboardEvent<HTMLInputElement>): void => {
-                      const action = addTextMessageActionCreate(e.key);
-                      store.dispatch(action)
-                }
-
-                return <Сommunication messageValue={messageValue}
-                                      messages={messages}
-                                      dialogs={dialogs}
-                                      changeValueMessage={changeValueMessage}
-                                      sendMessage={sendMessage}
-                />
-             }
-          }
-       </StoreContext.Consumer>
-   )
-
-};
+export const СommunicationContainer = connect(mapStateToProps, mapDispatchToProps)(Сommunication);

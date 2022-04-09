@@ -6,18 +6,18 @@ import background from './../../assets/images/bg_account.jpg'
 import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
 
-import {dataPersonalType, datePostType} from '../../redux/store';
+import {dataPersonalType, datePostType} from '../../redux/reducer/accountPage-reducer/accountPage-reducer';
 
 export type accountType = {
    valueTextarea: string
    personal: dataPersonalType;
-   posts: Array<datePostType>
+   datePost: Array<datePostType>
    sendPost: ()=> void
    changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const Account: React.FC<accountType> = (
-    {valueTextarea, personal, posts, sendPost, changeValueTextarea}
+    {valueTextarea, personal, datePost, sendPost, changeValueTextarea}
 ) => {
 
    return (
@@ -43,7 +43,7 @@ export const Account: React.FC<accountType> = (
 
              <ul className={s.list}>
                 {
-                   posts.map(post =>
+                   datePost.map(post =>
                        <li className={s.item} key={post.id}>
                           <Post post={post}/>
                        </li>

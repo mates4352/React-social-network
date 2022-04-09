@@ -1,4 +1,4 @@
-import {accountPageType} from "../../store";
+import {accountPageType} from "../accountPage-reducer/accountPage-reducer";
 import {accountPageReducer, addPostActionCreate, changeValueTextareaActionCreate} from "./accountPage-reducer";
 
 test('test case CHANGE_VALUE_TEXTAREA', () => {

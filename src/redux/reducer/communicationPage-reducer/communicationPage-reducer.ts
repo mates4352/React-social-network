@@ -1,22 +1,23 @@
 import {v1} from "uuid";
-import {actionType} from "../../store";
-import {KeyboardEvent} from "react";
+import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-reducer";
+
 export type communicationPageType = {
-   dialogs: Array<MessageType>
-   messages: Array<DialogsType>
+   dialogs: Array<DialogsType>
+   messages: Array<MessageType>
    textMessage: string
 }
-type DialogsType = {
+export type DialogsType = {
    id: string,
-   text: string
-}
-type MessageType = {
-   id: string
    name: string
+}
+export type MessageType = {
+   id: string
+   text: string
 };
 
 export type addTextMessageType = ReturnType<typeof addTextMessageActionCreate>
 export type changeValueMessageType = ReturnType<typeof changeValueMessageActionCreate>
+type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType
 
 const ADD_VALUE_MESSAGE = 'ADD-VALUE-MESSAGE';
 const CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE';

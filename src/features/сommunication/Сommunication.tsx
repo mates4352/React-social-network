@@ -2,18 +2,18 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
 import {Message} from "./component/message/Message";
-import {dataDialogsType, dateMessageType} from "../../redux/store";
+import {DialogsType, MessageType} from "../../redux/reducer/communicationPage-reducer/communicationPage-reducer";
 
 export type communicationType = {
-   messageValue: string
-   messages: Array<dataDialogsType>
-   dialogs: Array<dateMessageType>
+   textMessage: string
+   messages: Array<MessageType>
+   dialogs: Array<DialogsType>
    changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
    sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 
 export const Сommunication: React.FC<communicationType> = (
-    {messageValue, messages, dialogs, changeValueMessage, sendMessage}
+    {textMessage, messages, dialogs, changeValueMessage, sendMessage}
 ) => {
    const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
@@ -53,7 +53,7 @@ export const Сommunication: React.FC<communicationType> = (
              <input className={s.entryFieldInput}
                     type="text"
                     placeholder="To write a message..."
-                    value={messageValue}
+                    value={textMessage}
                     onChange={changeValueMessage}
                     onKeyUp={sendMessage}/>
           </div>

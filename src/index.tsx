@@ -5,19 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import './index.scss';
 import {store} from "./redux/redux-store";
-import {StoreContext} from "./context";
+import { Provider } from 'react-redux';
 
-const renderUi = () => {
-   ReactDOM.render(
-       <React.StrictMode>
-          <StoreContext.Provider value={store}>
-             <App/>
-          </StoreContext.Provider>
-       </React.StrictMode>,
-       document.getElementById('root')
-   );
-   reportWebVitals();
-}
-
-renderUi()
-store.subscribe(renderUi)
+ReactDOM.render(
+    <React.StrictMode>
+       <Provider store={store}>
+          <App/>
+       </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
+reportWebVitals();

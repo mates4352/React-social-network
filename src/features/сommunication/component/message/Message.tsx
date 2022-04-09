@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './Message.module.scss'
 import image from "./../../../../assets/images/avatar.jpg"
-import {dataDialogsType} from "../../../../redux/store";
+import {MessageType} from "../../../../redux/reducer/communicationPage-reducer/communicationPage-reducer";
 
 export type dialogsType = {
-   message: dataDialogsType
+   message: MessageType
 };
 
 export const Message:React.FC<dialogsType> = (props) => {

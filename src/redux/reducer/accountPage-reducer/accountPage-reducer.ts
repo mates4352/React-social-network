@@ -1,18 +1,17 @@
 import {v1} from "uuid";
-import {actionType} from "../../store";
-import {ChangeEvent} from "react";
+import {addTextMessageType, changeValueMessageType} from "../communicationPage-reducer/communicationPage-reducer";
 
-type accountPageType = {
+export type accountPageType = {
    datePost: Array<datePostType>
    valueTextarea: string
    personal: dataPersonalType
 };
-type datePostType = {
+export type datePostType = {
    id: string
    text: string
    time: string
 };
-type dataPersonalType = {
+export type dataPersonalType = {
    id: string
    name: string
    description: string
@@ -20,11 +19,12 @@ type dataPersonalType = {
 
 export type changeValueTextareaType = ReturnType<typeof changeValueTextareaActionCreate>
 export type addPostType = ReturnType<typeof addPostActionCreate>
+type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_VALUE_TEXTAREA = 'CHANGE-VALUE-TEXTAREA';
 
-const inisionalState: accountPageType = {
+const inisialState: accountPageType = {
    datePost: [
       {
          id: v1(),
@@ -42,7 +42,7 @@ const inisionalState: accountPageType = {
    personal: {id: v1(), name: "Sergey", description: "description"},
 }
 
-export const accountPageReducer = (state: accountPageType = inisionalState, action: actionType): accountPageType => {
+export const accountPageReducer = (state: accountPageType = inisialState, action: actionType): accountPageType => {
    switch (action.type) {
       case CHANGE_VALUE_TEXTAREA:
          return {...state, valueTextarea: action.text}

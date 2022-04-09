@@ -1,39 +1,38 @@
 import React, {ChangeEvent} from 'react';
 import {
+   accountPageType,
    addPostActionCreate,
    changeValueTextareaActionCreate,
 } from "../../redux/reducer/accountPage-reducer/accountPage-reducer";
 import {Account} from "./Account";
-import {StoreContext} from "../../context";
+import {connect} from "react-redux";
+import {stateType} from "../../redux/redux-store";
+import { Dispatch } from 'redux';
 
-export type accountType = {
+type mapStateToPropsType = accountPageType
+type mapDispatchToPropsType = {
+   sendPost: () => void
+   changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-export const AccountContainer: React.FC<accountType> = () => {
-   return (
-       <StoreContext.Consumer>
-          {
-             (store) => {
-                const valueTextarea = store.getState().accountPage.valueTextarea;
-                const personal = store.getState().accountPage.personal;
-                const Posts = store.getState().accountPage.datePost;
+const mapStateToProps = (state: stateType): mapStateToPropsType  => {
+   return {
+      valueTextarea: state.accountPage.valueTextarea,
+      personal: state.accountPage.personal,
+      datePost: state.accountPage.datePost,
+   }
+}
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+   return {
+      sendPost: () => {
+         const action = addPostActionCreate();
+         dispatch(action)
+      },
+      changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => {
+         const action = changeValueTextareaActionCreate(e.currentTarget.value);
+         dispatch(action)
+      }
+   }
+}
 
-                const sendPost = () => store.dispatch(addPostActionCreate())
-                const changeValueTextarea = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-                   const action = changeValueTextareaActionCreate(e.currentTarget.value)
-                   store.dispatch(action)
-                }
-
-                return <Account valueTextarea={valueTextarea}
-                                personal={personal}
-                                sendPost={sendPost}
-                                posts={Posts}
-                                changeValueTextarea={changeValueTextarea}
-                />
-             }
-          }
-
-       </StoreContext.Consumer>
-
-   )
-};
+export const AccountContainer = connect(mapStateToProps, mapDispatchToProps)(Account);
