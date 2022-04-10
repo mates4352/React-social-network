@@ -26,7 +26,7 @@ const App:React.FC<appType> = () => {
                 <Routes>
                    <Route path="/" element={<AccountContainer/>}/>
                    <Route path="Communication/*" element={<СommunicationContainer/>}/>
-                   <Route path="User/*" element={<UserContainer/>}/>
+                   <Route path="User" element={<UserContainer/>}/>
                    <Route path="Music" element={<Music/>}/>
                    <Route path="News" element={<News/>}/>
                    <Route path="Settings" element={<Settings/>}/>
