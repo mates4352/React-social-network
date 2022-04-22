@@ -1,21 +1,52 @@
-import {changeFollowUserActionCreate, userPageType, usersPageReducer} from "./usersPageReducer";
+import {changeFollowUserActionCreate, getUsersActionCreate, userPageType, usersPageReducer} from "./usersPageReducer";
 
 test('test function usersPageReducer', () => {
    const state: userPageType = {
-      users: [
-         {id: '0', follow: true, name: "Sergey", location: {city: 'Cerov', country: 'Russian'}},
-         {id: '1', follow: true, name: "Sergey", location: {city: 'Cerov', country: 'Russian'}}
-      ]
+      items: [
+         {id: '0', follow: true, name: "Sergey", photos: {small: null, large: null}, status: true},
+         {id: '1', follow: false, name: "Sergey", photos: {small: null, large: null}, status: true},
+      ],
+      error: null,
+      totalCount: null
    }
 
    const newState =  usersPageReducer(state, changeFollowUserActionCreate('0'))
 
    expect(state).toEqual({
-      users: [
-         {id: '0', follow: true, name: "Sergey", location: {city: 'Cerov', country: 'Russian'}},
-         {id: '1', follow: true, name: "Sergey", location: {city: 'Cerov', country: 'Russian'}}
-      ]
+      items: [
+         {id: '0', follow: true, name: "Sergey", photos: {small: null, large: null}, status: true},
+         {id: '1', follow: false, name: "Sergey", photos: {small: null, large: null}, status: true},
+      ],
+      error: null,
+      totalCount: null
    })
-   expect(state.users[1]).toBe(newState.users[1])
-   expect(newState.users[0].follow).toBeFalsy()
+   expect(state.items[1]).toBe(newState.items[1])
+   expect(newState.items[0].follow).toBeFalsy()
+   expect(newState.error).toBeNull()
+   expect(newState.totalCount).toBeNull()
+})
+
+test('test function usersPageReducer', () => {
+   const state: userPageType = {
+      items: [],
+      error: null,
+      totalCount: null
+   }
+   const newState =  usersPageReducer(state, getUsersActionCreate(
+       [
+          {id: '0', follow: true, name: "Sergey", photos: {small: null, large: null}, status: true},
+          {id: '1', follow: false, name: "Sergey", photos: {small: null, large: null}, status: true},
+       ],
+   ))
+
+   expect(state).toEqual({
+      items: [],
+      error: null,
+      totalCount: null
+   })
+   expect(state.items[1]).toBeUndefined()
+
+   expect(newState.items.length).toBe(2)
+   expect(newState.error).toBeNull()
+   expect(newState.totalCount).toBeNull()
 })

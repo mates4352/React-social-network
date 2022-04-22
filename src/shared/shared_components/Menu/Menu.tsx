@@ -16,6 +16,10 @@ export const Menu = () => {
              </li>
 
              <li className={s.item}>
+                <NavLink className={classLink} to={"User"}>User</NavLink>
+             </li>
+
+             <li className={s.item}>
                 <NavLink className={classLink} to={"Music"}>Music</NavLink>
              </li>
 

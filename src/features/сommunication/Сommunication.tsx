@@ -26,7 +26,7 @@ export const Сommunication: React.FC<communicationType> = (
 
              <ul className={s.dialogs}>
                 {dialogs.map(dialog =>
-                    <li className={s.dialogsItem}>
+                    <li className={s.dialogsItem} key={dialog.id}>
                        <NavLink
                            className={classLink}
                            to={`${dialog.id}`}>

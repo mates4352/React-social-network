@@ -6,7 +6,7 @@
 
    .container {
       display: grid;
-      grid-template-columns: var(--minmax) 0.7fr;
+      grid-template-columns: 124px 1fr;
       grid-auto-flow: column;
       align-items: center;
       column-gap: 24px;

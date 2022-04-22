@@ -1,38 +1,42 @@
-import {v1} from "uuid";
 import {addTextMessageType, changeValueMessageType} from "../communicationPage-reducer/communicationPage-reducer";
 import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-reducer";
 
 const CHANGE_FOLLOW_USER = 'CHANGE-FOLLOW-USER'
+const GET_USERS = 'GET_USERS'
 
 export type userPageType = {
-   users: Array<user>
+   items: Array<userType>
+   totalCount: null | number
+   error: null | string
+
 }
-export type user = {
+export type userType = {
    id: string
    follow: boolean
    name: string
-   location: location
-}
-export type location = {
-   city: string
-   country: string
+   photos: {
+      "small": null | string
+      "large": null | string
+   }
+   status: null | boolean
 }
 
 export type changeFollowUserType = ReturnType<typeof changeFollowUserActionCreate>
-type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | changeFollowUserType
+export type getUsersType = ReturnType<typeof getUsersActionCreate>
+type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | changeFollowUserType | getUsersType
 
 const inisialState: userPageType = {
-   users: [
-      {id: v1(), follow: true, name: "Sergey", location: {city: 'Cerov', country: 'Russian'}},
-      {id: v1(), follow: false, name: "Sergey", location: {city: 'Cerov', country: 'Russian'}},
-      {id: v1(), follow: true, name: "Sergey", location: {city: 'Cerov', country: 'Russian'}}
-   ]
+   items: [],
+   totalCount: null,
+   error: null,
 }
 
 export const usersPageReducer = (state: userPageType = inisialState, action: actionType): userPageType => {
    switch (action.type) {
       case CHANGE_FOLLOW_USER:
-         return {...state, users: state.users.map(item => item.id === action.idUser ? {...item, follow: !item.follow} : item)}
+         return {...state, items: state.items.map(item => item.id === action.idUser ? {...item, follow: !item.follow} : item)}
+      case GET_USERS:
+         return {...state, items: action.items}
       default:
          return state
    }
@@ -40,4 +44,8 @@ export const usersPageReducer = (state: userPageType = inisialState, action: act
 
 export const changeFollowUserActionCreate = (idUser: string) => {
    return {type: CHANGE_FOLLOW_USER, idUser} as const
+}
+
+export const getUsersActionCreate = (items: Array<userType>) => {
+   return {type: GET_USERS, items} as const
 }

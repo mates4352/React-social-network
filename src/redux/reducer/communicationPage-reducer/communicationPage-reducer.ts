@@ -1,5 +1,6 @@
 import {v1} from "uuid";
 import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-reducer";
+import {getUsersType} from "../usersPageReducer/usersPageReducer";
 
 export type communicationPageType = typeof inisionalState;
 export type DialogsType = {
@@ -12,7 +13,7 @@ export type MessageType = {
 };
 export type addTextMessageType = ReturnType<typeof addTextMessageActionCreate>
 export type changeValueMessageType = ReturnType<typeof changeValueMessageActionCreate>
-type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType
+type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | getUsersType
 
 const ADD_VALUE_MESSAGE = 'ADD-VALUE-MESSAGE';
 const CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE';
