@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {connect} from "react-redux";
 import {User} from "./User";
-import {stateType} from "../../redux/redux-store";
+import {stateType} from "../../bll/redux/redux-store";
 import {Dispatch} from "redux";
+import {userPageType, userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
+import axios, {AxiosResponse} from "axios";
 import {
    changeFollowUserActionCreate,
-   getUsersActionCreate, userPageType,
-   userType
-} from "../../redux/reducer/usersPageReducer/usersPageReducer";
-import axios, {AxiosResponse} from "axios";
+   getUsersActionCreate
+} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer-create-actions";
 
 type maxStateToPropsType = {
    users: Array<userType>

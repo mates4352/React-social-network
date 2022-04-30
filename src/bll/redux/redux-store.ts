@@ -3,8 +3,8 @@ import {accountPageReducer} from "./reducer/accountPage-reducer/accountPage-redu
 import {communicationPageReducer} from "./reducer/communicationPage-reducer/communicationPage-reducer";
 import {usersPageReducer} from "./reducer/usersPageReducer/usersPageReducer";
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {saveState} from "./localStorage/saveState";
-import {loadState} from "./localStorage/loadState";
+import {saveState} from "../localStorage/saveState";
+import {loadState} from "../localStorage/loadState";
 
 export type stateType = ReturnType<typeof rootReducer>
 

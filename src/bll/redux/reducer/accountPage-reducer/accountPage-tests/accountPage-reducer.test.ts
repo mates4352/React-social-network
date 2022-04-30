@@ -1,5 +1,6 @@
-import {accountPageType} from "../accountPage-reducer/accountPage-reducer";
-import {accountPageReducer, addPostActionCreate, changeValueTextareaActionCreate} from "./accountPage-reducer";
+import {accountPageType} from "../accountPage-reducer";
+import {accountPageReducer} from "../accountPage-reducer";
+import {addPostActionCreate, changeValueTextareaActionCreate} from "../accountPage-create-actions";
 
 test('test case CHANGE_VALUE_TEXTAREA', () => {
    const state: accountPageType = {

@@ -1,9 +1,8 @@
 import {
-   addTextMessageActionCreate,
-   changeValueMessageActionCreate,
    communicationPageReducer,
    communicationPageType
-} from "./communicationPage-reducer";
+} from "../communicationPage-reducer";
+import {addTextMessageActionCreate, changeValueMessageActionCreate} from "../communicationPage-create-actions";
 
 test('communicationPage-reducer test case CHANGE_VALUE_MESSAGE', () => {
    const state: communicationPageType = {
@@ -110,4 +109,3 @@ test('communicationPage-reducer test case CHANGE_VALUE_MESSAGE', () => {
    expect(newState.messages[9].text).toBe('lorem')
    expect(newState.dialogs.length).toBe(5)
 })
-

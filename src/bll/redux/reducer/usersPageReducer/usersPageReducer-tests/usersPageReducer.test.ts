@@ -1,4 +1,5 @@
-import {changeFollowUserActionCreate, getUsersActionCreate, userPageType, usersPageReducer} from "./usersPageReducer";
+import {userPageType, usersPageReducer} from "../usersPageReducer";
+import {changeFollowUserActionCreate, getUsersActionCreate} from "../usersPageReducer-create-actions";
 
 test('test function usersPageReducer', () => {
    const state: userPageType = {

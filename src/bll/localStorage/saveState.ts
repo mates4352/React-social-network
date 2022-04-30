@@ -1,4 +1,4 @@
-import {stateType} from "../redux-store";
+import {stateType} from "../redux/redux-store";
 
 export const saveState = (state: stateType) => {
    try {

@@ -1,12 +1,13 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import {
-   addTextMessageActionCreate,
-   changeValueMessageActionCreate, communicationPageType,
-} from "../../redux/reducer/communicationPage-reducer/communicationPage-reducer";
+import { communicationPageType} from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-reducer";
 import {Сommunication} from './Сommunication'
-import {stateType} from "../../redux/redux-store";
+import {stateType} from "../../bll/redux/redux-store";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
+import {
+   addTextMessageActionCreate,
+   changeValueMessageActionCreate
+} from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-create-actions";
 
 type mapDispatchToPropsType = {
    changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void

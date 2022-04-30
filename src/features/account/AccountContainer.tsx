@@ -1,13 +1,15 @@
 import React, {ChangeEvent} from 'react';
 import {
    accountPageType,
-   addPostActionCreate,
-   changeValueTextareaActionCreate,
-} from "../../redux/reducer/accountPage-reducer/accountPage-reducer";
+} from "../../bll/redux/reducer/accountPage-reducer/accountPage-reducer";
 import {Account} from "./Account";
 import {connect} from "react-redux";
-import {stateType} from "../../redux/redux-store";
+import {stateType} from "../../bll/redux/redux-store";
 import { Dispatch } from 'redux';
+import {
+   addPostActionCreate,
+   changeValueTextareaActionCreate
+} from "../../bll/redux/reducer/accountPage-reducer/accountPage-create-actions";
 
 type mapStateToPropsType = accountPageType
 type mapDispatchToPropsType = {

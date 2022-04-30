@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
 import {Message} from "./component/message/Message";
-import {DialogsType, MessageType} from "../../redux/reducer/communicationPage-reducer/communicationPage-reducer";
+import {DialogsType, MessageType} from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-reducer";
 
 export type communicationType = {
    textMessage: string

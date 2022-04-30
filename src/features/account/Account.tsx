@@ -6,7 +6,7 @@ import background from './../../assets/images/bg_account.jpg'
 import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
 
-import {dataPersonalType, datePostType} from '../../redux/reducer/accountPage-reducer/accountPage-reducer';
+import {dataPersonalType, datePostType} from '../../bll/redux/reducer/accountPage-reducer/accountPage-reducer';
 
 export type accountType = {
    valueTextarea: string
