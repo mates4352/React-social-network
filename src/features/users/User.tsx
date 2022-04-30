@@ -6,7 +6,15 @@ import image from './../../assets/images/avatar.jpg'
 export class User extends React.Component<userPropsType> {
    constructor(props: userPropsType) {
       super(props);
-      this.props.getUsers();
+   }
+
+   componentDidMount() {
+      this.props.getUsers()
+      console.log('componentDidMount')
+   }
+
+   componentDidUpdate() {
+      console.log('componentDidUpdate')
    }
 
    render() {

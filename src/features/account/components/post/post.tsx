@@ -5,15 +5,23 @@ type postType = {
    post: datePostType;
 }
 
-export const Post: React.FC<postType> = (props) => {
-   return (
-       <div className={s.post}>
+export class Post extends React.Component<postType> {
+   constructor(props: postType) {
+      super(props);
+   }
 
-          <p className={s.text}>
-             {props.post.text}
-          </p>
+   render() {
+      const {post} = this.props;
 
-          <time className={s.time} dateTime={props.post.time}>{props.post.time}</time>
-       </div>
-   );
-};
+      return (
+          <div className={s.post}>
+
+             <p className={s.text}>
+                {post.text}
+             </p>
+
+             <time className={s.time} dateTime={post.time}>{post.time}</time>
+          </div>
+      );
+   }
+}

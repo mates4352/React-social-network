@@ -7,15 +7,21 @@ export type dialogsType = {
    message: MessageType
 };
 
-export const Message:React.FC<dialogsType> = (props) => {
+export class Message extends React.Component<dialogsType> {
+   constructor(props: dialogsType) {
+      super(props);
+   }
 
-   return (
-       <div className={s.message}>
-          <img className={s.avatar} src={image} alt="Image personal"/>
+   render() {
+      const {message} = this.props;
+      return (
+          <div className={s.message}>
+             <img className={s.avatar} src={image} alt="Image personal"/>
 
-          <p className={s.text}>
-             {props.message.text}
-          </p>
-       </div>
-   );
-};
+             <p className={s.text}>
+                {message.text}
+             </p>
+          </div>
+      );
+   }
+}

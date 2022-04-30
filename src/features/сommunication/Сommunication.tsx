@@ -12,51 +12,59 @@ export type communicationType = {
    sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 
-export const Сommunication: React.FC<communicationType> = (
-    {textMessage, messages, dialogs, changeValueMessage, sendMessage}
-) => {
-   const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
+export class Сommunication extends React.Component<communicationType> {
+   constructor(props: communicationType) {
+      super(props);
+   }
 
-   return (
-       <div className={s.communication}>
-          <h1 className={s.title}>Dialogs</h1>
+   render() {
+      const {textMessage, messages, dialogs, changeValueMessage, sendMessage} = this.props
+      const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
-          <div className={s.contact}>
-             <input className={s.search} type="text" placeholder="Search contact..."/>
+      return (
+          <div className={s.communication}>
+             <h1 className={s.title}>Dialogs</h1>
 
-             <ul className={s.dialogs}>
-                {dialogs.map(dialog =>
-                    <li className={s.dialogsItem} key={dialog.id}>
-                       <NavLink
-                           className={classLink}
-                           to={`${dialog.id}`}>
-                          {dialog.name}
-                       </NavLink>
-                    </li>
-                )}
-             </ul>
+             <div className={s.contact}>
+                <input className={s.search} type="text" placeholder="Search contact..."/>
+
+                <ul className={s.dialogs}>
+                   {dialogs.map(dialog =>
+                       <li className={s.dialogsItem} key={dialog.id}>
+                          <NavLink
+                              className={classLink}
+                              to={`${dialog.id}`}>
+                             {dialog.name}
+                          </NavLink>
+                       </li>
+                   )}
+                </ul>
+             </div>
+
+             <div className={s.content}>
+                <p className={s.contactName}>
+                   <strong>hello</strong>
+                </p>
+
+                <ul className={s.list}>
+                   {messages.map(message =>
+                       <li className={s.item} key={message.id}>
+                          <Message message={message}/>
+                       </li>
+                   )}
+                </ul>
+
+                <input className={s.entryFieldInput}
+                       type="text"
+                       placeholder="To write a message..."
+                       value={textMessage}
+                       onChange={changeValueMessage}
+                       onKeyUp={sendMessage}/>
+             </div>
           </div>
+      );
+   }
+}
 
-          <div className={s.content}>
-             <p className={s.contactName}>
-                <strong>hello</strong>
-             </p>
 
-             <ul className={s.list}>
-                {messages.map(message =>
-                    <li className={s.item} key={message.id}>
-                       <Message message={message}/>
-                    </li>
-                )}
-             </ul>
 
-             <input className={s.entryFieldInput}
-                    type="text"
-                    placeholder="To write a message..."
-                    value={textMessage}
-                    onChange={changeValueMessage}
-                    onKeyUp={sendMessage}/>
-          </div>
-       </div>
-   );
-};
