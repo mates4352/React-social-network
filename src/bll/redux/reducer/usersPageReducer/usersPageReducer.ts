@@ -5,7 +5,7 @@ import {
    changeValueMessageType
 } from "../communicationPage-reducer/communicationPage-create-actions";
 import {
-   changeFollowUserType,
+   changeFollowUserType, changeIsPreloaderType,
    changePaginationType,
    getTotalCountType,
    getUsersType
@@ -17,6 +17,7 @@ export type userPageType = {
    totalCount: number
    currentPage: number
    error: null | string
+   isPreloader?: boolean
 
 }
 export type userType = {
@@ -29,7 +30,7 @@ export type userType = {
    }
    status: null | boolean
 }
-type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | changeFollowUserType | getUsersType | changePaginationType | getTotalCountType
+type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | changeFollowUserType | getUsersType | changePaginationType | getTotalCountType | changeIsPreloaderType
 
 const inisialState: userPageType = {
    items: [],
@@ -37,6 +38,7 @@ const inisialState: userPageType = {
    totalCount: 0,
    currentPage: 1,
    error: null,
+   isPreloader: true,
 }
 
 export const usersPageReducer = (state: userPageType = inisialState, action: actionType): userPageType => {
@@ -52,6 +54,9 @@ export const usersPageReducer = (state: userPageType = inisialState, action: act
 
       case Actions_Type.CHANGE_PAGINATION:
          return {...state, currentPage: action.currentPage}
+
+      case Actions_Type.CHANGE_IS_PRELOADER:
+         return {...state, isPreloader: action.isPreloader}
 
       default:
          return state

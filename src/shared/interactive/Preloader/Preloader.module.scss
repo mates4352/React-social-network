@@ -1,0 +1,17 @@
+.preloader {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   animation: preloader 1s ease infinite forwards;
+}
+
+@keyframes preloader {
+   0% {
+      transform: rotate(0);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}

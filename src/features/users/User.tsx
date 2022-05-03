@@ -2,6 +2,7 @@ import * as React from 'react';
 import {userPropsType} from "./UserContainer";
 import s from './User.module.scss'
 import image from './../../assets/images/avatar.jpg'
+import {Preloader} from "../../shared/interactive/Preloader/Preloader";
 
 export class User extends React.Component<userPropsType> {
    constructor(props: userPropsType) {
@@ -9,7 +10,7 @@ export class User extends React.Component<userPropsType> {
    }
 
    componentDidMount() {
-      this.props.getUsers(this.props.currentPage, this.props.pageSize)
+      this.props.getUsers(this.props.currentPage, this.props.pageSize);
    }
 
    componentDidUpdate() {
@@ -17,11 +18,12 @@ export class User extends React.Component<userPropsType> {
    }
 
    render() {
-      const {users, getUsers, getArrayPageNumber, changeFollowUser, changePagination} = this.props;
+      const {users, getArrayPageNumber, changeFollowUser, changePagination} = this.props;
       const pagesNumbers = getArrayPageNumber(this.props.totalCount, this.props.pageSize);
 
       return (
           <>
+             {this.props.isPreloader && <Preloader w={150} h={150} fill='#2a2e49'/>}
              <ul className={s.pagination}>
                 {pagesNumbers.map(pageNumber =>
                     <li className={s.pagination_item} key={pageNumber}>
@@ -29,8 +31,7 @@ export class User extends React.Component<userPropsType> {
                            className={`${this.props.currentPage === pageNumber && s.pagination_button_active} ${s.pagination_button}`}
                            type='button'
                            onClick={() => {
-                              changePagination(pageNumber)
-                              getUsers(pageNumber, this.props.pageSize)
+                              changePagination(pageNumber, this.props.pageSize)
                            }}>
                           {pageNumber}
                        </button>

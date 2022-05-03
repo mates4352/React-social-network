@@ -5,6 +5,7 @@ export type changeFollowUserType = ReturnType<typeof changeFollowUserActionCreat
 export type getUsersType = ReturnType<typeof getUsersActionCreate>
 export type changePaginationType = ReturnType<typeof changePaginationActionCreate>
 export type getTotalCountType = ReturnType<typeof getTotalCountActionCreate>
+export type changeIsPreloaderType = ReturnType<typeof changeIsPreloaderActionCreate>
 
 export const changeFollowUserActionCreate = (idUser: string) => {
    return {type: Actions_Type.CHANGE_FOLLOW_USER, idUser} as const
@@ -20,5 +21,9 @@ export const getTotalCountActionCreate = (totalCount: number) => {
 
 export const changePaginationActionCreate = (currentPage: number) => {
    return {type: Actions_Type.CHANGE_PAGINATION, currentPage} as const
+}
+
+export const changeIsPreloaderActionCreate = (isPreloader: boolean) => {
+   return {type: Actions_Type.CHANGE_IS_PRELOADER, isPreloader} as const
 }
 

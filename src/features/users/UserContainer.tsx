@@ -6,45 +6,56 @@ import {Dispatch} from "redux";
 import {userPageType, userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
 import axios, {AxiosResponse} from "axios";
 import {
-   changeFollowUserActionCreate, changePaginationActionCreate, getTotalCountActionCreate,
+   changeFollowUserActionCreate, changeIsPreloaderActionCreate, changePaginationActionCreate, getTotalCountActionCreate,
    getUsersActionCreate
 } from "../../bll/redux/reducer/usersPageReducer/usersPageReducer-create-actions";
 
-type maxStateToPropsType = {
+type mapStateToPropsType = {
    users: Array<userType>
    pageSize: number
    totalCount: number
    currentPage: number
+   isPreloader?: boolean
 }
-type maxDispatchToPropsType = {
+type mapDispatchToPropsType = {
    changeFollowUser: (idUser: string) => void
    getUsers: (currentPage: number, totalCount: number) => void
-   changePagination: (currentPage: number) => void
+   changePagination: (currentPage: number, totalCount: number) => void
    getArrayPageNumber: (totalCount: number, pageSize: number) => number[]
+   changeIsPreloader: (isLoader: boolean) => void
 }
-export type userPropsType = maxStateToPropsType & maxDispatchToPropsType;
+export type userPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
-const maxStateToProps = (state: stateType): maxStateToPropsType => {
+const mapStateToProps = (state: stateType): mapStateToPropsType => {
    return {
       users: state.usersPage.items,
       pageSize: state.usersPage.pageSize,
       totalCount: state.usersPage.totalCount,
       currentPage: state.usersPage.currentPage,
+      isPreloader: state.usersPage.isPreloader,
    }
 }
-const maxDispatchToProps = (dispatch: Dispatch): maxDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
    return {
       changeFollowUser: (idUser) => {
          dispatch(changeFollowUserActionCreate(idUser))
       },
       getUsers: (currentPage: number, totalCount: number) => {
+         dispatch(changeIsPreloaderActionCreate(true))
          axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${totalCount}`).then((result: AxiosResponse<userPageType>) => {
             dispatch(getTotalCountActionCreate(result.data.totalCount))
             dispatch(getUsersActionCreate(result.data.items))
+            dispatch(changeIsPreloaderActionCreate(false))
          })
       },
-      changePagination: (currentPage) => {
+      changePagination: (currentPage, totalCount: number) => {
          dispatch(changePaginationActionCreate(currentPage))
+         dispatch(changeIsPreloaderActionCreate(true))
+         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${totalCount}`).then((result: AxiosResponse<userPageType>) => {
+            dispatch(getTotalCountActionCreate(result.data.totalCount))
+            dispatch(getUsersActionCreate(result.data.items))
+            dispatch(changeIsPreloaderActionCreate(false))
+         })
       },
       getArrayPageNumber: (totalCount: number, pageSize: number) => {
          const pages = [];
@@ -53,8 +64,11 @@ const maxDispatchToProps = (dispatch: Dispatch): maxDispatchToPropsType => {
             pages[i] = i;
          }
          return pages
-      }
+      },
+      changeIsPreloader: (isLoader: boolean) => {
+         dispatch(changeIsPreloaderActionCreate(isLoader))
+      },
    }
 }
 
-export const UserContainer = connect(maxStateToProps, maxDispatchToProps)(User)
+export const UserContainer = connect(mapStateToProps, mapDispatchToProps)(User)
