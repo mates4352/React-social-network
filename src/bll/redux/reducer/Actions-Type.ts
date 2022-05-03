@@ -10,4 +10,6 @@ export enum Actions_Type {
    //usersPageReducer
    CHANGE_FOLLOW_USER = 'CHANGE-FOLLOW-USER',
    GET_USERS = 'GET_USERS',
+   GET_TOTAL_COUNT = 'GET-TOTAL-COUNT',
+   CHANGE_PAGINATION = 'CHANGE-PAGINATION',
 }

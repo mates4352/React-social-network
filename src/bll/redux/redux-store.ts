@@ -14,8 +14,8 @@ const rootReducer = combineReducers({
    usersPage: usersPageReducer
 })
 
-export const store = createStore(rootReducer, loadState(), composeWithDevTools())
-
-store.subscribe(() => {
-   saveState(store.getState());
-})
+export const store = createStore(rootReducer, composeWithDevTools())
+// loadState(),
+// store.subscribe(() => {
+//    saveState(store.getState());
+// })

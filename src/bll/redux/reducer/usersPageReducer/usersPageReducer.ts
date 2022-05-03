@@ -1,11 +1,21 @@
-import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-create-actions";
-import {addTextMessageType,changeValueMessageType} from "../communicationPage-reducer/communicationPage-create-actions";
 import {Actions_Type} from "../Actions-Type";
-import {changeFollowUserType, getUsersType} from "./usersPageReducer-create-actions";
+import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-create-actions";
+import {
+   addTextMessageType,
+   changeValueMessageType
+} from "../communicationPage-reducer/communicationPage-create-actions";
+import {
+   changeFollowUserType,
+   changePaginationType,
+   getTotalCountType,
+   getUsersType
+} from "./usersPageReducer-create-actions";
 
 export type userPageType = {
    items: Array<userType>
-   totalCount: null | number
+   pageSize: number
+   totalCount: number
+   currentPage: number
    error: null | string
 
 }
@@ -19,11 +29,13 @@ export type userType = {
    }
    status: null | boolean
 }
-type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | changeFollowUserType | getUsersType
+type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | changeFollowUserType | getUsersType | changePaginationType | getTotalCountType
 
 const inisialState: userPageType = {
    items: [],
-   totalCount: null,
+   pageSize: 5,
+   totalCount: 0,
+   currentPage: 1,
    error: null,
 }
 
@@ -34,6 +46,12 @@ export const usersPageReducer = (state: userPageType = inisialState, action: act
 
       case Actions_Type.GET_USERS:
          return {...state, items: action.items}
+
+      case Actions_Type.GET_TOTAL_COUNT:
+         return {...state, totalCount: action.totalCount}
+
+      case Actions_Type.CHANGE_PAGINATION:
+         return {...state, currentPage: action.currentPage}
 
       default:
          return state

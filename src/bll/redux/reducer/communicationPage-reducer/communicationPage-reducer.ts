@@ -2,7 +2,9 @@ import {v1} from "uuid";
 import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-create-actions";
 import {Actions_Type} from "../Actions-Type";
 import {addTextMessageType, changeValueMessageType} from "./communicationPage-create-actions";
-import {getUsersType} from "../usersPageReducer/usersPageReducer-create-actions";
+import {
+   getUsersType
+} from "../usersPageReducer/usersPageReducer-create-actions";
 
 export type communicationPageType = {
    dialogs: Array<DialogsType>
@@ -18,6 +20,7 @@ export type MessageType = {
    text: string
 };
 type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | getUsersType
+
 
 const inisionalState = {
    dialogs: [
