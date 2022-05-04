@@ -7,8 +7,8 @@ import {connect} from "react-redux";
 import {stateType} from "../../bll/redux/redux-store";
 import { Dispatch } from 'redux';
 import {
-   addPostActionCreate,
-   changeValueTextareaActionCreate
+   addPost,
+   changeValueTextarea,
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-create-actions";
 
 type mapStateToPropsType = accountPageType
@@ -27,12 +27,10 @@ const mapStateToProps = (state: stateType): mapStateToPropsType  => {
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
    return {
       sendPost: () => {
-         const action = addPostActionCreate();
-         dispatch(action)
+         dispatch(addPost());
       },
       changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => {
-         const action = changeValueTextareaActionCreate(e.currentTarget.value);
-         dispatch(action)
+         dispatch(changeValueTextarea(e.currentTarget.value));
       }
    }
 }

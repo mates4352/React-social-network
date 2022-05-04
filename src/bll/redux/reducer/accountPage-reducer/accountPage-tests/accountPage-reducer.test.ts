@@ -1,6 +1,6 @@
 import {accountPageType} from "../accountPage-reducer";
 import {accountPageReducer} from "../accountPage-reducer";
-import {addPostActionCreate, changeValueTextareaActionCreate} from "../accountPage-create-actions";
+import {addPost, changeValueTextarea} from "../accountPage-create-actions";
 
 test('test case CHANGE_VALUE_TEXTAREA', () => {
    const state: accountPageType = {
@@ -21,7 +21,7 @@ test('test case CHANGE_VALUE_TEXTAREA', () => {
       personal: {id: '1', name: "Sergey", description: "description"},
    }
 
-   const newState = accountPageReducer(state, changeValueTextareaActionCreate('text'))
+   const newState = accountPageReducer(state, changeValueTextarea('text'))
 
    expect(state).toEqual({
       datePost: [
@@ -62,7 +62,7 @@ test('test case ADD_POST', () => {
       personal: {id: '1', name: "Sergey", description: "description"},
    }
 
-   const newState = accountPageReducer(state, addPostActionCreate())
+   const newState = accountPageReducer(state, addPost())
 
    expect(state).toEqual({
       datePost: [

@@ -1,8 +1,8 @@
 import {userPageType, usersPageReducer} from "../usersPageReducer";
 import {
-   changeFollowUserActionCreate,
-   changePaginationActionCreate, getTotalCountActionCreate,
-   getUsersActionCreate
+   changeFollowUser,
+   changePagination, getTotalCount,
+   getUsers
 } from "../usersPageReducer-create-actions";
 
 test('test function usersPageReducer', () => {
@@ -17,7 +17,7 @@ test('test function usersPageReducer', () => {
       error: null,
    }
 
-   const newState =  usersPageReducer(state, changeFollowUserActionCreate('0'))
+   const newState =  usersPageReducer(state, changeFollowUser('0'))
 
    expect(state).toEqual({
       items: [
@@ -45,7 +45,7 @@ test('test function usersPageReducer', () => {
       currentPage: 1,
       error: null,
    }
-   const newState =  usersPageReducer(state, getUsersActionCreate(
+   const newState =  usersPageReducer(state, getUsers(
        [
           {id: '0', follow: true, name: "Sergey", photos: {small: null, large: null}, status: true},
           {id: '1', follow: false, name: "Sergey", photos: {small: null, large: null}, status: true},
@@ -77,7 +77,7 @@ test('test function change-pagination', () => {
       currentPage: 1,
       error: null,
    }
-   const newState =  usersPageReducer(state, changePaginationActionCreate(4))
+   const newState =  usersPageReducer(state, changePagination(4))
 
    expect(state).toEqual({
       items: [],
@@ -101,7 +101,7 @@ test('test function total-count', () => {
       currentPage: 1,
       error: null,
    }
-   const newState =  usersPageReducer(state, getTotalCountActionCreate(5))
+   const newState =  usersPageReducer(state, getTotalCount(5))
 
    expect(state).toEqual({
       items: [],

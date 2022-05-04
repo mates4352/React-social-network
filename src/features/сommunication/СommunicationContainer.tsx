@@ -5,8 +5,8 @@ import {stateType} from "../../bll/redux/redux-store";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {
-   addTextMessageActionCreate,
-   changeValueMessageActionCreate
+   addTextMessage,
+   changeValueMessage
 } from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-create-actions";
 
 type mapDispatchToPropsType = {
@@ -24,13 +24,11 @@ const mapStateToProps = (state: stateType): communicationPageType  => {
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
    return {
       changeValueMessage: (e) => {
-         const action = changeValueMessageActionCreate(e.currentTarget.value);
-         dispatch(action)
+         dispatch(changeValueMessage(e.currentTarget.value))
       },
 
       sendMessage: (e) => {
-         const action = addTextMessageActionCreate(e.key);
-         dispatch(action)
+         dispatch(addTextMessage(e.key))
       },
    }
 }

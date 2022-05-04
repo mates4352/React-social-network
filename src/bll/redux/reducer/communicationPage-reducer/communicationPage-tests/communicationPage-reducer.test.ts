@@ -2,7 +2,7 @@ import {
    communicationPageReducer,
    communicationPageType
 } from "../communicationPage-reducer";
-import {addTextMessageActionCreate, changeValueMessageActionCreate} from "../communicationPage-create-actions";
+import {addTextMessage, changeValueMessage} from "../communicationPage-create-actions";
 
 test('communicationPage-reducer test case CHANGE_VALUE_MESSAGE', () => {
    const state: communicationPageType = {
@@ -28,7 +28,7 @@ test('communicationPage-reducer test case CHANGE_VALUE_MESSAGE', () => {
       textMessage: ''
    }
 
-   const newState = communicationPageReducer(state, changeValueMessageActionCreate('text'))
+   const newState = communicationPageReducer(state, changeValueMessage('text'))
 
    expect(state).toEqual({
       dialogs: [
@@ -79,8 +79,8 @@ test('communicationPage-reducer test case CHANGE_VALUE_MESSAGE', () => {
       textMessage: 'lorem'
    }
 
-   const newState = communicationPageReducer(state, addTextMessageActionCreate('Enter'))
-   const newState2 = communicationPageReducer(state, addTextMessageActionCreate(''))
+   const newState = communicationPageReducer(state, addTextMessage('Enter'))
+   const newState2 = communicationPageReducer(state, addTextMessage(''))
 
    expect(state).toEqual({
       dialogs: [
