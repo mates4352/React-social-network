@@ -1,10 +1,6 @@
 import {v1} from "uuid";
-import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-create-actions";
 import {Actions_Type} from "../Actions-Type";
-import {addTextMessageType, changeValueMessageType} from "./communicationPage-create-actions";
-import {
-   getUsersType
-} from "../usersPageReducer/usersPageReducer-create-actions";
+import {communicationActionType} from "./communicationPage-create-actions";
 
 export type communicationPageType = {
    dialogs: Array<DialogsType>
@@ -19,8 +15,6 @@ export type MessageType = {
    id: string
    text: string
 };
-type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | getUsersType
-
 
 const inisionalState = {
    dialogs: [
@@ -30,7 +24,7 @@ const inisionalState = {
    textMessage: ''
 }
 
-export const communicationPageReducer = (state: communicationPageType = inisionalState, action: actionType): communicationPageType => {
+export const communicationPageReducer = (state: communicationPageType = inisionalState, action: communicationActionType): communicationPageType => {
    switch (action.type) {
       case Actions_Type.CHANGE_VALUE_MESSAGE:
          return {...state, textMessage: action.text}

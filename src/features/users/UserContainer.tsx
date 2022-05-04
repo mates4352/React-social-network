@@ -22,7 +22,6 @@ type mapDispatchToPropsType = {
    getUsers: (currentPage: number, totalCount: number) => void
    changePagination: (currentPage: number, totalCount: number) => void
    getArrayPageNumber: (totalCount: number, pageSize: number) => number[]
-   changeIsPreloader: (isLoader: boolean) => void
 }
 export type userPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -64,9 +63,6 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
             pages[i] = i;
          }
          return pages
-      },
-      changeIsPreloader: (isLoader: boolean) => {
-         dispatch(changeIsPreloaderActionCreate(isLoader))
       },
    }
 }

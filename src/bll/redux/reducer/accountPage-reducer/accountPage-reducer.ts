@@ -1,11 +1,6 @@
 import {v1} from "uuid";
 import {Actions_Type} from "../Actions-Type";
-import {addPostType, changeValueTextareaType} from "./accountPage-create-actions";
-import {
-   addTextMessageType,
-   changeValueMessageType
-} from "../communicationPage-reducer/communicationPage-create-actions";
-import {getUsersType} from "../usersPageReducer/usersPageReducer-create-actions";
+import {accountActionType} from "./accountPage-create-actions";
 
 export type accountPageType = {
    datePost: Array<datePostType>
@@ -22,7 +17,6 @@ export type dataPersonalType = {
    name: string
    description: string
 };
-type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | getUsersType
 
 const inisialState = {
    datePost: [],
@@ -30,7 +24,7 @@ const inisialState = {
    personal: {id: v1(), name: "Sergey", description: "description"}
 }
 
-export const accountPageReducer = (state: accountPageType = inisialState, action: actionType): accountPageType => {
+export const accountPageReducer = (state: accountPageType = inisialState, action: accountActionType): accountPageType => {
    switch (action.type) {
       case Actions_Type.CHANGE_VALUE_TEXTAREA:
          return {...state, valueTextarea: action.text}

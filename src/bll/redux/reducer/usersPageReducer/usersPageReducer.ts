@@ -1,15 +1,5 @@
 import {Actions_Type} from "../Actions-Type";
-import {addPostType, changeValueTextareaType} from "../accountPage-reducer/accountPage-create-actions";
-import {
-   addTextMessageType,
-   changeValueMessageType
-} from "../communicationPage-reducer/communicationPage-create-actions";
-import {
-   changeFollowUserType, changeIsPreloaderType,
-   changePaginationType,
-   getTotalCountType,
-   getUsersType
-} from "./usersPageReducer-create-actions";
+import {userActionType} from "./usersPageReducer-create-actions";
 
 export type userPageType = {
    items: Array<userType>
@@ -30,7 +20,6 @@ export type userType = {
    }
    status: null | boolean
 }
-type actionType = changeValueTextareaType | addPostType | addTextMessageType | changeValueMessageType | changeFollowUserType | getUsersType | changePaginationType | getTotalCountType | changeIsPreloaderType
 
 const inisialState: userPageType = {
    items: [],
@@ -41,7 +30,7 @@ const inisialState: userPageType = {
    isPreloader: true,
 }
 
-export const usersPageReducer = (state: userPageType = inisialState, action: actionType): userPageType => {
+export const usersPageReducer = (state: userPageType = inisialState, action: userActionType): userPageType => {
    switch (action.type) {
       case Actions_Type.CHANGE_FOLLOW_USER:
          return {...state, items: state.items.map(item => item.id === action.idUser ? {...item, follow: !item.follow} : item)}
