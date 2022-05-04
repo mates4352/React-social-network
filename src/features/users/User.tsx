@@ -1,38 +1,37 @@
 import * as React from 'react';
-import {userPropsType} from "./UserContainer";
 import s from './User.module.scss'
 import image from './../../assets/images/avatar.jpg'
 import {Preloader} from "../../shared/interactive/Preloader/Preloader";
+import {userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
+
+type userPropsType = {
+   users: Array<userType>
+   pagesNumbers: Array<number>
+   currentPage: number
+   pageSize: number
+   isPreloader?: boolean
+   changeFollowUser: (id: string) => void
+   changePagination: (pageNumber: number, pageSize: number) => void
+}
 
 export class User extends React.Component<userPropsType> {
    constructor(props: userPropsType) {
       super(props);
    }
 
-   componentDidMount() {
-      this.props.getUsers(this.props.currentPage, this.props.pageSize);
-   }
-
-   componentDidUpdate() {
-      console.log(this.props)
-   }
-
    render() {
-      const {users, getArrayPageNumber, changeFollowUser, changePagination} = this.props;
-      const pagesNumbers = getArrayPageNumber(this.props.totalCount, this.props.pageSize);
+      const {users, isPreloader, currentPage, pageSize, changeFollowUser, changePagination} = this.props;
 
       return (
           <>
-             {this.props.isPreloader && <Preloader w={150} h={150} fill='#2a2e49'/>}
+             {isPreloader && <Preloader w={150} h={150} fill='#2a2e49'/>}
              <ul className={s.pagination}>
-                {pagesNumbers.map(pageNumber =>
+                {this.props.pagesNumbers.map(pageNumber =>
                     <li className={s.pagination_item} key={pageNumber}>
                        <button
-                           className={`${this.props.currentPage === pageNumber && s.pagination_button_active} ${s.pagination_button}`}
+                           className={`${currentPage === pageNumber && s.pagination_button_active} ${s.pagination_button}`}
                            type='button'
-                           onClick={() => {
-                              changePagination(pageNumber, this.props.pageSize)
-                           }}>
+                           onClick={() => changePagination(pageNumber, pageSize)}>
                           {pageNumber}
                        </button>
                     </li>

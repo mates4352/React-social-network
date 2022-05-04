@@ -10,7 +10,7 @@ import {AccountContainer} from "./features/account/AccountContainer";
 import {СommunicationContainer} from "./features/сommunication/СommunicationContainer";
 
 import s from './App.module.scss';
-import {UserContainer} from "./features/users/UserContainer";
+import UserContainer from "./features/users/UserContainer";
 
 export type appType = {
 }
