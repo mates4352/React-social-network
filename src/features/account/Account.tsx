@@ -6,12 +6,16 @@ import background from './../../assets/images/bg_account.jpg'
 import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
 
-import {dataPersonalType, datePostType} from '../../bll/redux/reducer/accountPage-reducer/accountPage-reducer';
+import {
+   dataPersonalType,
+   datePostType,
+   profileType
+} from '../../bll/redux/reducer/accountPage-reducer/accountPage-reducer';
 
 export type accountType = {
    valueTextarea: string
-   personal: dataPersonalType;
    datePost: Array<datePostType>
+   profile: null | profileType
    sendPost: ()=> void
    changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
@@ -21,7 +25,7 @@ export class Account extends React.Component<accountType> {
       super(props);
    }
    render() {
-      const {valueTextarea, personal, datePost, sendPost, changeValueTextarea} = this.props;
+      const {valueTextarea, datePost, profile, sendPost, changeValueTextarea} = this.props;
 
       return (
           <div className={s.account}>
@@ -30,7 +34,7 @@ export class Account extends React.Component<accountType> {
              </div>
 
              <div className={s.container}>
-                <Personal personal={personal}/>
+                <Personal profile={profile}/>
 
                 <form className={s.entry_field}>
                 <textarea className={s.textarea}

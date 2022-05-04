@@ -1,38 +1,65 @@
 import React, {ChangeEvent} from 'react';
 import {
-   accountPageType,
+   accountPageType, profileType,
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-reducer";
 import {Account} from "./Account";
 import {connect} from "react-redux";
 import {stateType} from "../../bll/redux/redux-store";
-import { Dispatch } from 'redux';
 import {
    addPost,
    changeValueTextarea,
+    getProfile,
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-create-actions";
+import axios, {AxiosResponse} from "axios";
+
+class AccountContainer extends React.Component<mapType> {
+   constructor(props: mapType) {
+      super(props);
+   }
+
+   componentDidMount() {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then((result: AxiosResponse<profileType>) => {
+         this.props.getProfile(result.data)
+      })
+   }
+
+   render() {
+      const changeValueTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+         this.props.changeValueTextarea(e.currentTarget.value)
+      }
+
+      const sendPost = () => {
+         this.props.addPost()
+      }
+
+      return (
+          <Account valueTextarea={this.props.valueTextarea}
+                   datePost={this.props.datePost}
+                   profile={this.props.profile}
+                   sendPost={sendPost}
+                   changeValueTextarea={changeValueTextarea}/>
+      )
+   }
+}
 
 type mapStateToPropsType = accountPageType
 type mapDispatchToPropsType = {
-   sendPost: () => void
-   changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => void
+   addPost: () => void
+   changeValueTextarea: (text: string) => void
+   getProfile: (profile: profileType) => void
 }
+type mapType = mapStateToPropsType & mapDispatchToPropsType;
 
 const mapStateToProps = (state: stateType): mapStateToPropsType  => {
    return {
       valueTextarea: state.accountPage.valueTextarea,
-      personal: state.accountPage.personal,
       datePost: state.accountPage.datePost,
-   }
-}
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-   return {
-      sendPost: () => {
-         dispatch(addPost());
-      },
-      changeValueTextarea: (e: ChangeEvent<HTMLTextAreaElement>) => {
-         dispatch(changeValueTextarea(e.currentTarget.value));
-      }
+      profile: state.accountPage.profile,
    }
 }
 
-export const AccountContainer = connect(mapStateToProps, mapDispatchToProps)(Account);
+export default connect(mapStateToProps, {
+   addPost,
+   changeValueTextarea,
+   getProfile,
+})(AccountContainer);

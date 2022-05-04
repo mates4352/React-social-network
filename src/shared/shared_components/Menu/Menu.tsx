@@ -8,7 +8,7 @@ export const Menu = () => {
        <nav className={s.menu}>
           <menu className={s.list}>
              <li className={s.item}>
-                <NavLink className={classLink} to={"/"}>Account</NavLink>
+                <NavLink className={classLink} to={"Account"}>Account</NavLink>
              </li>
 
              <li className={s.item}>

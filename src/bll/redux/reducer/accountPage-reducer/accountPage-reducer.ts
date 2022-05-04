@@ -4,8 +4,8 @@ import {accountActionType} from "./accountPage-create-actions";
 
 export type accountPageType = {
    datePost: Array<datePostType>
+   profile: null | profileType
    valueTextarea: string
-   personal: dataPersonalType
 }
 export type datePostType = {
    id: string
@@ -17,11 +17,35 @@ export type dataPersonalType = {
    name: string
    description: string
 };
+export type profileType = {
+   aboutMe: string
+   contacts: contactsType
+   fullName: string
+   lookingForAJob: boolean
+   lookingForAJobDescription: string
+   photos: photosType
+   userId: number
+}
+export type contactsType = {
+   github?: null | string
+   vk?: null | string
+   facebook?: null | string
+   instagram?: null | string
+   twitter?: null | string
+   website?: null | string
+   youtube?: null | string
+   mainLink?: null | string
+}
+export type photosType = {
+   small: null | string
+   large: null | string
+}
+
 
 const inisialState = {
    datePost: [],
+   profile: null,
    valueTextarea: '',
-   personal: {id: v1(), name: "Sergey", description: "description"}
 }
 
 export const accountPageReducer = (state: accountPageType = inisialState, action: accountActionType): accountPageType => {
@@ -33,6 +57,9 @@ export const accountPageReducer = (state: accountPageType = inisialState, action
          const newPost = {id: v1(), text: state.valueTextarea, time: "2022-01-10"};
          if(state.valueTextarea.trim() !== '') return {...state, datePost: [...state.datePost, newPost], valueTextarea: ''}
          return state
+
+      case Actions_Type.GET_PROFILE:
+         return {...state, profile: action.profile}
 
       default:
          return state

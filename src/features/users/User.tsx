@@ -3,6 +3,7 @@ import s from './User.module.scss'
 import image from './../../assets/images/avatar.jpg'
 import {Preloader} from "../../shared/interactive/Preloader/Preloader";
 import {userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
+import {NavLink} from "react-router-dom";
 
 type userPropsType = {
    users: Array<userType>
@@ -42,7 +43,9 @@ export class User extends React.Component<userPropsType> {
                    users.map(user =>
                        <div className={s.container} key={user.id}>
                           <div className={s.wrap_image}>
-                             <img className={s.image} src={user.photos.small === null ? image : user.photos.small} alt="Изображение пользователя"/>
+                             <NavLink to={`/Account/2 ${user.id}`}>
+                                <img className={s.image} src={user.photos.small === null ? image : user.photos.small} alt="Изображение пользователя"/>
+                             </NavLink>
                              <button className={s.button} onClick={() => changeFollowUser(user.id)} type='button'>{user.follow ? 'Follow' : 'UnFollow'}</button>
                           </div>
 

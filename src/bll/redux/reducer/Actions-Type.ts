@@ -2,6 +2,7 @@ export enum Actions_Type {
    //accountPageReducer
    ADD_POST = 'ADD-POST',
    CHANGE_VALUE_TEXTAREA = 'CHANGE-VALUE-TEXTAREA',
+   GET_PROFILE = 'GET-PROFILE',
 
    //communicationPageReducer
    ADD_VALUE_MESSAGE = 'ADD-VALUE-MESSAGE',

@@ -25,7 +25,6 @@ class UserContainer extends React.Component<userPropsType> {
    }
 
    render() {
-
       const editPagination = (currentPage: number, totalCount: number) => {
          this.props.changePagination(currentPage)
          this.props.changeIsPreloader(true)
