@@ -1,5 +1,25 @@
 @import './src/style';
 
 .button {
+   width: 100%;
+   max-width: 320px;
+   padding: 12px 12px;
 
+   font: var(--h2);
+   text-transform: uppercase;
+   color: var(--blue);
+
+   border: none;
+   background-color: var(--black);
+   border-radius: 8px;
+   transition: color 300ms ease, background-color 300ms ease;
+
+   &:hover {
+      color: var(--black);
+      background-color: var(--blue);
+   }
+
+   &:active {
+      transform: translateY(3px);
+   }
 }

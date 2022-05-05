@@ -41,18 +41,6 @@
       resize: none;
    }
 
-   .button {
-      width: 100%;
-      max-width: 320px;
-      padding: 5px;
-
-      font: var(--h2);
-      text-transform: uppercase;
-
-      border: 1px solid var(--black);
-      background-color: transparent;
-   }
-
    .list {
       display: grid;
       row-gap: 40px;

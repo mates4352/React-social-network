@@ -1,15 +1,20 @@
 import s from './Button.module.scss'
+import {ButtonHTMLAttributes, DetailedHTMLProps} from "react";
 
-type buttonType = {
-   text: string;
+type detailed = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+
+type buttonType = detailed & {
+   children: string;
 }
 
-export const Button = (props: buttonType) => {
+export const Button: React.FC<buttonType> = (props) => {
+   const {children} = props;
    return (
        <button
            className={s.button}
-           type="button">
-          {props.text}
+           type="button"
+           {...props}>
+          {children}
        </button>
    );
 }

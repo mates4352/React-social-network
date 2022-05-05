@@ -5,17 +5,13 @@ import {accountActionType} from "./accountPage-create-actions";
 export type accountPageType = {
    datePost: Array<datePostType>
    profile: null | profileType
+   params?: {id: string}
    valueTextarea: string
 }
 export type datePostType = {
    id: string
    text: string
    time: string
-};
-export type dataPersonalType = {
-   id: string
-   name: string
-   description: string
 };
 export type profileType = {
    aboutMe: string

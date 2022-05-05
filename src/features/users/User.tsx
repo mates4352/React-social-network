@@ -43,7 +43,7 @@ export class User extends React.Component<userPropsType> {
                    users.map(user =>
                        <div className={s.container} key={user.id}>
                           <div className={s.wrap_image}>
-                             <NavLink to={`/Account/2 ${user.id}`}>
+                             <NavLink to={`/Account/${user.id}`}>
                                 <img className={s.image} src={user.photos.small === null ? image : user.photos.small} alt="Изображение пользователя"/>
                              </NavLink>
                              <button className={s.button} onClick={() => changeFollowUser(user.id)} type='button'>{user.follow ? 'Follow' : 'UnFollow'}</button>

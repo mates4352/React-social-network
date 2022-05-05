@@ -11,6 +11,23 @@ import {
     getProfile,
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-create-actions";
 import axios, {AxiosResponse} from "axios";
+import {useParams} from "react-router-dom";
+
+export const withRouter = (Component: any) => {
+   const Wrapper = (props: mapType) => {
+      const params = useParams();
+
+      return (
+          <Component
+              params={params}
+              {...props}
+          />
+      );
+   };
+
+   return Wrapper;
+};
+
 
 class AccountContainer extends React.Component<mapType> {
    constructor(props: mapType) {
@@ -18,7 +35,9 @@ class AccountContainer extends React.Component<mapType> {
    }
 
    componentDidMount() {
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then((result: AxiosResponse<profileType>) => {
+      let id = this.props.params?.id;
+      if(!id) id = '2'
+      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + id).then((result: AxiosResponse<profileType>) => {
          this.props.getProfile(result.data)
       })
    }
@@ -41,7 +60,6 @@ class AccountContainer extends React.Component<mapType> {
       )
    }
 }
-
 type mapStateToPropsType = accountPageType
 type mapDispatchToPropsType = {
    addPost: () => void
@@ -58,8 +76,10 @@ const mapStateToProps = (state: stateType): mapStateToPropsType  => {
    }
 }
 
+let WithUrlDataContainerComponent = withRouter(AccountContainer);
+
 export default connect(mapStateToProps, {
    addPost,
    changeValueTextarea,
    getProfile,
-})(AccountContainer);
+})(WithUrlDataContainerComponent);

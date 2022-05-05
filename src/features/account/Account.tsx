@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-
+import { Outlet } from "react-router-dom";
 import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
 
@@ -7,10 +7,10 @@ import {Post} from "./components/post/post";
 import {Personal} from "./components/personal/Personal";
 
 import {
-   dataPersonalType,
    datePostType,
    profileType
 } from '../../bll/redux/reducer/accountPage-reducer/accountPage-reducer';
+import {Button} from "../../shared/interactive/Button/Button";
 
 export type accountType = {
    valueTextarea: string
@@ -43,9 +43,7 @@ export class Account extends React.Component<accountType> {
                           value={valueTextarea}
                           onChange={changeValueTextarea}/>
 
-                   <button className={s.button} type="button" onClick={sendPost}>
-                      Add post
-                   </button>
+                   <Button onClick={sendPost}>Add post</Button>
                 </form>
 
                 <ul className={s.list}>

@@ -12,7 +12,7 @@ export const Menu = () => {
              </li>
 
              <li className={s.item}>
-                <NavLink className={classLink} to={"Communication/0"}>Communication</NavLink>
+                <NavLink className={classLink} to={"Communication"}>Communication</NavLink>
              </li>
 
              <li className={s.item}>
