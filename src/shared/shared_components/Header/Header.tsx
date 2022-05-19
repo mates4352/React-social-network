@@ -1,12 +1,18 @@
 import s from './Header.module.scss'
 import avatar from './../../../assets/images/avatar.jpg'
 
-export const Header = () => {
+type headerType = {
+   resultCode: null | number
+}
+
+export const Header: React.FC<headerType> = (props) => {
+   const {resultCode} = props;
 
    return (
       <header className={s.header}>
          <div className={s.container}>
             <img src="" alt="Logo image"/>
+            { resultCode ? <p className={s.login}>Sergey</p> : <p className={s.login}>login</p> }
 
             <div className={s.content}>
                <div className={s.theme}>

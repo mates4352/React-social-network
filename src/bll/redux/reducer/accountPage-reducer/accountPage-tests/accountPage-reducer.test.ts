@@ -130,7 +130,6 @@ test('test case GET_PROFILE', () => {
       ],
       valueTextarea: '',
       profile: null,
-      personal: {id: '1', name: "Sergey", description: "description"},
    })
    expect(newState.profile.aboutMe).toBe("я круто чувак 1001%")
 })

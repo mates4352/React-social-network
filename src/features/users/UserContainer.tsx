@@ -16,7 +16,6 @@ class UserContainer extends React.Component<userPropsType> {
    }
 
    componentDidMount() {
-      changeIsPreloader(true)
       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((result: AxiosResponse<userPageType>) => {
          this.props.getTotalCount(result.data.totalCount)
          this.props.getUsers(result.data.items)
