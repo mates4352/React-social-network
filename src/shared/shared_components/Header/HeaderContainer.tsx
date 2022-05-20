@@ -2,9 +2,9 @@ import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
 import {stateType} from "../../../bll/redux/redux-store";
-import axios, {AxiosResponse} from "axios";
-import {authType} from "../../../bll/redux/reducer/auth-reducer/auth-reducer";
+import {authData} from "../../../bll/redux/reducer/auth-reducer/auth-reducer";
 import {changeAuthData} from "../../../bll/redux/reducer/auth-reducer/auth-reducer-create-actions";
+import {authAPI} from "../../../api/auth/authAPI";
 
 class HeaderContainer extends React.Component<mapState> {
    constructor(props: mapState) {
@@ -12,10 +12,8 @@ class HeaderContainer extends React.Component<mapState> {
    }
 
    componentDidMount() {
-      axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
-         withCredentials: true,
-      }).then((result: AxiosResponse<authType>) => {
-         const {id, login, email} = result.data.data;
+      authAPI.getMeProfile().then((data: authData) => {
+         const {id, login, email} = data;
          if (id && login && email) this.props.changeAuthData(id, login, email);
       })
    }
