@@ -1,8 +1,8 @@
 import {userPageType, usersPageReducer} from "../usersPageReducer";
 import {
    changeFollowUser,
-   changePagination, getTotalCount,
-   getUsers
+   changePagination, setTotalCount,
+   setUsers
 } from "../usersPageReducer-create-actions";
 
 test('test function usersPageReducer', () => {
@@ -45,7 +45,7 @@ test('test function usersPageReducer', () => {
       currentPage: 1,
       error: null,
    }
-   const newState =  usersPageReducer(state, getUsers(
+   const newState =  usersPageReducer(state, setUsers(
        [
           {id: '0', followed: true, name: "Sergey", photos: {small: null, large: null}, status: true},
           {id: '1', followed: false, name: "Sergey", photos: {small: null, large: null}, status: true},
@@ -101,7 +101,7 @@ test('test function total-count', () => {
       currentPage: 1,
       error: null,
    }
-   const newState =  usersPageReducer(state, getTotalCount(5))
+   const newState =  usersPageReducer(state, setTotalCount(5))
 
    expect(state).toEqual({
       items: [],

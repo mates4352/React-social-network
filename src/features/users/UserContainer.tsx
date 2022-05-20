@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import {User} from "./User";
 import {stateType} from "../../bll/redux/redux-store";
 import {userPageType, userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
-import axios, {AxiosResponse} from "axios";
 import {
-   changeFollowUser, changeIsPreloader, changePagination, getTotalCount,
-   getUsers
+   changeFollowUser, changeIsPreloader, changePagination, setTotalCount,
+   setUsers
 } from "../../bll/redux/reducer/usersPageReducer/usersPageReducer-create-actions";
+import {usersAPI} from "../../api/userPage/usersAPI";
 
 class UserContainer extends React.Component<userPropsType> {
    constructor(props: userPropsType) {
@@ -15,24 +15,20 @@ class UserContainer extends React.Component<userPropsType> {
    }
 
    componentDidMount() {
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-         withCredentials: true
-      }).then((result: AxiosResponse<userPageType>) => {
-         this.props.getTotalCount(result.data.totalCount);
-         this.props.getUsers(result.data.items);
+      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: userPageType) => {
+         this.props.setTotalCount(data.totalCount);
+         this.props.setUsers(data.items);
          this.props.changeIsPreloader(false);
       })
    }
 
    render() {
-      const editPagination = (currentPage: number, totalCount: number) => {
+      const editPagination = (currentPage: number,) => {
          this.props.changePagination(currentPage)
          this.props.changeIsPreloader(true)
-         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${totalCount}`, {
-            withCredentials: true,
-         }).then((result: AxiosResponse<userPageType>) => {
-            this.props.getTotalCount(result.data.totalCount)
-            this.props.getUsers(result.data.items)
+         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: userPageType) => {
+            this.props.setTotalCount(data.totalCount)
+            this.props.setUsers(data.items)
             this.props.changeIsPreloader(false)
          })
       }
@@ -65,8 +61,8 @@ type mapStateToPropsType = {
 }
 type mapDispatchToPropsType = {
    changeFollowUser: (idUser: string) => void
-   getTotalCount: (totalCount: number) => void
-   getUsers: (items: Array<userType>) => void
+   setTotalCount: (totalCount: number) => void
+   setUsers: (items: Array<userType>) => void
    changePagination: (currentPage: number) => void
    changeIsPreloader: (isPreloader: boolean) => void
 }
@@ -84,8 +80,8 @@ const mapStateToProps = (state: stateType): mapStateToPropsType => {
 
 export default connect(mapStateToProps, {
    changeFollowUser,
-   getTotalCount,
-   getUsers,
+   setTotalCount,
+   setUsers,
    changePagination,
    changeIsPreloader,
 })(UserContainer)

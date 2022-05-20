@@ -5,6 +5,7 @@ import {Preloader} from "../../shared/interactive/Preloader/Preloader";
 import {userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
+import {usersAPI} from "../../api/userPage/usersAPI";
 
 type userPropsType = {
    users: Array<userType>
@@ -51,22 +52,12 @@ export class User extends React.Component<userPropsType> {
                                 className={s.button}
                                 onClick={() => {
                                    if(user.followed) {
-                                      axios.delete('https://social-network.samuraijs.com/api/1.0/follow/' + user.id, {
-                                         withCredentials: true,
-                                         headers: {
-                                            'API-KEY': 'fe4f2da0-2f1f-44f8-8de0-8e2408e034ed',
-                                         }
-                                      }).then(() => {
-                                         changeFollowUser(user.id)
+                                      usersAPI.postUser(user.id).then((id: string) => {
+                                         changeFollowUser(id)
                                       })
                                    } else {
-                                      axios.post('https://social-network.samuraijs.com/api/1.0/follow/' + user.id, {}, {
-                                         withCredentials: true,
-                                         headers: {
-                                            'API-KEY': 'fe4f2da0-2f1f-44f8-8de0-8e2408e034ed',
-                                         }
-                                      }).then(() => {
-                                         changeFollowUser(user.id)
+                                      usersAPI.postUser(user.id).then((id: string) => {
+                                         changeFollowUser(id)
                                       })
                                    }
                                 }}
