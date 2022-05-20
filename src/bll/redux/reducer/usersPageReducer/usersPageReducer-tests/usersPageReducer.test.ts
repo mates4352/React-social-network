@@ -8,8 +8,8 @@ import {
 test('test function usersPageReducer', () => {
    const state: userPageType = {
       items: [
-         {id: '0', follow: true, name: "Sergey", photos: {small: null, large: null}, status: true},
-         {id: '1', follow: false, name: "Sergey", photos: {small: null, large: null}, status: true},
+         {id: '0', followed: true, name: "Sergey", photos: {small: null, large: null}, status: true},
+         {id: '1', followed: false, name: "Sergey", photos: {small: null, large: null}, status: true},
       ],
       pageSize: 5,
       totalCount: 0,
@@ -21,8 +21,8 @@ test('test function usersPageReducer', () => {
 
    expect(state).toEqual({
       items: [
-         {id: '0', follow: true, name: "Sergey", photos: {small: null, large: null}, status: true},
-         {id: '1', follow: false, name: "Sergey", photos: {small: null, large: null}, status: true},
+         {id: '0', followed: true, name: "Sergey", photos: {small: null, large: null}, status: true},
+         {id: '1', followed: false, name: "Sergey", photos: {small: null, large: null}, status: true},
       ],
       pageSize: 5,
       totalCount: 0,
@@ -30,7 +30,7 @@ test('test function usersPageReducer', () => {
       error: null,
    })
    expect(state.items[1]).toBe(newState.items[1])
-   expect(newState.items[0].follow).toBeFalsy()
+   expect(newState.items[0].followed).toBeFalsy()
    expect(newState.pageSize).toBe(5)
    expect(newState.totalCount).toBe(0)
    expect(newState.currentPage).toBe(1)
@@ -47,8 +47,8 @@ test('test function usersPageReducer', () => {
    }
    const newState =  usersPageReducer(state, getUsers(
        [
-          {id: '0', follow: true, name: "Sergey", photos: {small: null, large: null}, status: true},
-          {id: '1', follow: false, name: "Sergey", photos: {small: null, large: null}, status: true},
+          {id: '0', followed: true, name: "Sergey", photos: {small: null, large: null}, status: true},
+          {id: '1', followed: false, name: "Sergey", photos: {small: null, large: null}, status: true},
        ],
    ))
 

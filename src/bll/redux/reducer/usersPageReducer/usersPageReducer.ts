@@ -12,7 +12,7 @@ export type userPageType = {
 }
 export type userType = {
    id: string
-   follow: boolean
+   followed: boolean
    name: string
    photos: {
       "small": null | string
@@ -33,7 +33,7 @@ const inisialState: userPageType = {
 export const usersPageReducer = (state: userPageType = inisialState, action: userActionType): userPageType => {
    switch (action.type) {
       case Actions_Type.CHANGE_FOLLOW_USER:
-         return {...state, items: state.items.map(item => item.id === action.idUser ? {...item, follow: !item.follow} : item)}
+         return {...state, items: state.items.map(item => item.id === action.idUser ? {...item, followed: !item.followed} : item)}
 
       case Actions_Type.GET_USERS:
          return {...state, items: action.items}

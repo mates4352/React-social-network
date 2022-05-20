@@ -2,7 +2,6 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import {User} from "./User";
 import {stateType} from "../../bll/redux/redux-store";
-import {Dispatch} from "redux";
 import {userPageType, userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
 import axios, {AxiosResponse} from "axios";
 import {
@@ -16,10 +15,12 @@ class UserContainer extends React.Component<userPropsType> {
    }
 
    componentDidMount() {
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((result: AxiosResponse<userPageType>) => {
-         this.props.getTotalCount(result.data.totalCount)
-         this.props.getUsers(result.data.items)
-         this.props.changeIsPreloader(false)
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+         withCredentials: true
+      }).then((result: AxiosResponse<userPageType>) => {
+         this.props.getTotalCount(result.data.totalCount);
+         this.props.getUsers(result.data.items);
+         this.props.changeIsPreloader(false);
       })
    }
 
@@ -27,7 +28,9 @@ class UserContainer extends React.Component<userPropsType> {
       const editPagination = (currentPage: number, totalCount: number) => {
          this.props.changePagination(currentPage)
          this.props.changeIsPreloader(true)
-         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${totalCount}`).then((result: AxiosResponse<userPageType>) => {
+         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${totalCount}`, {
+            withCredentials: true,
+         }).then((result: AxiosResponse<userPageType>) => {
             this.props.getTotalCount(result.data.totalCount)
             this.props.getUsers(result.data.items)
             this.props.changeIsPreloader(false)
