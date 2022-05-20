@@ -12,6 +12,7 @@ import {
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-create-actions";
 import axios, {AxiosResponse} from "axios";
 import {useParams} from "react-router-dom";
+import {accountAPI} from "../../api/account/accountAPI";
 
 export const withRouter = (Component: any) => {
    const Wrapper = (props: mapType) => {
@@ -37,8 +38,8 @@ class AccountContainer extends React.Component<mapType> {
    componentDidMount() {
       let id = this.props.params?.id;
       if(!id) id = '2'
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + id).then((result: AxiosResponse<profileType>) => {
-         this.props.getProfile(result.data)
+      accountAPI.getAccount(id).then((data: profileType) => {
+         this.props.getProfile(data)
       })
    }
 
