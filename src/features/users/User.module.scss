@@ -102,6 +102,15 @@
       }
    }
 
+   .button:disabled,
+   .button[disabled] {
+      border: 3px solid #999999;
+      background-color: darkgrey;
+      color: #fff;
+      padding: 10px;
+      cursor: not-allowed;
+   }
+
    .content {
       position: relative;
       height: 100%;

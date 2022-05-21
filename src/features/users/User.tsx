@@ -4,8 +4,6 @@ import image from './../../assets/images/avatar.jpg'
 import {Preloader} from "../../shared/interactive/Preloader/Preloader";
 import {userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/userPage/usersAPI";
 
 type userPropsType = {
    users: Array<userType>
@@ -13,8 +11,9 @@ type userPropsType = {
    currentPage: number
    pageSize: number
    isPreloader?: boolean
-   changeFollowUser: (id: string) => void
+   isDisabled?: [] | string[]
    changePagination: (pageNumber: number, pageSize: number) => void
+   editUserFollowed: (userId: string) => void
 }
 
 export class User extends React.Component<userPropsType> {
@@ -23,8 +22,7 @@ export class User extends React.Component<userPropsType> {
    }
 
    render() {
-      const {users, isPreloader, currentPage, pageSize, changeFollowUser, changePagination} = this.props;
-      console.log(users)
+      const {users, isPreloader, isDisabled, currentPage, pageSize, editUserFollowed, changePagination} = this.props;
       return (
           <>
              {isPreloader && <Preloader w={150} h={150} fill='#2a2e49'/>}
@@ -50,15 +48,12 @@ export class User extends React.Component<userPropsType> {
                             </NavLink>
                             <button
                                 className={s.button}
+                                disabled={isDisabled?.some((item: string) => user.id === item)}
                                 onClick={() => {
                                    if(user.followed) {
-                                      usersAPI.postUser(user.id).then((id: string) => {
-                                         changeFollowUser(id)
-                                      })
+                                      editUserFollowed(user.id);
                                    } else {
-                                      usersAPI.postUser(user.id).then((id: string) => {
-                                         changeFollowUser(id)
-                                      })
+                                      editUserFollowed(user.id);
                                    }
                                 }}
                                 type='button'>

@@ -4,7 +4,7 @@ import {User} from "./User";
 import {stateType} from "../../bll/redux/redux-store";
 import {userPageType, userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
 import {
-   changeFollowUser, changeIsPreloader, changePagination, setTotalCount,
+   changeFollowUser, changeIsDisabled, changeIsPreloader, changePagination, setTotalCount,
    setUsers
 } from "../../bll/redux/reducer/usersPageReducer/usersPageReducer-create-actions";
 import {usersAPI} from "../../api/userPage/usersAPI";
@@ -33,6 +33,14 @@ class UserContainer extends React.Component<userPropsType> {
          })
       }
 
+      const editUserFollowed = (userId: string) => {
+         this.props.changeIsDisabled(true, userId)
+         usersAPI.postUser(userId).then((id: string) => {
+            this.props.changeFollowUser(id)
+            this.props.changeIsDisabled(false,userId)
+         })
+      }
+
       const pagesNumbers = [];
       const pageNumber = Math.ceil(this.props.totalCount / this.props.pageSize);
       for(let i = 1; i <= pageNumber; i++) {
@@ -45,9 +53,10 @@ class UserContainer extends React.Component<userPropsType> {
               pagesNumbers={pagesNumbers}
               pageSize={this.props.pageSize}
               isPreloader={this.props.isPreloader}
+              isDisabled={this.props.isDisabled}
               currentPage={this.props.currentPage}
-              changeFollowUser={this.props.changeFollowUser}
-              changePagination={editPagination}/>
+              changePagination={editPagination}
+              editUserFollowed={editUserFollowed}/>
       )
    }
 }
@@ -58,6 +67,7 @@ type mapStateToPropsType = {
    totalCount: number
    currentPage: number
    isPreloader?: boolean
+   isDisabled?: [] | string[]
 }
 type mapDispatchToPropsType = {
    changeFollowUser: (idUser: string) => void
@@ -65,6 +75,7 @@ type mapDispatchToPropsType = {
    setUsers: (items: Array<userType>) => void
    changePagination: (currentPage: number) => void
    changeIsPreloader: (isPreloader: boolean) => void
+   changeIsDisabled: (isBoolean: boolean, isDisabled: string) => void
 }
 export type userPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -75,6 +86,7 @@ const mapStateToProps = (state: stateType): mapStateToPropsType => {
       totalCount: state.usersPage.totalCount,
       currentPage: state.usersPage.currentPage,
       isPreloader: state.usersPage.isPreloader,
+      isDisabled: state.usersPage.isDisabled,
    }
 }
 
@@ -84,4 +96,5 @@ export default connect(mapStateToProps, {
    setUsers,
    changePagination,
    changeIsPreloader,
+   changeIsDisabled,
 })(UserContainer)

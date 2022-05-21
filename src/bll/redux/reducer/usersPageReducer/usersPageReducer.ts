@@ -1,5 +1,6 @@
 import {Actions_Type} from "../Actions-Type";
 import {userActionType} from "./usersPageReducer-create-actions";
+import {isDisabled} from "@testing-library/user-event/dist/utils";
 
 export type userPageType = {
    items: Array<userType>
@@ -8,7 +9,7 @@ export type userPageType = {
    currentPage: number
    error: null | string
    isPreloader?: boolean
-
+   isDisabled?: [] | string[]
 }
 export type userType = {
    id: string
@@ -28,6 +29,7 @@ const inisialState: userPageType = {
    currentPage: 1,
    error: null,
    isPreloader: true,
+   isDisabled: [],
 }
 
 export const usersPageReducer = (state: userPageType = inisialState, action: userActionType): userPageType => {
@@ -46,6 +48,12 @@ export const usersPageReducer = (state: userPageType = inisialState, action: use
 
       case Actions_Type.CHANGE_IS_PRELOADER:
          return {...state, isPreloader: action.isPreloader}
+
+      case Actions_Type.CHANGE_IS_DISABLED:
+         return action.isBoolean ?
+             // @ts-ignore
+             {...state, isDisabled: [...state.isDisabled, action.isDisabled]} :
+             {...state, isDisabled: state.isDisabled?.filter(item => item !== action.isDisabled)};
 
       default:
          return state
