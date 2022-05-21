@@ -37,7 +37,7 @@ class UserContainer extends React.Component<userPropsType> {
          this.props.changeIsDisabled(true, userId)
          usersAPI.postUser(userId).then((id: string) => {
             this.props.changeFollowUser(id)
-            this.props.changeIsDisabled(false,userId)
+            this.props.changeIsDisabled(false, userId)
          })
       }
 

@@ -1,6 +1,6 @@
 import {userPageType, usersPageReducer} from "../usersPageReducer";
 import {
-   changeFollowUser,
+   changeFollowUser, changeIsDisabled,
    changePagination, setTotalCount,
    setUsers
 } from "../usersPageReducer-create-actions";
@@ -116,5 +116,44 @@ test('test function total-count', () => {
    expect(newState.currentPage).toBe(1)
    expect(newState.error).toBeNull()
 })
+
+test('test function change-is-disabled', () => {
+   const state: userPageType = {
+      items: [],
+      pageSize: 5,
+      totalCount: 0,
+      currentPage: 1,
+      error: null,
+      isDisabled: [],
+   }
+
+   let newState =  usersPageReducer(state, changeIsDisabled(true, '1'));
+
+   const testUsers = () => {
+      expect(state).toEqual({
+         items: [],
+         pageSize: 5,
+         totalCount: 0,
+         currentPage: 1,
+         error: null,
+         isDisabled: [],
+      })
+      expect(newState.items.length).toBe(0)
+      expect(newState.pageSize).toBe(5)
+      expect(newState.totalCount).toBe(0)
+      expect(newState.currentPage).toBe(1)
+      expect(newState.error).toBe(null)
+   }
+   testUsers()
+   expect(newState.isDisabled?.length).toBe(1)
+   expect(newState.isDisabled?.[0]).toBe('1')
+
+   newState =  usersPageReducer(state, changeIsDisabled(false, '1'));
+
+   testUsers()
+   expect(newState.isDisabled?.length).toBe(0)
+   expect(newState.isDisabled?.[0]).toBeUndefined()
+})
+
 
 
