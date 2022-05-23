@@ -1,10 +1,27 @@
 import {accountPageType} from "../accountPage-reducer";
 import {accountPageReducer} from "../accountPage-reducer";
 import {addPost, changeValueTextarea, getProfile} from "../accountPage-create-actions";
-import exp from "constants";
 
-test('test case CHANGE_VALUE_TEXTAREA', () => {
-   const state: accountPageType = {
+let state: accountPageType = {
+   datePost: [
+      {
+         id: '1',
+         text: "lorem lorem lorem lorem lorem",
+         time: "2022-01-10",
+      },
+
+      {
+         id: '2',
+         text: "text",
+         time: "2022-01-10",
+      }
+   ],
+   valueTextarea: '',
+   profile: null,
+}
+
+beforeEach(() => {
+   state = {
       datePost: [
          {
             id: '1',
@@ -21,89 +38,23 @@ test('test case CHANGE_VALUE_TEXTAREA', () => {
       valueTextarea: '',
       profile: null,
    }
+})
 
+it('test case CHANGE_VALUE_TEXTAREA', () => {
    const newState = accountPageReducer(state, changeValueTextarea('text'))
 
-   expect(state).toEqual({
-      datePost: [
-         {
-            id: '1',
-            text: "lorem lorem lorem lorem lorem",
-            time: "2022-01-10",
-         },
-
-         {
-            id: '2',
-            text: "text",
-            time: "2022-01-10",
-         }
-      ],
-      valueTextarea: '',
-      profile: null,
-   })
+   expect(state).toEqual(state)
    expect(newState.valueTextarea).toBe('text')
 })
 
-test('test case ADD_POST', () => {
-   const state: accountPageType = {
-      datePost: [
-         {
-            id: '1',
-            text: "lorem lorem lorem lorem lorem",
-            time: "2022-01-10",
-         },
-
-         {
-            id: '2',
-            text: "text",
-            time: "2022-01-10",
-         }
-      ],
-      valueTextarea: '',
-      profile: null,
-   }
-
+it('test case ADD_POST', () => {
    const newState = accountPageReducer(state, addPost())
 
-   expect(state).toEqual({
-      datePost: [
-         {
-            id: '1',
-            text: "lorem lorem lorem lorem lorem",
-            time: "2022-01-10",
-         },
-
-         {
-            id: '2',
-            text: "text",
-            time: "2022-01-10",
-         }
-      ],
-      valueTextarea: '',
-      profile: null,
-   })
+   expect(state).toEqual(state)
    state.valueTextarea.trim() !== '' && expect(newState.datePost.length).toBe(3)
 })
 
-test('test case GET_PROFILE', () => {
-   const state: accountPageType = {
-      datePost: [
-         {
-            id: '1',
-            text: "lorem lorem lorem lorem lorem",
-            time: "2022-01-10",
-         },
-
-         {
-            id: '2',
-            text: "text",
-            time: "2022-01-10",
-         }
-      ],
-      valueTextarea: '',
-      profile: null,
-   }
-
+it('test case GET_PROFILE', () => {
    const newState = getProfile({
       aboutMe: "я круто чувак 1001%",
       contacts: {facebook: 'facebook.com', website: null, vk: 'vk.com/dimych', twitter: 'https://twitter.com/@sdf', instagram: 'instagra.com/sds'},
@@ -114,23 +65,7 @@ test('test case GET_PROFILE', () => {
       userId: 2,
    })
 
-   expect(state).toEqual({
-      datePost: [
-         {
-            id: '1',
-            text: "lorem lorem lorem lorem lorem",
-            time: "2022-01-10",
-         },
-
-         {
-            id: '2',
-            text: "text",
-            time: "2022-01-10",
-         }
-      ],
-      valueTextarea: '',
-      profile: null,
-   })
+   expect(state).toEqual(state)
    expect(newState.profile.aboutMe).toBe("я круто чувак 1001%")
 })
 

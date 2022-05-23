@@ -29,7 +29,7 @@ export const communicationPageReducer = (state: communicationPageType = inisiona
       case Actions_Type.CHANGE_VALUE_MESSAGE:
          return {...state, textMessage: action.text}
 
-      case Actions_Type.ADD_VALUE_MESSAGE:
+      case Actions_Type.ADD_MESSAGE:
          const newMessage = {id: v1(), text: state.textMessage}
          if(state.textMessage.trim() !== '' && action.key === 'Enter') return {...state, messages: [...state.messages, newMessage], textMessage: ''}
          return state

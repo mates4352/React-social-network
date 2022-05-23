@@ -1,6 +1,5 @@
 import {Actions_Type} from "../Actions-Type";
 import {userActionType} from "./usersPageReducer-create-actions";
-import {isDisabled} from "@testing-library/user-event/dist/utils";
 
 export type userPageType = {
    items: Array<userType>
@@ -37,10 +36,10 @@ export const usersPageReducer = (state: userPageType = inisialState, action: use
       case Actions_Type.CHANGE_FOLLOW_USER:
          return {...state, items: state.items.map(item => item.id === action.idUser ? {...item, followed: !item.followed} : item)}
 
-      case Actions_Type.GET_USERS:
+      case Actions_Type.SET_USERS:
          return {...state, items: action.items}
 
-      case Actions_Type.GET_TOTAL_COUNT:
+      case Actions_Type.SET_TOTAL_COUNT:
          return {...state, totalCount: action.totalCount}
 
       case Actions_Type.CHANGE_PAGINATION:

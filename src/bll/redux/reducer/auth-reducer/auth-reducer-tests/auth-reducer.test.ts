@@ -25,7 +25,7 @@ beforeEach(() => {
    }
 })
 
-test('test change-auth-data', () => {
+it('test case SET-AUTH-DATA', () => {
    const action = changeAuthData(2, 'Dima', 'dima@mail.ru');
    const newState = authReducer(state, action);
 

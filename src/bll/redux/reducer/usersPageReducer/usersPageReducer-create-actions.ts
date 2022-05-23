@@ -14,11 +14,11 @@ export const changeFollowUser = (idUser: string) => {
 }
 
 export const setUsers = (items: Array<userType>) => {
-   return {type: Actions_Type.GET_USERS, items} as const
+   return {type: Actions_Type.SET_USERS, items} as const
 }
 
 export const setTotalCount = (totalCount: number) => {
-   return {type: Actions_Type.GET_TOTAL_COUNT, totalCount} as const
+   return {type: Actions_Type.SET_TOTAL_COUNT, totalCount} as const
 }
 
 export const changePagination = (currentPage: number) => {
