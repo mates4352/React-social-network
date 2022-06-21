@@ -15,7 +15,7 @@ class UserContainer extends React.Component<userPropsType> {
    }
 
    componentDidMount() {
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: userPageType) => {
+      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
          this.props.setTotalCount(data.totalCount);
          this.props.setUsers(data.items);
          this.props.changeIsPreloader(false);
@@ -35,7 +35,7 @@ class UserContainer extends React.Component<userPropsType> {
 
       const editUserFollowed = (userId: string) => {
          this.props.changeIsDisabled(true, userId)
-         usersAPI.postUser(userId).then((id: string) => {
+         usersAPI.postUser(userId).then(id => {
             this.props.changeFollowUser(id)
             this.props.changeIsDisabled(false, userId)
          })
