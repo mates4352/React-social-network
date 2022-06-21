@@ -6,9 +6,9 @@ import {
    changePagination,
    changeIsDisabled, changeFollowUser
 } from "./usersPageReducer-create-actions";
-import {Dispatch} from "redux";
+import {AppThunkType} from "../../redux-store";
 
-export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+export const getUsers = (currentPage: number, pageSize: number): AppThunkType => dispatch => {
    usersAPI.getUsers(currentPage, pageSize).then(data => {
       dispatch(setTotalCount(data.totalCount));
       dispatch(setUsers(data.items));
@@ -16,18 +16,13 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Di
    })
 }
 
-export const editPagination = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+export const editPagination = (currentPage: number, pageSize: number): AppThunkType => dispatch => {
    dispatch(changePagination(currentPage));
    dispatch(changeIsPreloader(true));
-
-   usersAPI.getUsers(currentPage, pageSize).then(data => {
-      dispatch(setTotalCount(data.totalCount))
-      dispatch(setUsers(data.items))
-      dispatch(changeIsPreloader(false))
-   })
+   dispatch(getUsers(currentPage, pageSize))
 }
 
-export const followedUser = (userId: string) => (dispatch: Dispatch) => {
+export const followedUser = (userId: string): AppThunkType => dispatch => {
    dispatch(changeIsDisabled(true, userId))
 
    usersAPI.postUser(userId).then(userId => {
@@ -36,7 +31,7 @@ export const followedUser = (userId: string) => (dispatch: Dispatch) => {
    })
 }
 
-export const unFollowedUser = (userId: string) => (dispatch: Dispatch) => {
+export const unFollowedUser = (userId: string): AppThunkType => dispatch => {
    dispatch(changeIsDisabled(true, userId))
 
    usersAPI.deleteUser(userId).then(userId => {

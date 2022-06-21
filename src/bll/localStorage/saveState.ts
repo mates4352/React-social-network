@@ -1,6 +1,6 @@
-import {stateType} from "../redux/redux-store";
+import {appStoreType} from "../redux/redux-store";
 
-export const saveState = (state: stateType) => {
+export const saveState = (state: appStoreType) => {
    try {
       const serializedState = JSON.stringify(state);
       localStorage.setItem('state', serializedState);

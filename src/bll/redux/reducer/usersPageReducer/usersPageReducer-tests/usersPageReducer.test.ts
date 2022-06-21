@@ -35,6 +35,7 @@ test('test case CHANGE-FOLLOW-USER', () => {
       totalCount: 0,
       currentPage: 1,
       error: null,
+      isDisabled:[]
    }
 
    const newState =  usersPageReducer(state, changeFollowUser('0'))

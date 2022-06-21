@@ -6,7 +6,7 @@ export type userPageType = userPageApiType & {
    pageSize: number
    currentPage: number
    isPreloader?: boolean
-   isDisabled?: [] | string[]
+   isDisabled: string[]
 }
 export type userType = {
    id: string
@@ -48,7 +48,6 @@ export const usersPageReducer = (state: userPageType = inisialState, action: use
 
       case Actions_Type.CHANGE_IS_DISABLED:
          return action.isBoolean ?
-             // @ts-ignore
              {...state, isDisabled: [...state.isDisabled, action.isDisabled]} :
              {...state, isDisabled: state.isDisabled?.filter(item => item !== action.isDisabled)};
 

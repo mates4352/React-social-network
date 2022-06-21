@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {stateType} from "../../../bll/redux/redux-store";
+import {appStoreType} from "../../../bll/redux/redux-store";
 import {authData} from "../../../bll/redux/reducer/auth-reducer/auth-reducer";
 import {changeAuthData} from "../../../bll/redux/reducer/auth-reducer/auth-reducer-create-actions";
 import {authAPI} from "../../../api/auth/authAPI";
@@ -31,7 +31,7 @@ type mapDispatchToPropsType = {
 }
 type mapState = mapStateToPropsType & mapDispatchToPropsType;
 
-const mapStateToProps = (state: stateType) => {
+const mapStateToProps = (state: appStoreType) => {
    return {
       resultCode: state.auth.resultCode,
    }

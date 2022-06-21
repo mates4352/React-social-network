@@ -4,13 +4,12 @@ import {
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-reducer";
 import {Account} from "./Account";
 import {connect} from "react-redux";
-import {stateType} from "../../bll/redux/redux-store";
+import {appStoreType} from "../../bll/redux/redux-store";
 import {
    addPost,
    changeValueTextarea,
     getProfile,
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-create-actions";
-import axios, {AxiosResponse} from "axios";
 import {useParams} from "react-router-dom";
 import {accountAPI} from "../../api/account/accountAPI";
 
@@ -69,7 +68,7 @@ type mapDispatchToPropsType = {
 }
 type mapType = mapStateToPropsType & mapDispatchToPropsType;
 
-const mapStateToProps = (state: stateType): mapStateToPropsType  => {
+const mapStateToProps = (state: appStoreType): mapStateToPropsType  => {
    return {
       valueTextarea: state.accountPage.valueTextarea,
       datePost: state.accountPage.datePost,

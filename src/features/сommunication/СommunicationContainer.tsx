@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import { communicationPageType} from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-reducer";
 import {Сommunication} from './Сommunication'
-import {stateType} from "../../bll/redux/redux-store";
+import {appStoreType} from "../../bll/redux/redux-store";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {
@@ -14,7 +14,7 @@ type mapDispatchToPropsType = {
    sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 
-const mapStateToProps = (state: stateType): communicationPageType  => {
+const mapStateToProps = (state: appStoreType): communicationPageType  => {
    return {
       textMessage: state.communicationPage.textMessage,
       messages: state.communicationPage.messages,

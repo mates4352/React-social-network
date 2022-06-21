@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from "react-redux";
 import {User} from "./User";
-import {stateType} from "../../bll/redux/redux-store";
+import {appStoreType} from "../../bll/redux/redux-store";
 import {userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
 import {
    editPagination, followedUser,
@@ -67,7 +67,7 @@ type mapDispatchToPropsType = {
 }
 export type userPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
-const mapStateToProps = (state: stateType): mapStateToPropsType => {
+const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
       users: state.usersPage.items,
       pageSize: state.usersPage.pageSize,
