@@ -2,12 +2,11 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import {User} from "./User";
 import {stateType} from "../../bll/redux/redux-store";
-import {userPageType, userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
+import {userType} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer";
 import {
-   changeFollowUser, changeIsDisabled, changeIsPreloader, changePagination, setTotalCount,
-   setUsers
-} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer-create-actions";
-import {usersAPI} from "../../api/userPage/usersAPI";
+   editPagination, followedUser,
+   getUsers, unFollowedUser
+} from "../../bll/redux/reducer/usersPageReducer/usersPageReducer-thunk";
 
 class UserContainer extends React.Component<userPropsType> {
    constructor(props: userPropsType) {
@@ -15,36 +14,27 @@ class UserContainer extends React.Component<userPropsType> {
    }
 
    componentDidMount() {
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-         this.props.setTotalCount(data.totalCount);
-         this.props.setUsers(data.items);
-         this.props.changeIsPreloader(false);
-      })
+      this.props.getUsers(this.props.currentPage, this.props.pageSize);
    }
 
    render() {
-      const editPagination = (currentPage: number,) => {
-         this.props.changePagination(currentPage)
-         this.props.changeIsPreloader(true)
-         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: userPageType) => {
-            this.props.setTotalCount(data.totalCount)
-            this.props.setUsers(data.items)
-            this.props.changeIsPreloader(false)
-         })
-      }
-
-      const editUserFollowed = (userId: string) => {
-         this.props.changeIsDisabled(true, userId)
-         usersAPI.postUser(userId).then(id => {
-            this.props.changeFollowUser(id)
-            this.props.changeIsDisabled(false, userId)
-         })
-      }
-
       const pagesNumbers = [];
       const pageNumber = Math.ceil(this.props.totalCount / this.props.pageSize);
-      for(let i = 1; i <= pageNumber; i++) {
+      for (let i = 1; i <= pageNumber; i++) {
          pagesNumbers[i] = i;
+      }
+      const isDisabled = (userId: string) => {
+         return this.props.isDisabled?.some((idButton: string) => userId === idButton)
+      }
+      const editFollowUser = (userFollowed: boolean, userId: string) => () => {
+         if (userFollowed) {
+            this.props.followedUser(userId);
+         } else {
+            this.props.unFollowedUser(userId);
+         }
+      }
+      const editPagination = (pageNumber: number, pageSize: number) => () => {
+        this.props.editPagination(pageNumber, pageSize)
       }
 
       return (
@@ -53,10 +43,10 @@ class UserContainer extends React.Component<userPropsType> {
               pagesNumbers={pagesNumbers}
               pageSize={this.props.pageSize}
               isPreloader={this.props.isPreloader}
-              isDisabled={this.props.isDisabled}
+              isDisabled={isDisabled}
               currentPage={this.props.currentPage}
-              changePagination={editPagination}
-              editUserFollowed={editUserFollowed}/>
+              editPagination={editPagination}
+              editFollowUser={editFollowUser}/>
       )
    }
 }
@@ -70,12 +60,10 @@ type mapStateToPropsType = {
    isDisabled?: [] | string[]
 }
 type mapDispatchToPropsType = {
-   changeFollowUser: (idUser: string) => void
-   setTotalCount: (totalCount: number) => void
-   setUsers: (items: Array<userType>) => void
-   changePagination: (currentPage: number) => void
-   changeIsPreloader: (isPreloader: boolean) => void
-   changeIsDisabled: (isBoolean: boolean, isDisabled: string) => void
+   getUsers: (currentPage: number, pageSize: number) => void
+   editPagination: (currentPage: number, pageSize: number) => void
+   followedUser: (userId: string) => void
+   unFollowedUser: (userId: string) => void
 }
 export type userPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -91,10 +79,8 @@ const mapStateToProps = (state: stateType): mapStateToPropsType => {
 }
 
 export default connect(mapStateToProps, {
-   changeFollowUser,
-   setTotalCount,
-   setUsers,
-   changePagination,
-   changeIsPreloader,
-   changeIsDisabled,
+   getUsers,
+   editPagination,
+   followedUser,
+   unFollowedUser,
 })(UserContainer)

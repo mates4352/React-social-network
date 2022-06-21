@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {accountPageReducer} from "./reducer/accountPage-reducer/accountPage-reducer";
 import {communicationPageReducer} from "./reducer/communicationPage-reducer/communicationPage-reducer";
 import {usersPageReducer} from "./reducer/usersPageReducer/usersPageReducer";
@@ -6,6 +6,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {saveState} from "../localStorage/saveState";
 import {loadState} from "../localStorage/loadState";
 import {authReducer} from "./reducer/auth-reducer/auth-reducer";
+import thunk from "redux-thunk";
 
 export type stateType = ReturnType<typeof rootReducer>
 
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
    auth: authReducer,
 })
 
-export const store = createStore(rootReducer, composeWithDevTools())
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 // loadState(),
 // store.subscribe(() => {
 //    saveState(store.getState());

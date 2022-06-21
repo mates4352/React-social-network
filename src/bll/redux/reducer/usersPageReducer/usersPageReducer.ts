@@ -1,12 +1,10 @@
 import {Actions_Type} from "../Actions-Type";
 import {userActionType} from "./usersPageReducer-create-actions";
+import {userPageApiType} from "../../../../api/userPage/usersAPI";
 
-export type userPageType = {
-   items: Array<userType>
+export type userPageType = userPageApiType & {
    pageSize: number
-   totalCount: number
    currentPage: number
-   error: null | string
    isPreloader?: boolean
    isDisabled?: [] | string[]
 }
