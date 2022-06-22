@@ -56,8 +56,8 @@ type mapStateToPropsType = {
    pageSize: number
    totalCount: number
    currentPage: number
-   isPreloader?: boolean
-   isDisabled?: [] | string[]
+   isPreloader: boolean
+   isDisabled: Array<string>
 }
 type mapDispatchToPropsType = {
    getUsers: (currentPage: number, pageSize: number) => void

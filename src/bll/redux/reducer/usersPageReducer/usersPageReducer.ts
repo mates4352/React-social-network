@@ -5,8 +5,8 @@ import {userPageApiType} from "../../../../api/userPage/usersAPI";
 export type userPageType = userPageApiType & {
    pageSize: number
    currentPage: number
-   isPreloader?: boolean
-   isDisabled: string[]
+   isPreloader: boolean
+   isDisabled: Array<string>
 }
 export type userType = {
    id: string

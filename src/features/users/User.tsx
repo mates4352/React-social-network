@@ -10,7 +10,7 @@ type userPropsType = {
    pagesNumbers: Array<number>
    currentPage: number
    pageSize: number
-   isPreloader?: boolean
+   isPreloader: boolean
    isDisabled: (userId: string) => boolean | undefined
    editPagination: (pageNumber: number, pageSize: number) => () => void
    editFollowUser: (userFollowed: boolean, userId: string) => () => void

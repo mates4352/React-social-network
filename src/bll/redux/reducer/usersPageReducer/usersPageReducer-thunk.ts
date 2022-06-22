@@ -19,23 +19,23 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunkType =>
 export const editPagination = (currentPage: number, pageSize: number): AppThunkType => dispatch => {
    dispatch(changePagination(currentPage));
    dispatch(changeIsPreloader(true));
-   dispatch(getUsers(currentPage, pageSize))
+   dispatch(getUsers(currentPage, pageSize));
 }
 
 export const followedUser = (userId: string): AppThunkType => dispatch => {
-   dispatch(changeIsDisabled(true, userId))
+   dispatch(changeIsDisabled(true, userId));
 
    usersAPI.postUser(userId).then(userId => {
-      dispatch(changeFollowUser(userId))
-      dispatch(changeIsDisabled(false, userId))
+      dispatch(changeFollowUser(userId));
+      dispatch(changeIsDisabled(false, userId));
    })
 }
 
 export const unFollowedUser = (userId: string): AppThunkType => dispatch => {
-   dispatch(changeIsDisabled(true, userId))
+   dispatch(changeIsDisabled(true, userId));
 
    usersAPI.deleteUser(userId).then(userId => {
-      dispatch(changeFollowUser(userId))
-      dispatch(changeIsDisabled(false, userId))
+      dispatch(changeFollowUser(userId));
+      dispatch(changeIsDisabled(false, userId));
    })
 }

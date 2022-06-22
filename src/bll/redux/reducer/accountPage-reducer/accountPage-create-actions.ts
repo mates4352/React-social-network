@@ -1,11 +1,6 @@
 import {Actions_Type} from "../Actions-Type";
 import {profileType} from "./accountPage-reducer";
 
-export type changeValueTextareaType = ReturnType<typeof changeValueTextarea>
-export type addPostType = ReturnType<typeof addPost>
-export type getProfileType = ReturnType<typeof getProfile>
-export type accountActionType = changeValueTextareaType | addPostType | getProfileType;
-
 export const addPost = () => (
     {type: Actions_Type.ADD_POST} as const
 )
@@ -17,3 +12,8 @@ export const changeValueTextarea = (text: string) => (
 export const getProfile = (profile: profileType) => (
     {type: Actions_Type.GET_PROFILE, profile} as const
 )
+
+export type accountActionType = changeValueTextareaType | addPostType | getProfileType;
+export type changeValueTextareaType = ReturnType<typeof changeValueTextarea>
+export type addPostType = ReturnType<typeof addPost>
+export type getProfileType = ReturnType<typeof getProfile>

@@ -8,6 +8,9 @@ import {loadState} from "../localStorage/loadState";
 import {authReducer} from "./reducer/auth-reducer/auth-reducer";
 import thunk, {ThunkAction} from "redux-thunk";
 import {userActionType} from "./reducer/usersPageReducer/usersPageReducer-create-actions";
+import {accountActionType} from "./reducer/accountPage-reducer/accountPage-create-actions";
+import {authActionType} from "./reducer/auth-reducer/auth-reducer-create-actions";
+import {communicationActionType} from "./reducer/communicationPage-reducer/communicationPage-create-actions";
 
 export type appStoreType = ReturnType<typeof rootReducer>
 
@@ -22,7 +25,7 @@ export const store = createStore(rootReducer, composeWithDevTools(applyMiddlewar
 
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, appStoreType, unknown, appActionType>
 
-type appActionType = userActionType;
+type appActionType = accountActionType | authActionType | communicationActionType | userActionType;
 // loadState(),
 // store.subscribe(() => {
 //    saveState(store.getState());

@@ -11,6 +11,7 @@ let state: userPageType = {
    totalCount: 0,
    currentPage: 1,
    error: null,
+   isPreloader: true,
    isDisabled: [],
 }
 
@@ -21,6 +22,7 @@ beforeEach(() => {
       totalCount: 0,
       currentPage: 1,
       error: null,
+      isPreloader: true,
       isDisabled: [],
    }
 })
@@ -35,6 +37,7 @@ test('test case CHANGE-FOLLOW-USER', () => {
       totalCount: 0,
       currentPage: 1,
       error: null,
+      isPreloader: true,
       isDisabled:[]
    }
 
