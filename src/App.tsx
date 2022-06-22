@@ -5,13 +5,13 @@ import {Music} from "./features/music/Music";
 import {Settings} from "./features/settings/Settings";
 import {News} from "./features/news/News";
 import {Help} from "./features/help/Help";
-import {СommunicationContainer} from "./features/сommunication/СommunicationContainer";
 
 import s from './App.module.scss';
 import UserContainer from "./features/users/UserContainer";
 import AccountContainer from "./features/account/AccountContainer";
-import React from "react";
+import СommunicationContainer from "./features/сommunication/СommunicationContainer"
 import HeaderContainer from "./shared/shared_components/Header/HeaderContainer";
+import React from "react";
 
 export type appType = {
 }

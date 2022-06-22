@@ -51,22 +51,6 @@ class UserContainer extends React.Component<userPropsType> {
    }
 }
 
-type mapStateToPropsType = {
-   users: Array<userType>
-   pageSize: number
-   totalCount: number
-   currentPage: number
-   isPreloader: boolean
-   isDisabled: Array<string>
-}
-type mapDispatchToPropsType = {
-   getUsers: (currentPage: number, pageSize: number) => void
-   editPagination: (currentPage: number, pageSize: number) => void
-   followedUser: (userId: string) => void
-   unFollowedUser: (userId: string) => void
-}
-export type userPropsType = mapStateToPropsType & mapDispatchToPropsType;
-
 const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
       users: state.usersPage.items,
@@ -84,3 +68,20 @@ export default connect(mapStateToProps, {
    followedUser,
    unFollowedUser,
 })(UserContainer)
+
+export type userPropsType = mapStateToPropsType & mapDispatchToPropsType;
+
+type mapStateToPropsType = {
+   users: Array<userType>
+   pageSize: number
+   totalCount: number
+   currentPage: number
+   isPreloader: boolean
+   isDisabled: Array<string>
+}
+type mapDispatchToPropsType = {
+   getUsers: (currentPage: number, pageSize: number) => void
+   editPagination: (currentPage: number, pageSize: number) => void
+   followedUser: (userId: string) => void
+   unFollowedUser: (userId: string) => void
+}

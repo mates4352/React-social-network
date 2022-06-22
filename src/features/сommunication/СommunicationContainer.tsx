@@ -1,36 +1,57 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import { communicationPageType} from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-reducer";
-import {Сommunication} from './Сommunication'
+import {
+   communicationPageType
+} from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-reducer";
 import {appStoreType} from "../../bll/redux/redux-store";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
+import {Сommunication} from './Сommunication'
 import {
    addTextMessage,
    changeValueMessage
 } from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-create-actions";
 
-const mapStateToProps = (state: appStoreType): communicationPageType  => {
+class CommunicationContainer extends React.Component<communicationContainerType> {
+   constructor(props: communicationContainerType) {
+      super(props);
+   }
+
+   render() {
+      const changeValueMessage = (e: ChangeEvent<HTMLInputElement>) => {
+         this.props.changeValueMessage(e.currentTarget.value)
+      }
+
+      const sendMessage = (e: KeyboardEvent<HTMLInputElement>) => {
+         this.props.addTextMessage(e.key, e.currentTarget.value)
+      }
+
+      return (
+          <Сommunication
+              textMessage={this.props.textMessage}
+              messages={this.props.messages}
+              dialogs={this.props.dialogs}
+              changeValueMessage={changeValueMessage}
+              sendMessage={sendMessage}/>
+      )
+   }
+}
+
+const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
       textMessage: state.communicationPage.textMessage,
       messages: state.communicationPage.messages,
       dialogs: state.communicationPage.dialogs,
    }
 }
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-   return {
-      changeValueMessage: (e) => {
-         dispatch(changeValueMessage(e.currentTarget.value))
-      },
 
-      sendMessage: (e) => {
-         dispatch(addTextMessage(e.key, e.currentTarget.value))
-      },
-   }
-}
+export default connect(mapStateToProps, {
+   changeValueMessage,
+   addTextMessage,
+})(CommunicationContainer);
 
-export const СommunicationContainer = connect(mapStateToProps, mapDispatchToProps)(Сommunication);
-
+type communicationContainerType = mapStateToPropsType & mapDispatchToPropsType;
+type mapStateToPropsType = communicationPageType;
 type mapDispatchToPropsType = {
-   changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
-   sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
+   changeValueMessage: (text: string) => void
+   addTextMessage: (key: string, text: string) => void
 }
+
