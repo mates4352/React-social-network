@@ -9,11 +9,6 @@ import {
    changeValueMessage
 } from "../../bll/redux/reducer/communicationPage-reducer/communicationPage-create-actions";
 
-type mapDispatchToPropsType = {
-   changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
-   sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
-}
-
 const mapStateToProps = (state: appStoreType): communicationPageType  => {
    return {
       textMessage: state.communicationPage.textMessage,
@@ -28,9 +23,14 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
       },
 
       sendMessage: (e) => {
-         dispatch(addTextMessage(e.key))
+         dispatch(addTextMessage(e.key, e.currentTarget.value))
       },
    }
 }
 
 export const СommunicationContainer = connect(mapStateToProps, mapDispatchToProps)(Сommunication);
+
+type mapDispatchToPropsType = {
+   changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
+   sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
+}

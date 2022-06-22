@@ -1,9 +1,21 @@
 import {instance} from "../instance";
-import {authType} from "../../bll/redux/reducer/auth-reducer/auth-reducer";
 
 export const authAPI = {
    getMeProfile: () => {
-      return instance.get<authType>('auth/me').then((result) => result.data.data)
+      return instance.get<authApiType>('auth/me').then(result => result.data.data)
    }
+}
+
+export type authApiType = {
+   data: authDataApiType
+   fieldsErrors:[]
+   messages:[]
+   resultCode: null | number
+}
+
+export type authDataApiType = {
+   id: null | number,
+   login: null | string,
+   email: null | string
 }
 

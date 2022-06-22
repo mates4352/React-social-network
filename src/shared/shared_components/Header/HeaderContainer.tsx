@@ -2,9 +2,7 @@ import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
 import {appStoreType} from "../../../bll/redux/redux-store";
-import {authData} from "../../../bll/redux/reducer/auth-reducer/auth-reducer";
-import {changeAuthData} from "../../../bll/redux/reducer/auth-reducer/auth-reducer-create-actions";
-import {authAPI} from "../../../api/auth/authAPI";
+import {getMeProfile} from "../../../bll/redux/reducer/auth-reducer/auth-thunk";
 
 class HeaderContainer extends React.Component<mapState> {
    constructor(props: mapState) {
@@ -12,24 +10,13 @@ class HeaderContainer extends React.Component<mapState> {
    }
 
    componentDidMount() {
-      authAPI.getMeProfile().then((data: authData) => {
-         const {id, login, email} = data;
-         if (id && login && email) this.props.changeAuthData(id, login, email);
-      })
+      this.props.getMeProfile()
    }
 
    render() {
       return <Header resultCode={this.props.resultCode}/>;
    };
 };
-
-type mapStateToPropsType = {
-   resultCode: null | number;
-}
-type mapDispatchToPropsType = {
-   changeAuthData: (id: number, login: string, email: string) => void
-}
-type mapState = mapStateToPropsType & mapDispatchToPropsType;
 
 const mapStateToProps = (state: appStoreType) => {
    return {
@@ -38,5 +25,13 @@ const mapStateToProps = (state: appStoreType) => {
 }
 
 export default connect(mapStateToProps, {
-   changeAuthData
+   getMeProfile
 })(HeaderContainer)
+
+type mapStateToPropsType = {
+   resultCode: null | number;
+}
+type mapDispatchToPropsType = {
+   getMeProfile: () => void
+}
+type mapState = mapStateToPropsType & mapDispatchToPropsType;

@@ -1,18 +1,6 @@
 import {Actions_Type} from "../Actions-Type";
 import {authActionType} from "./auth-reducer-create-actions";
-
-export type authType = {
-   data: authData
-   messages:[]
-   fieldsErrors:[]
-   resultCode: null | number
-}
-
-export type authData = {
-   id: null | number,
-   login: null | string,
-   email: null | string
-}
+import {authApiType} from "../../../../api/auth/authAPI";
 
 const inisialState: authType = {
    data: {
@@ -34,3 +22,5 @@ export const authReducer = (state: authType = inisialState, action: authActionTy
          return state
    }
 }
+
+export type authType = authApiType
