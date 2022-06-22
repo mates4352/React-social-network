@@ -1,48 +1,7 @@
 import {v1} from "uuid";
 import {Actions_Type} from "../Actions-Type";
 import {accountActionType} from "./accountPage-create-actions";
-
-export type accountPageType = {
-   datePost: Array<datePostType>
-   profile: null | profileType
-   params?: {id: string}
-   valueTextarea: string
-}
-export type datePostType = {
-   id: string
-   text: string
-   time: string
-};
-export type profileType = {
-   aboutMe: string
-   contacts: contactsType
-   fullName: string
-   lookingForAJob: boolean
-   lookingForAJobDescription: string
-   photos: photosType
-   userId: number
-}
-export type contactsType = {
-   github?: null | string
-   vk?: null | string
-   facebook?: null | string
-   instagram?: null | string
-   twitter?: null | string
-   website?: null | string
-   youtube?: null | string
-   mainLink?: null | string
-}
-export type photosType = {
-   small: null | string
-   large: null | string
-}
-
-
-const inisialState = {
-   datePost: [],
-   profile: null,
-   valueTextarea: '',
-}
+import {profileApiType} from "../../../../api/account/accountAPI";
 
 export const accountPageReducer = (state: accountPageType = inisialState, action: accountActionType): accountPageType => {
    switch (action.type) {
@@ -60,4 +19,23 @@ export const accountPageReducer = (state: accountPageType = inisialState, action
       default:
          return state
    }
+}
+
+export type accountPageType = {
+   datePost: Array<datePostType>
+   profile: null | profileType
+   params?: {id: string}
+   valueTextarea: string
+}
+export type datePostType = {
+   id: string
+   text: string
+   time: string
+};
+export type profileType = profileApiType
+
+const inisialState = {
+   datePost: [],
+   profile: null,
+   valueTextarea: '',
 }

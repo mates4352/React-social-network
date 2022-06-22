@@ -57,7 +57,7 @@ it('test case ADD_POST', () => {
 it('test case GET_PROFILE', () => {
    const newState = getProfile({
       aboutMe: "я круто чувак 1001%",
-      contacts: {facebook: 'facebook.com', website: null, vk: 'vk.com/dimych', twitter: 'https://twitter.com/@sdf', instagram: 'instagra.com/sds'},
+      contacts: {facebook: 'facebook.com', mainLink: "https://github.com/OlegJBAc", youtube: null, github: "https://github.com/OlegJBAc", website: null, vk: 'vk.com/dimych', twitter: 'https://twitter.com/@sdf', instagram: 'instagra.com/sds'},
       fullName: "samurai dimych",
       lookingForAJob: true,
       lookingForAJobDescription: "не ищу, а дурачусь",

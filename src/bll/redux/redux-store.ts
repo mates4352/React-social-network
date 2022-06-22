@@ -12,20 +12,18 @@ import {accountActionType} from "./reducer/accountPage-reducer/accountPage-creat
 import {authActionType} from "./reducer/auth-reducer/auth-reducer-create-actions";
 import {communicationActionType} from "./reducer/communicationPage-reducer/communicationPage-create-actions";
 
-export type appStoreType = ReturnType<typeof rootReducer>
-
 const rootReducer = combineReducers({
    accountPage: accountPageReducer,
    communicationPage: communicationPageReducer,
    usersPage: usersPageReducer,
    auth: authReducer,
 })
-
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
+export type appStoreType = ReturnType<typeof rootReducer>
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, appStoreType, unknown, appActionType>
-
 type appActionType = accountActionType | authActionType | communicationActionType | userActionType;
+
 // loadState(),
 // store.subscribe(() => {
 //    saveState(store.getState());

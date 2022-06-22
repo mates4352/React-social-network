@@ -1,5 +1,4 @@
 import React, {ChangeEvent} from 'react';
-import { Outlet } from "react-router-dom";
 import s from './Account.module.scss'
 import background from './../../assets/images/bg_account.jpg'
 

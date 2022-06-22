@@ -2,23 +2,6 @@ import {Actions_Type} from "../Actions-Type";
 import {userActionType} from "./usersPageReducer-create-actions";
 import {userPageApiType} from "../../../../api/userPage/usersAPI";
 
-export type userPageType = userPageApiType & {
-   pageSize: number
-   currentPage: number
-   isPreloader: boolean
-   isDisabled: Array<string>
-}
-export type userType = {
-   id: string
-   followed: boolean
-   name: string
-   photos: {
-      "small": null | string
-      "large": null | string
-   }
-   status: null | boolean
-}
-
 const inisialState: userPageType = {
    items: [],
    pageSize: 5,
@@ -54,4 +37,21 @@ export const usersPageReducer = (state: userPageType = inisialState, action: use
       default:
          return state
    }
+}
+
+export type userPageType = userPageApiType & {
+   pageSize: number
+   currentPage: number
+   isPreloader: boolean
+   isDisabled: Array<string>
+}
+export type userType = {
+   id: string
+   followed: boolean
+   name: string
+   photos: {
+      "small": null | string
+      "large": null | string
+   }
+   status: null | boolean
 }
