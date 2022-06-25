@@ -30,11 +30,15 @@ class AccountContainer extends React.Component<mapType> {
       const sendPost = () => this.props.addPost();
 
       return (
-          <Account valueTextarea={this.props.valueTextarea}
-                   datePost={this.props.datePost}
-                   profile={this.props.profile}
-                   sendPost={sendPost}
-                   changeValueTextarea={changeValueTextarea}/>
+
+          <>
+             <Account valueTextarea={this.props.valueTextarea}
+                      datePost={this.props.datePost}
+                      profile={this.props.profile}
+                      sendPost={sendPost}
+                      changeValueTextarea={changeValueTextarea}/>
+          </>
+
       )
    }
 }
