@@ -10,13 +10,13 @@ const inisialState: authType = {
    },
    messages: [],
    fieldsErrors: [],
-   resultCode: 0
+   resultCode: null
 }
 
 export const authReducer = (state: authType = inisialState, action: authActionType): authType => {
    switch (action.type) {
       case Actions_Type.SET_AUTH_DATA:
-         return {...state, data: {...action.data}, resultCode: 1}
+         return {...state, data: {...action.data}, resultCode: action.data.resultCode}
 
       default:
          return state

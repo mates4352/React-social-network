@@ -11,6 +11,7 @@ import {
 } from "../../bll/redux/reducer/accountPage-reducer/accountPage-create-actions";
 import {useParams} from "react-router-dom";
 import {getAccount} from "../../bll/redux/reducer/accountPage-thunk";
+import {compose} from "redux";
 
 class AccountContainer extends React.Component<mapType> {
    constructor(props: mapType) {
@@ -66,13 +67,15 @@ export const withRouter = (Component: any) => {
    return Wrapper;
 };
 
-let WithUrlDataContainerComponent = withRouter(AccountContainer);
 
-export default connect(mapStateToProps, {
-   addPost,
-   changeValueTextarea,
-   getAccount,
-})(WithUrlDataContainerComponent);
+export default compose(
+ connect(mapStateToProps, {
+       addPost,
+       changeValueTextarea,
+       getAccount,
+ }),
+ withRouter
+)(AccountContainer)
 
 type mapStateToPropsType = accountPageType
 type mapDispatchToPropsType = {

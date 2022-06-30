@@ -4,8 +4,10 @@ import {changeAuthData} from "./auth-reducer-create-actions";
 
 export const getMeProfile = (): AppThunkType => dispatch => {
    authAPI.getMeProfile().then(data => {
-      const {id, login, email} = data;
-      if (id && login && email) dispatch(changeAuthData(id, login, email));
+      const {id, login, email} = data.data;
+      const {resultCode} = data;
+      // @ts-ignore
+      dispatch(changeAuthData(resultCode, id, login, email));
    })
 }
 

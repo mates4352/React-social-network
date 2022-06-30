@@ -2,7 +2,7 @@ import {instance} from "../instance";
 
 export const authAPI = {
    getMeProfile: () => {
-      return instance.get<authApiType>('auth/me').then(result => result.data.data)
+      return instance.get<authApiType>('auth/me').then(result => result.data)
    }
 }
 

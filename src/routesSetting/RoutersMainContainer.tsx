@@ -11,12 +11,12 @@ class RoutersMainContainer extends React.Component<mapType>{
    }
 
    render() {
-      const elementRouter = (Component: any) => {
-         return this.props.status ? Component : <Navigate replace to={routerAPI.Help.path}/>
+      const redirectComponent = (Component: any) => {
+         return this.props.status ? <Navigate replace to={routerAPI.Help.path}/> : Component
       }
 
       return (
-          <RoutesMain elementRouter={elementRouter}/>
+          <RoutesMain redirectComponent={redirectComponent}/>
       );
    }
 };
@@ -28,9 +28,7 @@ const mapStateToProps = (state: appStoreType): mapStateToPropsType  => {
    }
 }
 
-export default connect(mapStateToProps, {
-
-})(RoutersMainContainer)
+export default connect(mapStateToProps, {})(RoutersMainContainer)
 
 type mapStateToPropsType = {
    status: number | null;

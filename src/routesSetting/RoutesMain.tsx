@@ -10,7 +10,7 @@ import {Help} from "../features/help/Help";
 import {routerAPI} from "./routerAPI";
 
 type routesMainType = {
-   elementRouter: (Component: any) => any
+   redirectComponent: (Component: any) => any
 };
 
 export class RoutesMain extends React.Component<routesMainType> {
@@ -19,15 +19,16 @@ export class RoutesMain extends React.Component<routesMainType> {
    }
 
    render() {
-      const {elementRouter} = this.props;
+      const {redirectComponent} = this.props;
+
       return (
           <Routes>
-             <Route path={routerAPI['/'].path} element={<Navigate replace to={routerAPI.Account.path}/>}/>
-             <Route path={routerAPI.Account.path} element={elementRouter(<AccountContainer/>)}>
+             <Route path={routerAPI['/'].path} element={<Navigate to={routerAPI.Account.path}/>}/>
+             <Route path={routerAPI.Account.path} element={redirectComponent(<AccountContainer/>)}>
                 <Route path={routerAPI.Account.parameter} element={<AccountContainer/>}/>
              </Route>
-             <Route path={routerAPI.Communication.path} element={elementRouter(<СommunicationContainer/>)}/>
-             <Route path={routerAPI.User.path} element={elementRouter(<UserContainer/>)}/>
+             <Route path={routerAPI.Communication.path} element={redirectComponent(<СommunicationContainer/>)}/>
+             <Route path={routerAPI.User.path} element={redirectComponent(<UserContainer/>)}/>
              <Route path={routerAPI.Music.path} element={<Music/>}/>
              <Route path={routerAPI.News.path} element={<News/>}/>
              <Route path={routerAPI.Communication.path} element={<Settings/>}/>

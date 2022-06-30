@@ -11,8 +11,8 @@ export const Header: React.FC<headerType> = (props) => {
    return (
       <header className={s.header}>
          <div className={s.container}>
-            <img src="" alt="Logo image"/>
-            { resultCode ? <p className={s.login}>Sergey</p> : <p className={s.login}>login</p> }
+            <img src="#" alt="Logo image"/>
+            { resultCode ?  <p className={s.login}>login</p>  : <p className={s.login}>Sergey</p>}
 
             <div className={s.content}>
                <div className={s.theme}>

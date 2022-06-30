@@ -1,6 +1,6 @@
 export const routerAPI: routerAPI = {
    '/': {
-      path: '/Account',
+      path: '/',
    },
 
    Account: {
@@ -37,7 +37,7 @@ export const routerAPI: routerAPI = {
 }
 
 type routerAPI = {
-   "/": pathType<'/Account'>
+   "/": pathType<'/'>
    Account: pathType<'/Account'>
    Communication: pathType<'/Communication/*'>
    User: pathType<'/User'>

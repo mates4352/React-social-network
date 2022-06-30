@@ -9,7 +9,7 @@ let state: authType = {
    },
    messages: [],
    fieldsErrors: [],
-   resultCode: null
+   resultCode: 1
 }
 
 beforeEach(() => {
@@ -26,12 +26,13 @@ beforeEach(() => {
 })
 
 it('test case SET-AUTH-DATA', () => {
-   const action = changeAuthData(2, 'Dima', 'dima@mail.ru');
+   const action = changeAuthData(0,2, 'Dima', 'dima@mail.ru');
    const newState = authReducer(state, action);
 
    expect(state).toEqual(state);
    expect(state.messages).toBe(newState.messages);
    expect(state.fieldsErrors).toBe(newState.fieldsErrors);
+   expect(newState.resultCode).toBe(0);
    expect(newState.data.id).toBe(2);
    expect(newState.data.login).toBe('Dima');
    expect(newState.data.email).toBe('dima@mail.ru');
