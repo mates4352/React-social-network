@@ -1,6 +1,6 @@
 import {Actions_Type} from "../Actions-Type";
-import {authActionType} from "./auth-reducer-create-actions";
-import {authApiType} from "../../../../api/auth/authAPI";
+import {authApiType} from "../../../../api/auth-api/authAPI";
+import {authActionType} from "./auth-create-actions/auth-create-actions-type";
 
 const inisialState: authType = {
    data: {

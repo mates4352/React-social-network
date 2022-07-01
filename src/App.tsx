@@ -1,9 +1,8 @@
-import {Menu} from "./shared/shared_components/Menu/Menu";
+import {Menu} from "./components/shared/Menu/Menu";
 import s from './App.module.scss';
-import HeaderContainer from "./shared/shared_components/Header/HeaderContainer";
+import HeaderContainer from "./components/shared/Header/Header-container";
 import React from "react";
-import RoutersMainContainer from "./routesSetting/RoutersMainContainer";
-
+import RoutersMainContainer from "./routes/Routers-main-container";
 
 export type appType = {}
 

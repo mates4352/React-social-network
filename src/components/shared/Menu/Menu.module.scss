@@ -1,0 +1,37 @@
+.menu {
+   z-index: 2;
+   grid-area: menu;
+   min-height: 100vh;
+   padding: 64px 24px 48px 24px;
+
+   background-color: var(--blue);
+
+   .list {
+      display: grid;
+      grid-template-rows: repeat(4, var(--minmax)) 1fr var(--minmax);
+      row-gap: 16px;
+      height: 100%;
+   }
+
+   .link {
+      display: block;
+      border-radius: 8px;
+      padding: 6px 24px;
+
+      font: var(--h2);
+      color: var(--black);
+      transition: background-color 300ms ease, color 300ms ease, box-shadow 100ms ease;
+
+      &:hover {
+         color: var(--blue);
+         background-color: var(--black);
+         box-shadow: 0 0 3px var(--black);
+      }
+
+      &_active {
+         color: var(--blue);
+         background-color: var(--black);
+         box-shadow: 0 0 3px var(--black);
+      }
+   }
+}

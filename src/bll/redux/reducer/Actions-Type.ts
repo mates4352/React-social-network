@@ -8,7 +8,7 @@ export enum Actions_Type {
    ADD_MESSAGE = 'ADD-MESSAGE',
    CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE',
 
-   //usersPageReducer
+   //users-page-reducer
    CHANGE_FOLLOW_USER = 'CHANGE-FOLLOW-USER',
    SET_USERS = 'SET_USERS',
    SET_TOTAL_COUNT = 'SET-TOTAL-COUNT',
@@ -16,6 +16,6 @@ export enum Actions_Type {
    CHANGE_IS_PRELOADER = 'CHANGE-IS-PRELOADER',
    CHANGE_IS_DISABLED = 'CHANGE-IS-DISABLED',
 
-   //auth-reducer
+   //auth-api-reducer
    SET_AUTH_DATA = 'SET-AUTH-DATA',
 }

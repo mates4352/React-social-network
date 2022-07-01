@@ -1,5 +1,5 @@
 import {authReducer, authType} from "../auth-reducer";
-import {changeAuthData} from "../auth-reducer-create-actions";
+import {changeAuthData} from "../auth-create-actions/auth-create-actions";
 
 let state: authType = {
    data:{

@@ -1,0 +1,127 @@
+@import '../../../style';
+
+.communication {
+   --height_top: 60px;
+   --height_entryField: 60px;
+   --height_content: calc(var(--header_size) + var(--height_top) + var(--height_entryField));
+   --padding: 12px;
+   height: 100%;
+   display: grid;
+   grid-template-columns: 280px 1fr;
+   grid-template-rows: var(--minmax) 1fr;
+   grid-template-areas:
+      "search content"
+      "contacts content"
+      "contacts content"
+   ;
+
+   @include media(max, xxl) {
+      grid-template-columns: 180px 1fr;
+   }
+
+   @include media(max, lg) {
+      grid-template-columns: 80px 1fr;
+   }
+
+   .title {
+      position: absolute;
+      top: 0;
+      left: -100px;
+      width: 0;
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+   }
+
+   .contact {
+      grid-area: contacts;
+      margin: -64px 0;
+      border-right: 1px solid var(--black);
+
+      @include media(max, xxl) {
+         margin: -48px 0;
+      }
+   }
+
+   .search {
+      grid-area: search;
+      height: var(--height_top);
+      width: 100%;
+      padding: 4px 24px 4px 12px;
+      border: none;
+      border-bottom: 1px solid var(--black);
+   }
+
+   .dialogs {
+      display: grid;
+      grid-auto-rows: var(--minmax);
+      row-gap: 18px;
+      padding: 32px 0 48px 0;
+      overflow: auto;
+
+      @include media(max, xxl) {
+         row-gap: 12px;
+         padding: 24px 0 32px 0;
+      }
+   }
+
+   .link {
+      position: relative;
+
+      display: block;
+      padding: 12px;
+
+      font: var(--h2);
+      color: var(--black);
+      overflow: hidden;
+      transition: color 200ms ease, background-color 200ms ease;
+
+
+      &:hover {
+         color: var(--blue);
+         background-color: var(--black);
+      }
+   }
+
+   .link_active {
+      color: var(--blue);
+      background-color: var(--black);
+   }
+
+   .content {
+      grid-area: content;
+      margin: -64px 0;
+
+      @include media(max, xxl) {
+         margin: -48px 0;
+      }
+   }
+
+   .contactName {
+      display: flex;
+      align-items: center;
+      height: var(--height_top);
+      padding: var(--padding);
+      border-bottom: 1px solid var(--black);
+   }
+
+   .list {
+      display: grid;
+      grid-auto-rows: var(--minmax);
+      align-items: center;
+      row-gap: 24px;
+      height: calc( 100vh - var(--height_content));
+      padding: 24px;
+      overflow: auto;
+   }
+
+   .entryFieldInput {
+      width: 100%;
+      height: var(--height_entryField);
+      padding: var(--padding);
+      border: none;
+      border-top: 1px solid var(--black);
+   }
+}
+
+

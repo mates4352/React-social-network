@@ -1,6 +1,6 @@
-import {authAPI} from "../../../../api/auth/authAPI";
+import {authAPI} from "../../../../api/auth-api/authAPI";
 import {AppThunkType} from "../../redux-store";
-import {changeAuthData} from "./auth-reducer-create-actions";
+import {changeAuthData} from "./auth-create-actions/auth-create-actions";
 
 export const getMeProfile = (): AppThunkType => dispatch => {
    authAPI.getMeProfile().then(data => {

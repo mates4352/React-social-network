@@ -1,16 +1,19 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {accountPageReducer} from "./reducer/accountPage-reducer/accountPage-reducer";
-import {communicationPageReducer} from "./reducer/communicationPage-reducer/communicationPage-reducer";
-import {usersPageReducer} from "./reducer/usersPageReducer/usersPageReducer";
+import {accountPageReducer} from "./reducer/account-page-reducer/account-page-reducer";
+import {communicationPageReducer} from "./reducer/communication-page-reducer/communication-page-reducer";
+import {usersPageReducer} from "./reducer/users-page-reducer/users-page-reducer";
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {saveState} from "../localStorage/saveState";
-import {loadState} from "../localStorage/loadState";
+
 import {authReducer} from "./reducer/auth-reducer/auth-reducer";
 import thunk, {ThunkAction} from "redux-thunk";
-import {userActionType} from "./reducer/usersPageReducer/usersPageReducer-create-actions";
-import {accountActionType} from "./reducer/accountPage-reducer/accountPage-create-actions";
-import {authActionType} from "./reducer/auth-reducer/auth-reducer-create-actions";
-import {communicationActionType} from "./reducer/communicationPage-reducer/communicationPage-create-actions";
+import {userActionType} from "./reducer/users-page-reducer/user-page-create-actions/users-page-create-actions-type";
+import {
+   communicationActionType
+} from "./reducer/communication-page-reducer/communication-page-create-actions/communication-page-create-actions-type";
+import {
+   accountActionType
+} from "./reducer/account-page-reducer/account-page-create-actions/account-page-create-actions-type";
+import {authActionType} from "./reducer/auth-reducer/auth-create-actions/auth-create-actions-type";
 
 const rootReducer = combineReducers({
    accountPage: accountPageReducer,
@@ -23,8 +26,3 @@ export const store = createStore(rootReducer, composeWithDevTools(applyMiddlewar
 export type appStoreType = ReturnType<typeof rootReducer>
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, appStoreType, unknown, appActionType>
 type appActionType = accountActionType | authActionType | communicationActionType | userActionType;
-
-// loadState(),
-// store.subscribe(() => {
-//    saveState(store.getState());
-// })
