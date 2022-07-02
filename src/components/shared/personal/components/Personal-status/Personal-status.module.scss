@@ -1,0 +1,60 @@
+.status {
+   grid-area: status;
+   display: flex;
+   align-items: center;
+   font: var(--h2);
+}
+
+.status__align_start {
+   align-items: flex-start;
+}
+
+.terming {
+   margin-right: 5px;
+   font-family: Montserrat_Bold, sans-serif;
+}
+
+.caption {
+   max-width: 310px;
+   padding: 4px 6px;
+
+   word-wrap: break-word;
+
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 300ms ease;
+
+   &:hover {
+      background-color: var(--blue);
+   }
+}
+
+.wrap {
+   width: 100%;
+   height: 70px;
+   padding: 5px 5px 0;
+
+   background-color: var(--blue);
+   border-radius: 8px;
+   box-shadow: inset 0 0 4px var(--black);
+}
+
+.caption_textarea {
+   width: 100%;
+   height: 92%;
+   font-size: 16px;
+
+   background-color: var(--blue);
+   border: none;
+   outline: none;
+   resize: none;
+
+   &::-webkit-scrollbar {
+      width: 8px;
+   }
+
+   &::-webkit-scrollbar-thumb {
+      background-color: var(--black);
+      border-radius: 100px;
+   }
+}

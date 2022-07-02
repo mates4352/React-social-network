@@ -1,4 +1,4 @@
-@import '../../../../../style';
+@import '../../../style';
 
 .personal {
    display: grid;
@@ -35,11 +35,6 @@
 .text {
    font: var(--text);
    font-size: 18px;
-}
-
-.status {
-   grid-area: status;
-   font: var(--h2);
 }
 
 .description_job {

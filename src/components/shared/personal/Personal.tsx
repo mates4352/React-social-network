@@ -1,7 +1,8 @@
 import React from 'react';
 import s from "./Personal.module.scss"
-import imageAvatar from "../../../../../assets/images/avatar.jpg";
-import {profileType} from "../../../../../bll/redux/reducer/account-page-reducer/account-page-reducer";
+import imageAvatar from "../../../assets/images/avatar.jpg";
+import {profileType} from "../../../bll/redux/reducer/account-page-reducer/account-page-reducer";
+import {PersonalStatus} from "./components/Personal-status/Personal-status";
 
 export type personalType = {
    profile: null | profileType;
@@ -9,6 +10,7 @@ export type personalType = {
 
 export const Personal:React.FC<personalType> = (props) => {
    const {profile} = props
+
    return (
        <div className={s.personal}>
           <img className={s.avatar} src={profile?.photos.small ? profile?.photos.small : imageAvatar} alt="Изображение аватара"/>
@@ -18,16 +20,7 @@ export const Personal:React.FC<personalType> = (props) => {
              <p className={s.text}>{profile?.aboutMe || "text"}</p>
           </div>
 
-          <p className={s.status}>
-             <strong>
-                Status:
-             </strong>
-             {props.profile?.lookingForAJob ? ' В поиске работы' : ' Занят'}
-          </p>
-
-          <p className={s.description_job}>
-             {props.profile?.lookingForAJobDescription ? props.profile.lookingForAJobDescription : 'Описание работы'}
-          </p>
+          <PersonalStatus status={props.profile?.lookingForAJobDescription}/>
 
           <ul className={s.social_network}>
              {

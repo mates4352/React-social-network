@@ -3,7 +3,7 @@ import s from './Account.module.scss'
 import background from '../../../assets/images/bg_account.jpg'
 
 import {Post} from "./components/post/post";
-import {Personal} from "./components/personal/Personal";
+import {Personal} from "../../shared/personal/Personal";
 
 import {
    datePostType,
