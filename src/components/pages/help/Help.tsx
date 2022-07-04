@@ -3,10 +3,18 @@ import s from './Help.module.scss'
 
 type musicType = {};
 
-export const Help = (props: musicType) => {
-   return (
-       <div>
-          Help
-       </div>
-   );
+export class Help extends React.Component<musicType> {
+   constructor(props: musicType) {
+      super(props);
+   }
+
+   render() {
+      const {} = this.props;
+
+      return (
+          <div>
+
+          </div>
+      );
+   };
 };

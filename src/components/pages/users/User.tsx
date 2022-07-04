@@ -16,7 +16,7 @@ type userPropsType = {
    editFollowUser: (userFollowed: boolean, userId: string) => () => void
 }
 
-export class User extends React.Component<userPropsType> {
+export class User extends React.PureComponent<userPropsType> {
    constructor(props: userPropsType) {
       super(props);
    }

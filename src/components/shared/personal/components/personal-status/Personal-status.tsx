@@ -6,7 +6,7 @@ type personalStatusType = {
    onChange?: (value: string) => void
 };
 
-export class PersonalStatus extends React.Component<personalStatusType> {
+export class PersonalStatus extends React.PureComponent<personalStatusType> {
    state = {
       isShowStatus: true,
       valueStatus: '',
@@ -55,4 +55,4 @@ export class PersonalStatus extends React.Component<personalStatusType> {
           </dl>
       );
    };
-};
+}

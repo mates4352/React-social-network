@@ -16,7 +16,6 @@ let state: accountPageType = {
          time: "2022-01-10",
       }
    ],
-   valueTextarea: '',
    profile: null,
 }
 
@@ -35,23 +34,8 @@ beforeEach(() => {
             time: "2022-01-10",
          }
       ],
-      valueTextarea: '',
       profile: null,
    }
-})
-
-it('test case CHANGE_VALUE_TEXTAREA', () => {
-   const newState = accountPageReducer(state, changeValueTextarea('text'))
-
-   expect(state).toEqual(state)
-   expect(newState.valueTextarea).toBe('text')
-})
-
-it('test case ADD_POST', () => {
-   const newState = accountPageReducer(state, addPost())
-
-   expect(state).toEqual(state)
-   state.valueTextarea.trim() !== '' && expect(newState.datePost.length).toBe(3)
 })
 
 it('test case GET_PROFILE', () => {

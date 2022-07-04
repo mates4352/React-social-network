@@ -6,17 +6,23 @@ import RoutersMainContainer from "./routes/Routers-main-container";
 
 export type appType = {}
 
-const App: React.FC<appType> = () => {
-   return (
-       <div className={s.page}>
-          <HeaderContainer/>
-          <Menu/>
+class App extends React.Component<appType> {
+   constructor(props: appType) {
+      super(props);
+   }
 
-          <main className={s.content}>
-            <RoutersMainContainer/>
-          </main>
-       </div>
-   );
-}
+   render() {
+      return (
+          <div className={s.page}>
+             <HeaderContainer/>
+             <Menu/>
+
+             <main className={s.content}>
+                <RoutersMainContainer/>
+             </main>
+          </div>
+      );
+   };
+};
 
 export default App;

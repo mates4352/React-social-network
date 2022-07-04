@@ -6,13 +6,14 @@ type personalDescriptionType = {
    profile: null | profileType;
 };
 
-export class PersonalDescription extends React.Component<personalDescriptionType> {
+export class PersonalDescription extends React.PureComponent<personalDescriptionType> {
    constructor(props: personalDescriptionType) {
       super(props);
    }
 
    render() {
       const {profile} = this.props;
+
       return (
           <div className={s.description}>
              <h2 className={s.name}>{profile?.fullName || "name"}</h2>

@@ -7,7 +7,7 @@ export type dialogsType = {
    message: MessageType
 };
 
-export class Message extends React.Component<dialogsType> {
+export class Message extends React.PureComponent<dialogsType> {
    constructor(props: dialogsType) {
       super(props);
    }

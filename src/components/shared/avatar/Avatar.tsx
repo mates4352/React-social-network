@@ -6,7 +6,7 @@ type avatarType = {
    src: string | null | undefined
 };
 
-export class Avatar extends React.Component<avatarType> {
+export class Avatar extends React.PureComponent<avatarType> {
    constructor(props: avatarType) {
       super(props);
    }

@@ -5,7 +5,7 @@ type postType = {
    post: datePostType;
 }
 
-export class Post extends React.Component<postType> {
+export class Post extends React.PureComponent<postType> {
    constructor(props: postType) {
       super(props);
    }

@@ -5,12 +5,12 @@ import {PersonalStatus} from "./components/personal-status/Personal-status";
 import {PersonalSocial} from "./components/personal-social/Personal-social";
 import {PersonalDescription} from "./components/personal-description/Personal-description";
 import {Avatar} from "../avatar/Avatar";
+import {connect} from "react-redux";
+import {appStoreType} from "../../../bll/redux/redux-store";
 
-export type personalType = {
-   profile: null | profileType;
-};
+export type personalType = mapStateToPropsType
 
-export class Personal extends React.Component<personalType> {
+class Personal extends React.Component<personalType> {
    constructor(props: personalType) {
       super(props);
    }
@@ -29,3 +29,14 @@ export class Personal extends React.Component<personalType> {
    }
 }
 
+const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
+   return {
+      profile: state.accountPage.profile,
+   }
+}
+
+export default connect(mapStateToProps)(Personal);
+
+type mapStateToPropsType = {
+   profile: null | profileType;
+}

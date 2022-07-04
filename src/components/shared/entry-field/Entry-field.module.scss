@@ -1,0 +1,18 @@
+.entry_field {
+   display: grid;
+   justify-items: center;
+   row-gap: 24px;
+   margin-bottom: 48px;
+}
+
+.textarea {
+   width: 100%;
+   height: 150px;
+   padding: 24px;
+
+   font: var(--text);
+
+   border: 1px solid var(--black);
+   border-radius: 12px;
+   resize: none;
+}

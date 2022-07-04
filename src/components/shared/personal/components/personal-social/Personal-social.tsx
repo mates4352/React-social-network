@@ -6,7 +6,7 @@ type personalSocialType = {
    contacts: contactsApiType | undefined
 };
 
-export class PersonalSocial extends React.Component<personalSocialType> {
+export class PersonalSocial extends React.PureComponent<personalSocialType> {
    constructor(props: personalSocialType) {
       super(props);
    }

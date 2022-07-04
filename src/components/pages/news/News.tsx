@@ -3,10 +3,18 @@ import s from './News.module.scss'
 
 type newsType = {};
 
-export const News = (props: newsType) => {
-   return (
-       <div>
-          News
-       </div>
-   );
+export class News extends React.Component<newsType> {
+   constructor(props: newsType) {
+      super(props);
+   }
+
+   render() {
+      const {} = this.props;
+
+      return (
+          <div>
+
+          </div>
+      );
+   };
 };

@@ -3,10 +3,18 @@ import s from './Settings.module.scss'
 
 type settingsType = {};
 
-export const Settings = (props: settingsType) => {
-   return (
-       <div>
-          Settings
-       </div>
-   );
+export class Settings extends React.Component<settingsType> {
+   constructor(props: settingsType) {
+      super(props);
+   }
+
+   render() {
+      const {} = this.props;
+
+      return (
+          <div>
+             Settings
+          </div>
+      );
+   };
 };
