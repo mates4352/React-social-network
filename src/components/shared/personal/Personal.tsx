@@ -20,7 +20,7 @@ class Personal extends React.Component<personalType> {
 
       return (
           <div className={s.personal}>
-             <Avatar src={profile?.photos.small}/>
+             <Avatar src={profile?.photos.small} alt='Аватар'/>
              <PersonalDescription profile={profile}/>
              <PersonalStatus status={profile?.lookingForAJobDescription}/>
              <PersonalSocial contacts={profile?.contacts}/>

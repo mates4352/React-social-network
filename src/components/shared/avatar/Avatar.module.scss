@@ -1,7 +1,6 @@
 .avatar {
    grid-area: avatar;
-   --size: 150px;
-   width: var(--size);
-   height: var(--size);
+   width: var(--avatar_size, 150px);
+   height: var(--avatar_size, 150px);
    border-radius: 50%;
 }

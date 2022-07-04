@@ -4,6 +4,7 @@ import imageAvatar from "../../../assets/images/avatar.jpg";
 
 type avatarType = {
    src: string | null | undefined
+   alt: string
 };
 
 export class Avatar extends React.PureComponent<avatarType> {
@@ -12,8 +13,8 @@ export class Avatar extends React.PureComponent<avatarType> {
    }
 
    render() {
-      const {src} = this.props;
+      const {src, alt} = this.props;
 
-      return <img className={s.avatar} src={src ? src : imageAvatar} alt="Изображение аватара"/>
+      return <img className={s.avatar} src={src ? src : imageAvatar} alt={alt}/>
    };
 };
