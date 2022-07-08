@@ -18,8 +18,8 @@ export class Login extends React.Component<loginType> {
           <div className={s.login}>
              <form className={s.form}>
                 <h2 className={s.title}>Sign In</h2>
-                <Input text='Login' type='text'/>
-                <Input text='Password' type='Password'/>
+                <Input text='Login' type='text' icon='textClose'/>
+                <Input text='Password' type='password' icon='eye'/>
                 <Button>send</Button>
              </form>
           </div>

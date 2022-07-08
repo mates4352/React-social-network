@@ -7,7 +7,7 @@
 
 .input {
    height: 45px;
-   padding: 15px 5px 10px 15px;
+   padding: 15px 35px 10px 15px;
 
    font: var(--text);
    font-size: 18px;
@@ -15,6 +15,11 @@
 
    border: none;
    border-radius: 8px;
+}
+
+.input::selection {
+   color: var(--blue);
+   background-color: var(--black);
 }
 
 .legend {
@@ -32,4 +37,13 @@
 
 .input:focus + .legend,.input:valid + .legend {
    color: var(--black);
+}
+
+.button_svg {
+   position: absolute;
+   top: 45%;
+   right: 8px;
+   transform: translateY(-50%);
+   border: none;
+   background-color: transparent;
 }
