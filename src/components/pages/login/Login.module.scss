@@ -1,0 +1,26 @@
+@import './src/style';
+
+.login {
+   display: flex;
+   align-items: center;
+   min-height: 100vh;
+}
+
+.form {
+   --button_size: none;
+   display: grid;
+   justify-items: center;
+   row-gap: 15px;
+   margin: auto;
+   max-width: 500px;
+   padding: 20px;
+
+   border: 2px solid var(--blue);
+   border-radius: 24px;
+}
+
+.title {
+   font: var(--h1);
+   font-size: 24px;
+   color: var(--black);
+}

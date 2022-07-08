@@ -1,0 +1,35 @@
+
+.input_wrap {
+   position: relative;
+   border: 2px solid var(--blue);
+   border-radius: 8px;
+}
+
+.input {
+   height: 45px;
+   padding: 15px 5px 10px 15px;
+
+   font: var(--text);
+   font-size: 18px;
+   color: var(--black);
+
+   border: none;
+   border-radius: 8px;
+}
+
+.legend {
+   position: relative;
+   z-index: 1;
+   margin-left: 15px;
+   padding: 0 3px;
+
+   font: var(--h2);
+   font-size: 14px;
+   color: var(--blue);
+   transition: color 500ms ease;
+}
+
+
+.input:focus + .legend,.input:valid + .legend {
+   color: var(--black);
+}

@@ -2,11 +2,11 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import {User} from "./User";
 import {appStoreType} from "../../../bll/redux/redux-store";
-import {userType} from "../../../bll/redux/reducer/users-page-reducer/users-page-reducer";
+import {userType} from "../../../bll/redux/reducer/users/users-reducer";
 import {
    editPagination, followedUser,
    getUsers, unFollowedUser
-} from "../../../bll/redux/reducer/users-page-reducer/users-page-thunk";
+} from "../../../bll/redux/reducer/users/users-thunk";
 import {compose} from "redux";
 
 class UserContainer extends React.Component<mapUserPropsType> {

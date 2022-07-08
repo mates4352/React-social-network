@@ -1,42 +1,32 @@
 import React from 'react';
 import s from "./Personal.module.scss"
-import {profileType} from "../../../bll/redux/reducer/account-page-reducer/account-page-reducer";
+import {profileType} from "../../../bll/redux/reducer/account/account-reducer";
 import {PersonalStatus} from "./components/personal-status/Personal-status";
 import {PersonalSocial} from "./components/personal-social/Personal-social";
 import {PersonalDescription} from "./components/personal-description/Personal-description";
 import {Avatar} from "../avatar/Avatar";
-import {connect} from "react-redux";
-import {appStoreType} from "../../../bll/redux/redux-store";
 
-export type personalType = mapStateToPropsType
+type personalType = {
+   profile: null | profileType
+   status: string
+   updateStatus: (userId: number, status: string) => void
+}
 
-class Personal extends React.Component<personalType> {
+export class Personal extends React.PureComponent<personalType> {
    constructor(props: personalType) {
       super(props);
    }
 
    render() {
-      const {profile} = this.props
+      const {profile, status, updateStatus} = this.props
 
       return (
           <div className={s.personal}>
              <Avatar src={profile?.photos.small} alt='Аватар'/>
              <PersonalDescription profile={profile}/>
-             <PersonalStatus status={profile?.lookingForAJobDescription}/>
+             <PersonalStatus profile={profile} status={status} updateStatus={updateStatus}/>
              <PersonalSocial contacts={profile?.contacts}/>
           </div>
       )
    }
-}
-
-const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
-   return {
-      profile: state.accountPage.profile,
-   }
-}
-
-export default connect(mapStateToProps)(Personal);
-
-type mapStateToPropsType = {
-   profile: null | profileType;
 }

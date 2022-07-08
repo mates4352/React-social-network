@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Users-list.module.scss'
-import {userType} from "../../../../../bll/redux/reducer/users-page-reducer/users-page-reducer";
+import {userType} from "../../../../../bll/redux/reducer/users/users-reducer";
 import {NavLink} from "react-router-dom";
 import image from "../../../../../assets/images/avatar.jpg";
 import {Avatar} from "../../../../shared/avatar/Avatar";
@@ -25,7 +25,7 @@ export class UsersList extends React.PureComponent<usersListType> {
              {
                 users.map((user: userType) => (
                         <li className={s.item} key={user.id}>
-                           <NavLink to={`/Account/${user.id}`}>
+                           <NavLink to={`/Main/Account/${user.id}`}>
                               <Avatar src={user.photos.small} alt='Пользователь'/>
                            </NavLink>
 

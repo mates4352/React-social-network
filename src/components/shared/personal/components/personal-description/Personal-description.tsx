@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./Personal-description.module.scss";
-import {profileType} from "../../../../../bll/redux/reducer/account-page-reducer/account-page-reducer";
+import {profileType} from "../../../../../bll/redux/reducer/account/account-reducer";
 
 type personalDescriptionType = {
    profile: null | profileType;

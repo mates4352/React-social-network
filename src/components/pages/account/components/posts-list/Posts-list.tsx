@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Posts-list.module.scss';
 import {Post} from "../post/post";
-import {datePostType} from "../../../../../bll/redux/reducer/account-page-reducer/account-page-reducer";
+import {datePostType} from "../../../../../bll/redux/reducer/account/account-reducer";
 
 type postsListType = {
    datePost: Array<datePostType>

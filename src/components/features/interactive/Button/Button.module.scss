@@ -1,7 +1,7 @@
 @import '../../../../style';
 
 .button {
-   width: 100%;
+   width: var(--button_size, 100%);
    max-width: 320px;
    padding: 12px 12px;
 

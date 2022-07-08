@@ -1,7 +1,7 @@
 import * as React from 'react';
 import s from './User.module.scss'
 import {Preloader} from "../../features/interactive/Preloader/Preloader";
-import {userType} from "../../../bll/redux/reducer/users-page-reducer/users-page-reducer";
+import {userType} from "../../../bll/redux/reducer/users/users-reducer";
 import {Pagination} from "../../shared/pagination/Pagination";
 import {UsersList} from "./components/users-list/Users-list";
 

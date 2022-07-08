@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Message.module.scss'
 import image from "../../../../../assets/images/avatar.jpg"
-import {MessageType} from "../../../../../bll/redux/reducer/communication-page-reducer/communication-page-reducer";
+import {MessageType} from "../../../../../bll/redux/reducer/communication/communication-reducer";
 
 export type dialogsType = {
    message: MessageType

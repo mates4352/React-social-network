@@ -1,14 +1,14 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {
    communicationPageType
-} from "../../../bll/redux/reducer/communication-page-reducer/communication-page-reducer";
+} from "../../../bll/redux/reducer/communication/communication-reducer";
 import {appStoreType} from "../../../bll/redux/redux-store";
 import {connect} from "react-redux";
 import {Сommunication} from './Сommunication'
 import {
    addTextMessage,
    changeValueMessage
-} from "../../../bll/redux/reducer/communication-page-reducer/communication-page-create-actions/communication-page-create-actions";
+} from "../../../bll/redux/reducer/communication/communication-actions/communication-actions";
 import {compose} from "redux";
 
 class CommunicationContainer extends React.Component<mapCommunicationContainerType> {

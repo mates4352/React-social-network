@@ -2,15 +2,10 @@ import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
 import {appStoreType} from "../../../bll/redux/redux-store";
-import {getMeProfile} from "../../../bll/redux/reducer/auth-reducer/auth-thunk";
 
 class HeaderContainer extends React.Component<mapState> {
    constructor(props: mapState) {
       super(props);
-   }
-
-   componentDidMount() {
-      this.props.getMeProfile()
    }
 
    render() {
@@ -24,14 +19,9 @@ const mapStateToProps = (state: appStoreType) => {
    }
 }
 
-export default connect(mapStateToProps, {
-   getMeProfile
-})(HeaderContainer)
+export default connect(mapStateToProps, )(HeaderContainer)
 
 type mapStateToPropsType = {
    resultCode: null | number;
 }
-type mapDispatchToPropsType = {
-   getMeProfile: () => void
-}
-type mapState = mapStateToPropsType & mapDispatchToPropsType;
+type mapState = mapStateToPropsType;

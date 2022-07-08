@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./post.module.scss"
-import {datePostType} from "../../../../../bll/redux/reducer/account-page-reducer/account-page-reducer";
+import {datePostType} from "../../../../../bll/redux/reducer/account/account-reducer";
 type postType = {
    post: datePostType;
 }

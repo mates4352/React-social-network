@@ -1,14 +1,14 @@
 import React from 'react';
 import {
    accountPageType,
-} from "../../../bll/redux/reducer/account-page-reducer/account-page-reducer";
+} from "../../../bll/redux/reducer/account/account-reducer";
 import {Account} from "./Account";
 import {connect} from "react-redux";
 import {appStoreType} from "../../../bll/redux/redux-store";
 import {
    addPost,
-} from "../../../bll/redux/reducer/account-page-reducer/account-page-create-actions/account-page-create-actions";
-import {getAccount} from "../../../bll/redux/reducer/account-page-reducer/account-page-thunk";
+} from "../../../bll/redux/reducer/account/account-actions/account-actions";
+import {getAccount, getStatus, updateStatus} from "../../../bll/redux/reducer/account/account-thunk";
 import {compose} from "redux";
 import {WithRouterParams} from "../../../hoc/With-router-params";
 
@@ -19,32 +19,41 @@ class AccountContainer extends React.Component<mapAccountType> {
 
    componentDidMount() {
       let userId = this.props.params?.id;
-      if (!userId) userId = '2';
-      this.props.getAccount(userId);
+      if (!userId) this.props.getAccount(String(this.props.userId));
+      else this.props.getAccount(String(userId));
    }
 
    render() {
       const sendPost = (value: string) => {
          this.props.addPost(value);
       }
+      const updateStatus = (userId: number, status: string) => {
+         this.props.updateStatus(userId, status)
+      }
 
       return (
           <Account datePost={this.props.datePost}
                    profile={this.props.profile}
-                   sendPost={sendPost}/>
+                   status={this.props.status}
+                   sendPost={sendPost}
+                   updateStatus={updateStatus}/>
       )
    }
 }
 
 const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
+      userId: state.auth.data.id,
       datePost: state.accountPage.datePost,
       profile: state.accountPage.profile,
+      status: state.accountPage.status,
    };
 };
 const mapDispatchToProps: mapDispatchToPropsType = {
    addPost,
    getAccount,
+   getStatus,
+   updateStatus,
 };
 
 export default compose<React.ComponentType>(
@@ -53,8 +62,13 @@ export default compose<React.ComponentType>(
 )(AccountContainer)
 
 export type mapAccountType = mapStateToPropsType & mapDispatchToPropsType;
-type mapStateToPropsType = accountPageType & { params?: { id?: string } };
+type mapStateToPropsType = accountPageType & {
+   userId: null | number
+   params?: { id?: string }
+};
 type mapDispatchToPropsType = {
    addPost: (value: string) => void
    getAccount: (userId: string) => void
+   getStatus: (userId: number) => void
+   updateStatus: (userId: number, status: string) => void
 };

@@ -12,7 +12,6 @@ export const Button: React.FC<buttonType> = (props) => {
    return (
        <button
            className={s.button}
-           type="button"
            {...props}>
           {children}
        </button>

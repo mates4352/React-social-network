@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './User-info.module.scss';
-import {userType} from "../../../../../bll/redux/reducer/users-page-reducer/users-page-reducer";
+import {userType} from "../../../../../bll/redux/reducer/users/users-reducer";
 
 type usersInfoType = {
    user: userType

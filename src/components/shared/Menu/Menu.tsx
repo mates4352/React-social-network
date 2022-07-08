@@ -46,7 +46,7 @@ export class Menu extends React.PureComponent<menuType> {
                 </li>
 
                 <li className={s.item}>
-                   <NavLink className={classLink} to={"Exit"}>Exit</NavLink>
+                   <NavLink className={classLink} to={"/Login"}>Exit</NavLink>
                 </li>
              </ul>
           </nav>

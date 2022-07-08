@@ -1,29 +1,42 @@
 import React, {ChangeEvent} from 'react';
 import s from './Personal-status.module.scss'
+import {profileType} from "../../../../../bll/redux/reducer/account/account-reducer";
 
 type personalStatusType = {
-   status: string | undefined
+   profile: null | profileType
+   status: string
    onChange?: (value: string) => void
+   updateStatus: (userId: number, status: string) => void
 };
 
 export class PersonalStatus extends React.PureComponent<personalStatusType> {
    state = {
       isShowStatus: true,
-      valueStatus: '',
-      isClassStatus: '',
+      valueStatus: this.props.status,
    }
 
    constructor(props: personalStatusType) {
       super(props);
    }
 
+   componentDidUpdate(prevProps: Readonly<personalStatusType>, prevState: Readonly<{}>, snapshot?: any) {
+      if(prevProps.status !== this.props.status) {
+         this.setState({valueStatus: this.props.status})
+      }
+   }
+
    render() {
-      const {isShowStatus, isClassStatus, valueStatus} = this.state;
-      const {status, onChange} = this.props;
-      const classStatus = isClassStatus ? s.status__align_start : '';
+      const {isShowStatus, valueStatus} = this.state;
+      const {profile, onChange} = this.props;
+      const classStatus = !isShowStatus ? s.status__align_start : '';
 
       const showElement = () => {
-         this.setState({isShowStatus: !isShowStatus, isClassStatus: !isClassStatus})
+         this.setState({isShowStatus: !isShowStatus})
+      }
+
+      const updateStatus = (userId: number, status: string) => {
+         this.props.updateStatus(userId, status)
+         showElement()
       }
 
       const OnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -37,7 +50,7 @@ export class PersonalStatus extends React.PureComponent<personalStatusType> {
 
              {this.state.isShowStatus &&
                 <dd className={s.caption} onClick={showElement}>
-                   {valueStatus ? valueStatus : status}
+                   {this.props.status ? this.props.status : ''}
                 </dd>
              }
 
@@ -49,7 +62,12 @@ export class PersonalStatus extends React.PureComponent<personalStatusType> {
                      maxLength={120}
                      autoFocus={true}
                      onChange={OnChange}
-                     onBlur={showElement}/>
+                     onBlur={() => {
+                        if(profile) {
+                           updateStatus(profile?.userId, this.state.valueStatus)
+                           showElement()
+                        }
+                     }}/>
                 </div>
              }
           </dl>

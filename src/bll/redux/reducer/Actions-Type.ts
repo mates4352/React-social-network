@@ -1,14 +1,16 @@
 export enum Actions_Type {
-   //accountPageReducer
+   //accountReducer
    ADD_POST = 'ADD-POST',
    CHANGE_VALUE_TEXTAREA = 'CHANGE-VALUE-TEXTAREA',
    GET_PROFILE = 'GET-PROFILE',
+   GET_STATUS = 'GET-STATUS',
+   UPDATE_STATUS = 'UPDATE-STATUS',
 
-   //communicationPageReducer
+   //communicationReducer
    ADD_MESSAGE = 'ADD-MESSAGE',
    CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE',
 
-   //users-page-reducer
+   //users
    CHANGE_FOLLOW_USER = 'CHANGE-FOLLOW-USER',
    SET_USERS = 'SET_USERS',
    SET_TOTAL_COUNT = 'SET-TOTAL-COUNT',
@@ -16,6 +18,6 @@ export enum Actions_Type {
    CHANGE_IS_PRELOADER = 'CHANGE-IS-PRELOADER',
    CHANGE_IS_DISABLED = 'CHANGE-IS-DISABLED',
 
-   //auth-api-reducer
+   //auth
    SET_AUTH_DATA = 'SET-AUTH-DATA',
 }

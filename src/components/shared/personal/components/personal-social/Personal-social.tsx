@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./Personal-social.module.scss";
-import {contactsApiType} from "../../../../../api/account-api/accountAPI";
+import {contactsApiType} from "../../../../../api/account/accountAPI";
 
 type personalSocialType = {
    contacts: contactsApiType | undefined

@@ -24,7 +24,6 @@ export class RoutesMain extends React.Component<routesMainType> {
 
       return (
           <Routes>
-             <Route path={routerApi['/'].path} element={<Navigate to={routerApi.Account.path}/>}/>
              <Route path={routerApi.Account.path} element={compose(redirectUserRegistration)(<AccountContainer/>)}>
                 <Route path={routerApi.Account.parameter} element={<AccountContainer/>}/>
              </Route>
