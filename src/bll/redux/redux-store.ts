@@ -13,12 +13,15 @@ import {
    accountActionType
 } from "./reducer/account/account-actions/account-actions-type";
 import {authActionType} from "./reducer/auth/auth-actions/auth-actions-type";
+import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
    accountPage: accountReducer,
    communicationPage: communicationReducer,
    usersPage: usersReducer,
    auth: authReducer,
+   form: formReducer,
+
 })
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 

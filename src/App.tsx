@@ -1,7 +1,7 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 import s from './App.module.scss';
 import React from "react";
-import {Login} from "./components/pages/login/Login";
+import Login from "./components/pages/login/Login";
 import {MainPage} from "./components/pages/MainPage";
 import {connect} from "react-redux";
 import {appStoreType} from "./bll/redux/redux-store";
@@ -21,7 +21,7 @@ class App extends React.Component<appType> {
    render() {
       if(this.props.status || this.props.status === null) return <Login/>
       const {status} = this.props;
-      
+
       return (
           <Routes>
              <Route path={'/'} element={<Navigate to={status  ? '/login' : '/Main'}/>}/>

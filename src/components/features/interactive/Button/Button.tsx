@@ -5,13 +5,15 @@ type detailed = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLB
 
 type buttonType = detailed & {
    children: string;
+   type?: string
 }
 
 export const Button: React.FC<buttonType> = (props) => {
-   const {children} = props;
+   const {children, type} = props;
    return (
        <button
            className={s.button}
+           type={type}
            {...props}>
           {children}
        </button>

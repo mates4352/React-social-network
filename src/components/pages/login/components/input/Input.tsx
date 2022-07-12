@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Input.module.scss'
 import {IconClose} from "../../../../features/icons/Icon-close";
 import {IconEyeClose} from "../../../../features/icons/Icon-eye-close";
 import {IconEyeOpen} from "../../../../features/icons/Icon-eye-open";
+import {Field} from 'redux-form'
 
 type inputType = {
+   component: string
+   name: string
    text: string
    type: string
    icon?: string
@@ -21,32 +24,41 @@ export class Input extends React.Component<inputType> {
    }
 
    render() {
-      const {type, text, icon} = this.props;
+      const {component, name, text, icon} = this.props;
       const checkIcon = (value: string) => {
          return icon === value && this.state.inputText !== ''
       }
-      const showInputText = (type : string) => {
+      const changeInputType = (type: string) => {
          this.setState({isType: type})
       }
 
       return (
           <fieldset className={s.input_wrap}>
-             <input className={s.input}
-                    type={this.state.isType}
-                    value={this.state.inputText}
-                    required
-                    onChange={e => this.setState({inputText: e.currentTarget.value})}
+             <Field
+                 className={s.input}
+                 component={component}
+                 name={name}
+                 type={this.state.isType}
+                 value={this.state.inputText}
+                 required
+                 onChange={(e: ChangeEvent<HTMLInputElement>) => this.setState({inputText: e.currentTarget.value})}
              />
              <legend className={s.legend}>{text}</legend>
 
              {checkIcon('textClose') &&
-                <button className={s.button_svg} type='button' onClick={() => this.setState({inputText: ''})}><IconClose/></button>}
+                <button className={s.button_svg} type='button' onClick={() => this.setState({inputText: ''})}>
+                  <IconClose/>
+                </button>}
 
              {checkIcon('eye') && this.state.isType === 'password' &&
-                <button className={s.button_svg} type='button' onClick={() => showInputText('text')}><IconEyeClose/></button>}
+                <button className={s.button_svg} type='button' onClick={() => changeInputType('text')}>
+                  <IconEyeClose/>
+                </button>}
 
              {checkIcon('eye') && this.state.isType === 'text' &&
-                <button className={s.button_svg} type='button' onClick={() => showInputText('password')}><IconEyeOpen/></button>}
+                <button className={s.button_svg} type='button' onClick={() => changeInputType('password')}>
+                  <IconEyeOpen/>
+                </button>}
           </fieldset>
       );
    };

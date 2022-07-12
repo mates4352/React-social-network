@@ -17,11 +17,6 @@
    border-radius: 8px;
 }
 
-.input::selection {
-   color: var(--blue);
-   background-color: var(--black);
-}
-
 .legend {
    position: relative;
    z-index: 1;
@@ -34,6 +29,10 @@
    transition: color 500ms ease;
 }
 
+.input::selection,.legend::selection {
+   color: var(--blue);
+   background-color: var(--black);
+}
 
 .input:focus + .legend,.input:valid + .legend {
    color: var(--black);
