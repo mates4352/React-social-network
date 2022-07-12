@@ -3,13 +3,12 @@ import s from './Сommunication.module.scss'
 import {NavLink} from "react-router-dom";
 import {Message} from "./component/message/Message";
 import {DialogsType, MessageType} from "../../../bll/redux/reducer/communication/communication-reducer";
+import {CommunicationInput} from "./component/communicationInput/CommunicationInput";
 
 export type communicationType = {
-   textMessage: string
    messages: Array<MessageType>
    dialogs: Array<DialogsType>
-   changeValueMessage: (e: ChangeEvent<HTMLInputElement>) => void
-   sendMessage: (e: KeyboardEvent<HTMLInputElement>) => void
+   sendMessage: (text: string) => void
 }
 
 export class Сommunication extends React.Component<communicationType> {
@@ -18,7 +17,7 @@ export class Сommunication extends React.Component<communicationType> {
    }
 
    render() {
-      const {textMessage, messages, dialogs, changeValueMessage, sendMessage} = this.props
+      const {messages, dialogs, sendMessage} = this.props
       const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
       return (
@@ -54,12 +53,7 @@ export class Сommunication extends React.Component<communicationType> {
                    )}
                 </ul>
 
-                <input className={s.entryFieldInput}
-                       type="text"
-                       placeholder="To write a message..."
-                       value={textMessage}
-                       onChange={changeValueMessage}
-                       onKeyUp={sendMessage}/>
+                <CommunicationInput sendMessage={sendMessage}/>
              </div>
           </div>
       );

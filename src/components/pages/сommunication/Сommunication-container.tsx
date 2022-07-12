@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 import {Сommunication} from './Сommunication'
 import {
    addTextMessage,
-   changeValueMessage
 } from "../../../bll/redux/reducer/communication/communication-actions/communication-actions";
 import {compose} from "redux";
 
@@ -17,20 +16,14 @@ class CommunicationContainer extends React.Component<mapCommunicationContainerTy
    }
 
    render() {
-      const changeValueMessage = (e: ChangeEvent<HTMLInputElement>) => {
-         this.props.changeValueMessage(e.currentTarget.value)
-      }
-
-      const sendMessage = (e: KeyboardEvent<HTMLInputElement>) => {
-         this.props.addTextMessage(e.key, e.currentTarget.value)
+      const sendMessage = (text: string) => {
+         this.props.addTextMessage(text)
       }
 
       return (
           <Сommunication
-              textMessage={this.props.textMessage}
               messages={this.props.messages}
               dialogs={this.props.dialogs}
-              changeValueMessage={changeValueMessage}
               sendMessage={sendMessage}/>
       )
    }
@@ -38,14 +31,12 @@ class CommunicationContainer extends React.Component<mapCommunicationContainerTy
 
 const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
-      textMessage: state.communicationPage.textMessage,
       messages: state.communicationPage.messages,
       dialogs: state.communicationPage.dialogs,
    }
 }
 
 const mapDispatchToProps: mapDispatchToPropsType = {
-   changeValueMessage,
    addTextMessage,
 }
 
@@ -56,7 +47,6 @@ export default compose(
 type mapCommunicationContainerType = mapStateToPropsType & mapDispatchToPropsType;
 type mapStateToPropsType = communicationPageType;
 type mapDispatchToPropsType = {
-   changeValueMessage: (text: string) => void
-   addTextMessage: (key: string, text: string) => void
+   addTextMessage: (text: string) => void
 }
 

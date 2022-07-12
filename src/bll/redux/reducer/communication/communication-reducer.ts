@@ -7,17 +7,12 @@ const inisionalState = {
       {id: v1(), name: 'Sergey'}
    ],
    messages: [],
-   textMessage: ''
 }
 
 export const communicationReducer = (state: communicationPageType = inisionalState, action: communicationActionType): communicationPageType => {
    switch (action.type) {
-      case Actions_Type.CHANGE_VALUE_MESSAGE:
-         return {...state, textMessage: action.text}
-
       case Actions_Type.ADD_MESSAGE:
-         if(state.textMessage.trim() !== '' && action.key === 'Enter') return {...state, messages: [...state.messages, action.newMessage], textMessage: ''}
-         return state
+         return {...state, messages: [...state.messages, action.newMessage]}
 
       default:
          return state
@@ -27,7 +22,6 @@ export const communicationReducer = (state: communicationPageType = inisionalSta
 export type communicationPageType = {
    dialogs: Array<DialogsType>
    messages: Array<MessageType>
-   textMessage: string
 }
 export type DialogsType = {
    id: string,

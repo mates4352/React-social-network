@@ -2,7 +2,7 @@ import {
    communicationReducer,
    communicationPageType
 } from "../communication-reducer";
-import {addTextMessage, changeValueMessage} from "../communication-actions/communication-actions";
+import {addTextMessage} from "../communication-actions/communication-actions";
 
 const state: communicationPageType = {
    dialogs: [
@@ -24,23 +24,12 @@ const state: communicationPageType = {
       {id: '8', text: "Bay"},
       {id: '9', text: "Hello"},
    ],
-   textMessage: 'lorem'
 }
 
-it('test case CHANGE_VALUE_MESSAGE', () => {
-   const newState = communicationReducer(state, changeValueMessage('text'))
-
-   expect(state).toEqual(state)
-   expect(newState.textMessage).toBe('text')
-})
-
 it('test case ADD_MESSAGE', () => {
-   const newState = communicationReducer(state, addTextMessage('Enter', 'text'))
-   const newState2 = communicationReducer(state, addTextMessage('', 'text'))
+   const newState = communicationReducer(state, addTextMessage('text'))
 
    expect(state).toEqual(state)
-   state.textMessage.trim() !== '' && expect(newState.messages.length).toBe(10)
-   state.textMessage.trim() !== '' && expect(newState2.messages.length).toBe(9)
    expect(newState.messages[9].text).toBe('text')
    expect(newState.dialogs.length).toBe(5)
 })

@@ -1,6 +1,5 @@
-import {addTextMessage, changeValueMessage} from "./communication-actions";
+import {addTextMessage} from "./communication-actions";
 
 
-export type communicationActionType = addTextMessageType | changeValueMessageType;
+export type communicationActionType = addTextMessageType;
 export type addTextMessageType = ReturnType<typeof addTextMessage>
-export type changeValueMessageType = ReturnType<typeof changeValueMessage>
