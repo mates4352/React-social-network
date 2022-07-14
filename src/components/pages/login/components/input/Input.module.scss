@@ -13,7 +13,7 @@
 
 .error {
    border: 2px solid red;
-   margin-bottom: 10px;
+   margin-bottom: 30px;
 }
 
 .input {
@@ -64,10 +64,4 @@
    transform: translateY(-50%);
    border: none;
    background-color: transparent;
-}
-
-.text_error {
-   justify-self: start;
-   font: var(--h2);
-   color: tomato;
 }

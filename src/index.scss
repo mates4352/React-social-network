@@ -138,3 +138,22 @@ menu, ul, li {
 img {
    vertical-align: bottom;
 }
+
+.error-enter {
+   opacity: 0;
+   transform: scale(0.5);
+}
+.error-enter-active {
+   opacity: 1;
+   transform: scale(1);
+   transition: transform 500ms ease, opacity 500ms;
+}
+
+.error-exit {
+   opacity: 1;
+}
+.error-exit-active {
+   opacity: 0;
+   transform: scale(0.5);
+   transition: transform 500ms ease, opacity 500ms;
+}

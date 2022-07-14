@@ -3,6 +3,8 @@ import s from './Input.module.scss'
 import {IconEyeClose} from "../../../../features/icons/Icon-eye-close";
 import {IconEyeOpen} from "../../../../features/icons/Icon-eye-open";
 import {WrappedFieldProps} from "redux-form";
+import {Error} from "../error/Error";
+import {CSSTransition} from "react-transition-group";
 
 type inputType = WrappedFieldProps & {
    text: string
@@ -22,6 +24,7 @@ export class Input extends React.Component<inputType> {
 
    render() {
       const {input, meta, text, icon} = this.props;
+
       const isValid = (validValue: any, errorValue: any) => {
          if (meta.touched) {
             if (meta.valid) return validValue
@@ -60,8 +63,17 @@ export class Input extends React.Component<inputType> {
                      <IconEyeOpen/>
                    </button>
                 }
+
+                <CSSTransition
+                    classNames='error'
+                    in={meta.touched && !meta.valid}
+                    timeout={500}
+                    mountOnEnter
+                    unmountOnExit
+                >
+                   <Error error={meta.error}/>
+                </CSSTransition>
              </fieldset>
-             {meta.touched && meta.error && <span className={s.text_error}>{meta.error}</span>}
           </>
       );
    };
