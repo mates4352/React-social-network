@@ -19,15 +19,15 @@ class App extends React.Component<appType> {
    }
 
    render() {
-      if(this.props.status || this.props.status === null) return <Login/>
       const {status} = this.props;
+      const isStatus = status || status === null;
 
       return (
           <Routes>
-             <Route path={'/'} element={<Navigate to={status  ? '/login' : '/Main'}/>}/>
-             <Route path={'/*'} element={<Navigate to={status ? '/login' : '/Main'}/>}/>
-             <Route path={'/Login'} element={status ?  <Login/> : <Navigate to={'/Main'}/>}/>
-             <Route path={'/Main/*'} element={status ? <Navigate to={'/login'}/> : <MainPage/>}/>
+             <Route path={'/'} element={<Navigate to={isStatus  ? '/login' : '/Main'}/>}/>
+             <Route path={'/*'} element={<Navigate to={isStatus ? '/login' : '/Main'}/>}/>
+             <Route path={'/Login'} element={isStatus ? <Login/> : <Navigate to={'/Main'}/>}/>
+             <Route path={'/Main/*'} element={isStatus ? <Navigate to={'/login'}/> : <MainPage/>}/>
              <Route path={'/Main'} element={<Navigate to={'/Main/Account'}/>}/>
           </Routes>
       );

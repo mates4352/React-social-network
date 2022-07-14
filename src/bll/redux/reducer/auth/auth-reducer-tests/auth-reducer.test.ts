@@ -8,7 +8,6 @@ let state: authType = {
       email: ''
    },
    messages: [],
-   fieldsErrors: [],
    resultCode: 1
 }
 
@@ -20,18 +19,16 @@ beforeEach(() => {
          email: 'sergey@mail.ru'
       },
       messages: [],
-      fieldsErrors: [],
       resultCode: 0
    }
 })
 
 it('test case SET-AUTH-DATA', () => {
-   const action = changeAuthData({data: {id: 2, login: 'Dima', email: 'dima@mail.ru'}, messages: [], fieldsErrors: [], resultCode: 0});
+   const action = changeAuthData({data: {id: 2, login: 'Dima', email: 'dima@mail.ru'}, messages: [], resultCode: 0});
    const newState = authReducer(state, action);
 
    expect(state).toEqual(state);
    expect(state.messages).toBe(newState.messages);
-   expect(state.fieldsErrors).toBe(newState.fieldsErrors);
    expect(newState.resultCode).toBe(0);
    expect(newState.data.id).toBe(2);
    expect(newState.data.login).toBe('Dima');

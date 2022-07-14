@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './MainPage.module.scss';
 import HeaderContainer from "../shared/Header/Header-container";
-import {Menu} from "../shared/Menu/Menu";
+import Menu from "../shared/Menu/Menu";
 import RoutersMainContainer from "../../routes/Routers-main-container";
 
 type mainPageType = {

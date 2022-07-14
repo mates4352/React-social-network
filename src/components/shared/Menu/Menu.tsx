@@ -1,17 +1,19 @@
 import s from './Menu.module.scss'
 import {NavLink} from "react-router-dom";
 import React from "react";
+import {connect} from "react-redux";
+import {logout} from "../../../bll/redux/reducer/auth/auth-thunk";
 
-type menuType = {
+type menuType = mapMenu & {
 
 }
 
-export class Menu extends React.PureComponent<menuType> {
+class Menu extends React.PureComponent<menuType> {
    constructor(props: menuType) {
       super(props);
    }
    render() {
-      const {} = this.props;
+      const {logout} = this.props;
       const classLink = ({isActive}: any) => isActive ? `${s.link} ${s.link_active}` : s.link;
 
       return (
@@ -46,10 +48,18 @@ export class Menu extends React.PureComponent<menuType> {
                 </li>
 
                 <li className={s.item}>
-                   <NavLink className={classLink} to={"/Login"}>Exit</NavLink>
+                   <button className={s.link} onClick={logout}>Exit</button>
                 </li>
              </ul>
           </nav>
       );
    };
-};
+}
+
+export default connect(null, {logout})(Menu)
+
+type mapMenu = mapDispatchToPropsType;
+
+type mapDispatchToPropsType = {
+   logout: () => void
+}

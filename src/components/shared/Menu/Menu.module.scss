@@ -15,12 +15,17 @@
 
    .link {
       display: block;
-      border-radius: 8px;
+      width: 100%;
       padding: 6px 24px;
 
       font: var(--h2);
+      text-align: left;
       color: var(--black);
       transition: background-color 300ms ease, color 300ms ease, box-shadow 100ms ease;
+
+      background-color: transparent;
+      border-radius: 8px;
+      border: none;
 
       &:hover {
          color: var(--blue);

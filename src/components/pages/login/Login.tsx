@@ -1,13 +1,16 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Login.module.scss'
 import {Button} from "../../features/interactive/Button/Button";
 import {Input} from "./components/input/Input";
 import {Field, InjectedFormProps, reduxForm} from 'redux-form'
 import {InputCheckbox} from "./components/inputCheckbox/InputCheckbox";
 import {maxLength10, maxLength16, minLength6, required} from "../../../react-forms/form-login/form-login-validation";
+import {connect} from "react-redux";
+import {signIn} from "../../../bll/redux/reducer/auth/auth-thunk";
+import {authDataFormLoginType} from "../../../api/auth/authAPI";
 
 export type loginType = {
-   login: string
+   email: string
    password: string
    checkbox: string
 };
@@ -23,7 +26,7 @@ class LoginForm extends React.Component<InjectedFormProps<loginType>> {
 
                 <Field
                     component={Input}
-                    name='login'
+                    name='email'
                     text='Login'
                     type='text'
                     validate={[required, maxLength10, minLength6]}
@@ -38,9 +41,9 @@ class LoginForm extends React.Component<InjectedFormProps<loginType>> {
                 />
                 <Field
                     component={InputCheckbox}
-                    name='checkbox'
+                    name='rememberMe'
                     type='checkbox'
-                    text='remember me'
+                    text='Remember me'
                     id='checkbox'
                 />
 
@@ -53,15 +56,22 @@ class LoginForm extends React.Component<InjectedFormProps<loginType>> {
 
 const LoginReduxForm = reduxForm<loginType>({form: 'login'})(LoginForm)
 
-class Login extends React.Component<any, any> {
+class Login extends React.Component<mapDispatchToPropsType> {
    render() {
       const onSubmit = (formData: any) => {
          console.log(formData)
+         this.props.signIn(formData)
       }
+
       return (
           <LoginReduxForm onSubmit={onSubmit}/>
       )
    }
 }
+export default connect(null, {signIn})(Login)
 
-export default Login
+type mapLogin = mapDispatchToPropsType;
+
+type mapDispatchToPropsType = {
+   signIn: (dataFormLogin: authDataFormLoginType) => void
+}

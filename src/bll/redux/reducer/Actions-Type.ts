@@ -8,7 +8,6 @@ export enum Actions_Type {
 
    //communicationReducer
    ADD_MESSAGE = 'ADD-MESSAGE',
-   CHANGE_VALUE_MESSAGE = 'CHANGE-VALUE-MESSAGE',
 
    //users
    CHANGE_FOLLOW_USER = 'CHANGE-FOLLOW-USER',
@@ -20,4 +19,5 @@ export enum Actions_Type {
 
    //auth
    SET_AUTH_DATA = 'SET-AUTH-DATA',
+   UPDATE_AUTH_DATA = 'UPDATE-AUTH-DATA',
 }

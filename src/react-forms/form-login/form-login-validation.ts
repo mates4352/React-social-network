@@ -3,7 +3,7 @@ export const required =(value: string) => {
 }
 
 export const maxLength10 = (value: string) => {
-   return value && value.length > 10 ? `Must be 10 characters or less` : undefined
+   return value && value.length > 50 ? `Must be 30 characters or less` : undefined
 }
 
 export const maxLength16 = (value: string) => {
