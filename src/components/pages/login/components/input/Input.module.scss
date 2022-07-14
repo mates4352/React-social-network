@@ -1,8 +1,19 @@
 
 .input_wrap {
+   --valid_color: #01b984;
    position: relative;
    border: 2px solid var(--blue);
    border-radius: 8px;
+   transition: border 300ms ease, margin-bottom 500ms ease;
+}
+
+.valid {
+   border: 2px solid var(--valid_color);
+}
+
+.error {
+   border: 2px solid red;
+   margin-bottom: 10px;
 }
 
 .input {
@@ -29,12 +40,20 @@
    transition: color 500ms ease;
 }
 
+.legend_valid {
+   color: var(--valid_color);
+}
+
+.legend_error {
+   color: red;
+}
+
 .input::selection,.legend::selection {
    color: var(--blue);
    background-color: var(--black);
 }
 
-.input:focus + .legend,.input:valid + .legend {
+.input:focus + .legend {
    color: var(--black);
 }
 
@@ -45,4 +64,10 @@
    transform: translateY(-50%);
    border: none;
    background-color: transparent;
+}
+
+.text_error {
+   justify-self: start;
+   font: var(--h2);
+   color: tomato;
 }

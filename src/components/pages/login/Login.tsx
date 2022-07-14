@@ -2,8 +2,9 @@ import React, {ChangeEvent} from 'react';
 import s from './Login.module.scss'
 import {Button} from "../../features/interactive/Button/Button";
 import {Input} from "./components/input/Input";
-import {InjectedFormProps, reduxForm} from 'redux-form'
+import {Field, InjectedFormProps, reduxForm} from 'redux-form'
 import {InputCheckbox} from "./components/inputCheckbox/InputCheckbox";
+import {maxLength10, maxLength16, minLength6, required} from "../../../react-forms/form-login/form-login-validation";
 
 export type loginType = {
    login: string
@@ -13,18 +14,37 @@ export type loginType = {
 
 class LoginForm extends React.Component<InjectedFormProps<loginType>> {
    render() {
-      const {handleSubmit, reset} = this.props;
+      const {handleSubmit, pristine, submitting} = this.props;
 
       return (
           <div className={s.login}>
              <form className={s.form} onSubmit={handleSubmit}>
                 <h2 className={s.title}>Sign In</h2>
 
-                <Input component='input' name='login' text='Login' type='text' icon='textClose'/>
-                <Input component='input' name='password' text='Password' type='password' icon='eye'/>
-                <InputCheckbox component='input' name='checkbox' type='checkbox' text='remember me'/>
+                <Field
+                    component={Input}
+                    name='login'
+                    text='Login'
+                    type='text'
+                    validate={[required, maxLength10, minLength6]}
+                />
+                <Field
+                    component={Input}
+                    name='password'
+                    text='Password'
+                    type='password'
+                    icon='eye'
+                    validate={[required, maxLength16, minLength6]}
+                />
+                <Field
+                    component={InputCheckbox}
+                    name='checkbox'
+                    type='checkbox'
+                    text='remember me'
+                    id='checkbox'
+                />
 
-                <Button>send</Button>
+                <Button disabled={pristine || submitting}>send</Button>
              </form>
           </div>
       );
@@ -38,7 +58,6 @@ class Login extends React.Component<any, any> {
       const onSubmit = (formData: any) => {
          console.log(formData)
       }
-
       return (
           <LoginReduxForm onSubmit={onSubmit}/>
       )

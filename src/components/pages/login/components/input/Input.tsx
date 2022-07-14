@@ -1,13 +1,10 @@
 import React, {ChangeEvent} from 'react';
 import s from './Input.module.scss'
-import {IconClose} from "../../../../features/icons/Icon-close";
 import {IconEyeClose} from "../../../../features/icons/Icon-eye-close";
 import {IconEyeOpen} from "../../../../features/icons/Icon-eye-open";
-import {Field} from 'redux-form'
+import {WrappedFieldProps} from "redux-form";
 
-type inputType = {
-   component: string
-   name: string
+type inputType = WrappedFieldProps & {
    text: string
    type: string
    icon?: string
@@ -24,7 +21,15 @@ export class Input extends React.Component<inputType> {
    }
 
    render() {
-      const {component, name, text, icon} = this.props;
+      const {input, meta, text, icon} = this.props;
+      const isValid = (validValue: any, errorValue: any) => {
+         if (meta.touched) {
+            if (meta.valid) return validValue
+            else if (!meta.valid) return errorValue
+            else return ''
+         }
+         return ''
+      }
       const checkIcon = (value: string) => {
          return icon === value && this.state.inputText !== ''
       }
@@ -33,33 +38,31 @@ export class Input extends React.Component<inputType> {
       }
 
       return (
-          <fieldset className={s.input_wrap}>
-             <Field
-                 className={s.input}
-                 component={component}
-                 name={name}
-                 type={this.state.isType}
-                 value={this.state.inputText}
-                 required
-                 onChange={(e: ChangeEvent<HTMLInputElement>) => this.setState({inputText: e.currentTarget.value})}
-             />
-             <legend className={s.legend}>{text}</legend>
+          <>
+             <fieldset className={`${s.input_wrap} ${isValid(s.valid, s.error)}`}>
+                <input
+                    {...input}
+                    className={s.input}
+                    type={this.state.isType}
+                    value={this.state.inputText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => this.setState({inputText: e.currentTarget.value})}
+                />
+                <legend className={`${s.legend} ${isValid(s.legend_valid, s.legend_error)}`}>{text}</legend>
 
-             {checkIcon('textClose') &&
-                <button className={s.button_svg} type='button' onClick={() => this.setState({inputText: ''})}>
-                  <IconClose/>
-                </button>}
+                {checkIcon('eye') && this.state.isType === 'password' &&
+                   <button className={s.button_svg} type='button' onClick={() => changeInputType('text')}>
+                     <IconEyeClose/>
+                   </button>
+                }
 
-             {checkIcon('eye') && this.state.isType === 'password' &&
-                <button className={s.button_svg} type='button' onClick={() => changeInputType('text')}>
-                  <IconEyeClose/>
-                </button>}
-
-             {checkIcon('eye') && this.state.isType === 'text' &&
-                <button className={s.button_svg} type='button' onClick={() => changeInputType('password')}>
-                  <IconEyeOpen/>
-                </button>}
-          </fieldset>
+                {checkIcon('eye') && this.state.isType === 'text' &&
+                   <button className={s.button_svg} type='button' onClick={() => changeInputType('password')}>
+                     <IconEyeOpen/>
+                   </button>
+                }
+             </fieldset>
+             {meta.touched && meta.error && <span className={s.text_error}>{meta.error}</span>}
+          </>
       );
    };
 }

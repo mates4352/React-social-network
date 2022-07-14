@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Users-list.module.scss'
 import {userType} from "../../../../../bll/redux/reducer/users/users-reducer";
 import {NavLink} from "react-router-dom";
-import image from "../../../../../assets/images/avatar.jpg";
 import {Avatar} from "../../../../shared/avatar/Avatar";
 import {UserInfo} from "../user-info/User-info";
 
