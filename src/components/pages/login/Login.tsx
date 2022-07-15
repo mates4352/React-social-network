@@ -8,6 +8,7 @@ import {maxLength10, maxLength16, minLength6, required} from "../../../react-for
 import {connect} from "react-redux";
 import {signIn} from "../../../bll/redux/reducer/auth/auth-thunk";
 import {authDataFormLoginType} from "../../../api/auth/authAPI";
+import {appStoreType} from "../../../bll/redux/redux-store";
 
 export type loginType = {
    email: string
@@ -15,9 +16,13 @@ export type loginType = {
    checkbox: string
 };
 
-class LoginForm extends React.Component<InjectedFormProps<loginType>> {
+type IProps = {
+   captcha?: string | undefined
+}
+
+class LoginForm extends React.Component<InjectedFormProps<loginType> & IProps> {
    render() {
-      const {handleSubmit, pristine, submitting} = this.props;
+      const {handleSubmit, pristine, submitting, captcha} = this.props;
 
       return (
           <div className={s.login}>
@@ -47,6 +52,19 @@ class LoginForm extends React.Component<InjectedFormProps<loginType>> {
                     id='checkbox'
                 />
 
+
+                { captcha && <div className={s.captcha}>
+                     <img className={s.image} src={captcha} alt="Captcha"/>
+                     <Field
+                        component={Input}
+                        name='captcha'
+                        type='text'
+                        text='Captcha'
+                        validate={[required]}
+                     />
+                </div>
+                }
+
                 <Button disabled={pristine || submitting}>send</Button>
              </form>
           </div>
@@ -54,9 +72,9 @@ class LoginForm extends React.Component<InjectedFormProps<loginType>> {
    };
 }
 
-const LoginReduxForm = reduxForm<loginType>({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<loginType, IProps>({form: 'login'})(LoginForm)
 
-class Login extends React.Component<mapDispatchToPropsType> {
+class Login extends React.Component<mapLogin> {
    render() {
       const onSubmit = (formData: any) => {
          console.log(formData)
@@ -64,14 +82,22 @@ class Login extends React.Component<mapDispatchToPropsType> {
       }
 
       return (
-          <LoginReduxForm onSubmit={onSubmit}/>
+          <LoginReduxForm captcha={this.props.captcha} onSubmit={onSubmit}/>
       )
    }
 }
-export default connect(null, {signIn})(Login)
 
-type mapLogin = mapDispatchToPropsType;
+const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
+   return {
+      captcha: state.auth.captcha
+   }
+}
+export default connect(mapStateToProps, {signIn})(Login)
 
+type mapLogin = mapStateToPropsType & mapDispatchToPropsType;
+type mapStateToPropsType = {
+   captcha: string | undefined
+}
 type mapDispatchToPropsType = {
    signIn: (dataFormLogin: authDataFormLoginType) => void
 }

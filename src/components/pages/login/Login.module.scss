@@ -24,3 +24,12 @@
    font-size: 24px;
    color: var(--black);
 }
+
+.captcha {
+   display: grid;
+   justify-items: center;
+}
+
+.image {
+   margin-bottom: 10px;
+}

@@ -1,6 +1,6 @@
 import {Actions_Type} from "../../Actions-Type";
 import {authType} from "../auth-reducer";
-import {authApiType} from "../../../../../api/auth/authAPI";
+import {authApiType, captchaType} from "../../../../../api/auth/authAPI";
 
 export const changeAuthData = (data: authType) => {
    const {id, login, email} = data.data;
@@ -12,6 +12,10 @@ export const updateAuthData = (data: authApiType<{userId: any}>) => {
    const {resultCode, messages} = data
    const {userId} = data.data
    return {type: Actions_Type.UPDATE_AUTH_DATA, data: {resultCode, messages}, userId: userId} as const
+}
+
+export const getCaptchaAuthData = (data: captchaType) => {
+   return {type: Actions_Type.GET_CAPTCHA_AUTH_DATA, data} as const
 }
 
 export const logoutAuthData = (data: authApiType<{}>) => {
