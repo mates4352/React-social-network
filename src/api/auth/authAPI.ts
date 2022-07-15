@@ -17,6 +17,7 @@ export const authAPI = {
 export type authApiType<T> = {
    data: T
    messages:[]
+   fieldsErrors: []
    resultCode: null | number
 }
 

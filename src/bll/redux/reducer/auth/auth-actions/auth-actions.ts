@@ -8,7 +8,13 @@ export const changeAuthData = (data: authType) => {
    return {type: Actions_Type.SET_AUTH_DATA, data: {id, login, email}, resultCode} as const
 }
 
-export const updateAuthData = (data: authApiType<{userId: number} | {}>) => {
+export const updateAuthData = (data: authApiType<{userId: any}>) => {
    const {resultCode, messages} = data
-   return {type: Actions_Type.UPDATE_AUTH_DATA, data: {resultCode, messages}} as const
+   const {userId} = data.data
+   return {type: Actions_Type.UPDATE_AUTH_DATA, data: {resultCode, messages}, userId: userId} as const
+}
+
+export const logoutAuthData = (data: authApiType<{}>) => {
+   const {resultCode, messages} = data
+   return {type: Actions_Type.LOGOUT_AUTH_DATA, data: {resultCode, messages}} as const
 }

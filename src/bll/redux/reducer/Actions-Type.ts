@@ -20,4 +20,5 @@ export enum Actions_Type {
    //auth
    SET_AUTH_DATA = 'SET-AUTH-DATA',
    UPDATE_AUTH_DATA = 'UPDATE-AUTH-DATA',
+   LOGOUT_AUTH_DATA = 'LOGOUT-AUTH-DATA'
 }

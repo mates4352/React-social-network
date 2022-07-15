@@ -1,6 +1,6 @@
 import {authAPI, authDataFormLoginType} from "../../../../api/auth/authAPI";
 import {AppThunkType} from "../../redux-store";
-import {changeAuthData, updateAuthData} from "./auth-actions/auth-actions";
+import {changeAuthData, logoutAuthData, updateAuthData} from "./auth-actions/auth-actions";
 
 export const getMeProfile = (): AppThunkType => dispatch => {
    authAPI.getMeProfile().then(data => {
@@ -21,7 +21,7 @@ export const signIn = (dataFormLogin: authDataFormLoginType): AppThunkType => di
 export const logout = (): AppThunkType => dispatch => {
    authAPI.logout().then(data => {
       if(data.resultCode === 0) {
-         dispatch(updateAuthData({...data, resultCode: 1}));
+         dispatch(logoutAuthData({...data, resultCode: 1}));
       }
    })
 }
