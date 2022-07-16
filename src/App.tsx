@@ -6,6 +6,7 @@ import {MainPage} from "./components/pages/MainPage";
 import {connect} from "react-redux";
 import {appStoreType} from "./bll/redux/redux-store";
 import {getMeProfile} from "./bll/redux/reducer/auth/auth-thunk";
+import {appPageRouterApi} from "./routes/app-page-router-api";
 
 export type appType = mapState & {}
 
@@ -24,11 +25,11 @@ class App extends React.Component<appType> {
 
       return (
           <Routes>
-             <Route path={'/'} element={<Navigate to={isStatus  ? '/login' : '/Main'}/>}/>
-             <Route path={'/*'} element={<Navigate to={isStatus ? '/login' : '/Main'}/>}/>
-             <Route path={'/Login'} element={isStatus ? <Login/> : <Navigate to={'/Main'}/>}/>
-             <Route path={'/Main/*'} element={isStatus ? <Navigate to={'/login'}/> : <MainPage/>}/>
-             <Route path={'/Main'} element={<Navigate to={'/Main/Account'}/>}/>
+             <Route path={appPageRouterApi["/"].path} element={<Navigate to={isStatus  ? appPageRouterApi.redirect.Login : appPageRouterApi.redirect.Main}/>}/>
+             <Route path={appPageRouterApi["/*"].path} element={<Navigate to={isStatus ? appPageRouterApi.redirect.Login : appPageRouterApi.redirect.Main}/>}/>
+             <Route path={appPageRouterApi.Login.path} element={isStatus ? <Login/> : <Navigate to={appPageRouterApi.redirect.Main}/>}/>
+             <Route path={appPageRouterApi.Main.path} element={<Navigate to={appPageRouterApi.redirect["/Main/Account"]}/>}/>
+             <Route path={appPageRouterApi["Main*"].path} element={isStatus ? <Navigate to={appPageRouterApi.redirect.Login}/> : <MainPage/>}/>
           </Routes>
       );
    };

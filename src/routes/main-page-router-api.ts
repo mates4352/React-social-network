@@ -1,4 +1,4 @@
-export const routerApi: routerAPI = {
+export const mainPageRouterApi: mainPageRouterApi = {
    '/': {
       path: '/',
    },
@@ -36,7 +36,7 @@ export const routerApi: routerAPI = {
    },
 }
 
-type routerAPI = {
+type mainPageRouterApi = {
    "/": pathType<'/'>
    Account: pathType<'/Account'>
    Communication: pathType<'/Communication/*'>
