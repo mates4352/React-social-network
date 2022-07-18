@@ -13,7 +13,7 @@ import {
    accountActionType
 } from "./reducer/account/account-actions/account-actions-type";
 import {authActionType} from "./reducer/auth/auth-actions/auth-actions-type";
-import { reducer as formReducer } from 'redux-form';
+import {FormAction, reducer as formReducer} from 'redux-form';
 
 const rootReducer = combineReducers({
    accountPage: accountReducer,
@@ -27,4 +27,4 @@ export const store = createStore(rootReducer, composeWithDevTools(applyMiddlewar
 
 export type appStoreType = ReturnType<typeof rootReducer>
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, appStoreType, unknown, appActionType>
-type appActionType = accountActionType | authActionType | communicationActionType | userActionType;
+type appActionType = accountActionType | authActionType | communicationActionType | userActionType | FormAction;

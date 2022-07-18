@@ -1,6 +1,7 @@
 import {authAPI, authDataFormLoginType} from "../../../../api/auth/authAPI";
 import {AppThunkType} from "../../redux-store";
 import {changeAuthData, getCaptchaAuthData, logoutAuthData, updateAuthData} from "./auth-actions/auth-actions";
+import {stopSubmit} from "redux-form";
 
 export const getMeProfile = (): AppThunkType => dispatch => {
    authAPI.getMeProfile().then(data => {
@@ -24,6 +25,8 @@ export const signIn = (dataFormLogin: authDataFormLoginType): AppThunkType => di
       } else if (data.resultCode === 10) {
          console.log('data.resultCode', data.resultCode);
          dispatch(getCaptcha());
+      } else {
+         dispatch(stopSubmit("login", {_error: data.messages}))
       }
    })
 }

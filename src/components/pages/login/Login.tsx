@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {signIn} from "../../../bll/redux/reducer/auth/auth-thunk";
 import {authDataFormLoginType} from "../../../api/auth/authAPI";
 import {appStoreType} from "../../../bll/redux/redux-store";
+import {CSSTransition} from "react-transition-group";
 
 export type loginType = {
    email: string
@@ -34,6 +35,7 @@ class LoginForm extends React.Component<InjectedFormProps<loginType> & IProps> {
                     name='email'
                     text='Login'
                     type='text'
+                    error={this.props.error}
                     validate={[required, maxLength10, minLength6]}
                 />
                 <Field
@@ -42,6 +44,7 @@ class LoginForm extends React.Component<InjectedFormProps<loginType> & IProps> {
                     text='Password'
                     type='password'
                     icon='eye'
+                    error={this.props.error}
                     validate={[required, maxLength16, minLength6]}
                 />
                 <Field
@@ -52,18 +55,29 @@ class LoginForm extends React.Component<InjectedFormProps<loginType> & IProps> {
                     id='checkbox'
                 />
 
-
-                { captcha && <div className={s.captcha}>
+                {captcha &&
+                   <div className={s.captcha}>
                      <img className={s.image} src={captcha} alt="Captcha"/>
                      <Field
                         component={Input}
                         name='captcha'
                         type='text'
                         text='Captcha'
+                        error={this.props.error}
                         validate={[required]}
                      />
-                </div>
+                   </div>
                 }
+
+                <CSSTransition
+                    classNames='error'
+                    in={!!this.props.error}
+                    timeout={500}
+                    mountOnEnter
+                    unmountOnExit
+                >
+                   <p className={s.error}>{this.props.error}</p>
+                </CSSTransition>
 
                 <Button disabled={pristine || submitting}>send</Button>
              </form>

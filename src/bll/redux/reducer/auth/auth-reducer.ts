@@ -1,7 +1,6 @@
 import {Actions_Type} from "../Actions-Type";
 import {authApiType, authDataApiType} from "../../../../api/auth/authAPI";
 import {authActionType} from "./auth-actions/auth-actions-type";
-import {getCaptcha} from "./auth-thunk";
 
 const inisialState: authType = {
    data: {

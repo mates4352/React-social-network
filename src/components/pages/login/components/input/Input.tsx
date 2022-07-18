@@ -7,6 +7,7 @@ import {Error} from "../error/Error";
 import {CSSTransition} from "react-transition-group";
 
 type inputType = WrappedFieldProps & {
+   error?: string
    text: string
    type: string
    icon?: string
@@ -42,7 +43,7 @@ export class Input extends React.Component<inputType> {
 
       return (
           <>
-             <fieldset className={`${s.input_wrap} ${isValid(s.valid, s.error)}`}>
+             <fieldset className={`${s.input_wrap} ${isValid(s.valid, s.error)} ${this.props.error ? s.formValid : ''}`}>
                 <input
                     {...input}
                     className={s.input}
@@ -66,7 +67,7 @@ export class Input extends React.Component<inputType> {
 
                 <CSSTransition
                     classNames='error'
-                    in={meta.touched && !meta.valid}
+                    in={meta.touched && !!meta.error}
                     timeout={500}
                     mountOnEnter
                     unmountOnExit
