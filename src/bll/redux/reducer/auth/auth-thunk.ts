@@ -14,7 +14,6 @@ export const getMeProfile = (): AppThunkType => dispatch => {
 export const getCaptcha = (): AppThunkType => dispatch => {
    authAPI.getCaptcha().then(data => {
       dispatch(getCaptchaAuthData(data));
-      console.log('111');
    })
 }
 
@@ -23,7 +22,6 @@ export const signIn = (dataFormLogin: authDataFormLoginType): AppThunkType => di
       if(data.resultCode === 0) {
          dispatch(updateAuthData(data));
       } else if (data.resultCode === 10) {
-         console.log('data.resultCode', data.resultCode);
          dispatch(getCaptcha());
       } else {
          dispatch(stopSubmit("login", {_error: data.messages}))

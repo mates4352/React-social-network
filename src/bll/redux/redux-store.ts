@@ -14,6 +14,7 @@ import {
 } from "./reducer/account/account-actions/account-actions-type";
 import {authActionType} from "./reducer/auth/auth-actions/auth-actions-type";
 import {FormAction, reducer as formReducer} from 'redux-form';
+import {loadState, saveState} from "./localStorage";
 
 const rootReducer = combineReducers({
    accountPage: accountReducer,
@@ -23,8 +24,15 @@ const rootReducer = combineReducers({
    form: formReducer,
 
 })
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+export const store = createStore(rootReducer, {auth: loadState()}, composeWithDevTools(applyMiddleware(thunk)))
 
 export type appStoreType = ReturnType<typeof rootReducer>
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, appStoreType, unknown, appActionType>
 type appActionType = accountActionType | authActionType | communicationActionType | userActionType | FormAction;
+
+function setItem(state: any) {
+   localStorage.setItem('state', state);
+}
+store.subscribe(() => {
+   saveState(store.getState().auth)
+})
