@@ -9,6 +9,7 @@ import {
    addTextMessage,
 } from "../../../bll/redux/reducer/communication/communication-actions/communication-actions";
 import {compose} from "redux";
+import {getCommunicationDialogs, getCommunicationMessages} from "../../../bll/redux/selectors/communication-selectors";
 
 class CommunicationContainer extends React.Component<mapCommunicationContainerType> {
    constructor(props: mapCommunicationContainerType) {
@@ -31,8 +32,8 @@ class CommunicationContainer extends React.Component<mapCommunicationContainerTy
 
 const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
-      messages: state.communicationPage.messages,
-      dialogs: state.communicationPage.dialogs,
+      messages: getCommunicationMessages(state),
+      dialogs: getCommunicationDialogs(state),
    }
 }
 

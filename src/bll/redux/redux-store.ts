@@ -22,7 +22,6 @@ const rootReducer = combineReducers({
    usersPage: usersReducer,
    auth: authReducer,
    form: formReducer,
-
 })
 export const store = createStore(rootReducer, {auth: loadState()}, composeWithDevTools(applyMiddleware(thunk)))
 
@@ -30,9 +29,6 @@ export type appStoreType = ReturnType<typeof rootReducer>
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, appStoreType, unknown, appActionType>
 type appActionType = accountActionType | authActionType | communicationActionType | userActionType | FormAction;
 
-function setItem(state: any) {
-   localStorage.setItem('state', state);
-}
 store.subscribe(() => {
    saveState(store.getState().auth)
 })

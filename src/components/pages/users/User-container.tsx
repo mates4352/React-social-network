@@ -8,6 +8,12 @@ import {
    getUsers, unFollowedUser
 } from "../../../bll/redux/reducer/users/users-thunk";
 import {compose} from "redux";
+import {
+   getUsersCurrentPageSelector, getUsersIsDisabledSelector, getUsersIsPreloaderSelector,
+   getUsersItemsSelector,
+   getUsersPageSizeSelector,
+   getUsersTotalCountSelector
+} from "../../../bll/redux/selectors/users-selectors";
 
 class UserContainer extends React.Component<mapUserPropsType> {
    constructor(props: mapUserPropsType) {
@@ -54,12 +60,12 @@ class UserContainer extends React.Component<mapUserPropsType> {
 
 const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
-      users: state.usersPage.items,
-      pageSize: state.usersPage.pageSize,
-      totalCount: state.usersPage.totalCount,
-      currentPage: state.usersPage.currentPage,
-      isPreloader: state.usersPage.isPreloader,
-      isDisabled: state.usersPage.isDisabled,
+      users: getUsersItemsSelector(state),
+      pageSize: getUsersPageSizeSelector(state),
+      totalCount: getUsersTotalCountSelector(state),
+      currentPage: getUsersCurrentPageSelector(state),
+      isPreloader: getUsersIsPreloaderSelector(state),
+      isDisabled: getUsersIsDisabledSelector(state),
    }
 }
 const mapDispatchToProps: mapDispatchToPropsType = {

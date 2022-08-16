@@ -11,6 +11,9 @@ import {
 import {getAccount, getStatus, updateStatus} from "../../../bll/redux/reducer/account/account-thunk";
 import {compose} from "redux";
 import {WithRouterParams} from "../../../hoc/With-router-params";
+import {
+   getAccountDataPostSelector, getAccountProfileSelector, getAccountStatusSelector, getAccountUserIdSelector,
+} from "../../../bll/redux/selectors/account-selectors";
 
 class AccountContainer extends React.Component<mapAccountType> {
    constructor(props: mapAccountType) {
@@ -43,10 +46,10 @@ class AccountContainer extends React.Component<mapAccountType> {
 
 const mapStateToProps = (state: appStoreType): mapStateToPropsType => {
    return {
-      userId: state.auth.data.id,
-      datePost: state.accountPage.datePost,
-      profile: state.accountPage.profile,
-      status: state.accountPage.status,
+      userId: getAccountUserIdSelector(state),
+      datePost: getAccountDataPostSelector(state),
+      profile: getAccountProfileSelector(state),
+      status: getAccountStatusSelector(state),
    };
 };
 const mapDispatchToProps: mapDispatchToPropsType = {
