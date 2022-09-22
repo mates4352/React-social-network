@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/React-social-network/static/css/main.6beab591.css",
+    "main.js": "/React-social-network/static/js/main.7761b65a.js",
+    "static/js/787.cfd8f164.chunk.js": "/React-social-network/static/js/787.cfd8f164.chunk.js",
+    "static/media/Montserrat-Regular.woff2": "/React-social-network/static/media/Montserrat-Regular.714a6f629bc236ea4ed3.woff2",
+    "static/media/Montserrat-Bold.woff2": "/React-social-network/static/media/Montserrat-Bold.5f06904a5e4e0444f81b.woff2",
+    "static/media/Montserrat-Medium.woff2": "/React-social-network/static/media/Montserrat-Medium.e1c652f52e5fad5830c1.woff2",
+    "static/media/Montserrat-Bold.woff": "/React-social-network/static/media/Montserrat-Bold.5f2c425059db457a881b.woff",
+    "static/media/Montserrat-Regular.woff": "/React-social-network/static/media/Montserrat-Regular.39aa71334c1d7a24f103.woff",
+    "static/media/Montserrat-Medium.woff": "/React-social-network/static/media/Montserrat-Medium.8887ce691def22f84e2a.woff",
+    "index.html": "/React-social-network/index.html",
+    "main.6beab591.css.map": "/React-social-network/static/css/main.6beab591.css.map",
+    "main.7761b65a.js.map": "/React-social-network/static/js/main.7761b65a.js.map",
+    "787.cfd8f164.chunk.js.map": "/React-social-network/static/js/787.cfd8f164.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6beab591.css",
+    "static/js/main.7761b65a.js"
+  ]
+}
